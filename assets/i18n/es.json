@@ -1,0 +1,102 @@
+{
+  "translation": {
+    "version": "Versión",
+    "language": "Idioma",
+    "welcome": "Bienvenido",
+    "hello": "Hola",
+    "labels": {
+      "emailAddress": "Dirección de correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "wicEBTCardNumber": "Número de tarjeta WIC EBT",
+      "ARBirthDate": "Fecha de nacimiento en formato (mm/dd/aaaa)",
+      "ARMailingAddressZipCode": "Código postal de dirección de envío en AR",
+      "nickname": "Apodo",
+      "reason": "Motivo",
+      "description": "Descripción",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "confirmationCode": "Código de confirmación"
+    },
+    "errorMessages": {
+      "fieldRequired": "Este campo es obligatorio.",
+      "emailRequired": "Se requiere dirección de correo electrónico.",
+      "ValidEmail": "Ingrese una dirección de correo electrónico válida.",
+      "PasswordRequired": "Se requiere contraseña.",
+      "Password6Long": "La contraseña debe tener al menos 6 caracteres.",
+      "confirmPasswordRequired": "Se requiere confirmar la contraseña.",
+      "confirmPassword6Long": "La confirmación de la contraseña debe tener al menos 6 caracteres.",
+      "passwordMismatch": "La contraseña y la confirmación de la contraseña no coinciden.",
+      "WicEbtNumberRequired": "Se requiere un número de tarjeta WIC EBT válido.",
+      "WicEbtNumberInvalid": "El número de tarjeta WIC EBT debe tener 16 dígitos.",
+      "BirthDateRequired": "Ingrese una fecha de nacimiento de AR válida.",
+      "BirthDateInvalid": "La fecha de nacimiento debe tener el formato MM/DD/AAAA.",
+      "ZipCodeRequired": "Se requiere el código postal.",
+      "ZipCodeInvalid": "El código postal debe tener 5 dígitos.",
+      "allRequiredFields": "Por favor complete todos los campos obligatorios correctamente."
+    },
+    "pageTitles": {
+      "floridaWIC": "Florida WIC",
+      "forgotPassword": "Olvidé la contraseña",
+      "register": "Registrarse",
+      "settings": "Configuración",
+      "home": "Inicio",
+      "notifications": "Notificaciones",
+      "manageEBTAccount": "Administrar cuenta EBT",
+      "appointments": "Citas",
+      "benefits": "Beneficios",
+      "clinics": "Clínicas",
+      "stores": "Tiendas",
+      "changePassword": "Cambiar contraseña",
+      "signatures": "Firmas",
+      "feedback": "Comentarios",
+      "resourceLinks": "Enlaces de recursos",
+      "uploadDocuments": "Cargar documentos",
+      "logOut": "Cerrar sesión",
+      "addCard": "Agregar tarjeta",
+      "editNickname": "Editar apodo",
+      "confirmation": "Verificar código de confirmación"
+    },
+    "footerIcon": {
+      "clinics": "Clínicas",
+      "stores": "Tiendas",
+      "resourceLinks": "Enlaces de recursos",
+      "appointments": "Citas",
+      "benefits": "Beneficios",
+      "UPCScan": "Escaneo de UPC",
+      "logOut": "Cerrar sesión"
+    },
+    "buttons": {
+      "login": "Iniciar sesión",
+      "save": "Guardar",
+      "register": "Registrarse",
+      "forgotPassword": "Olvidé la contraseña",
+      "submit": "Enviar",
+      "addCard": "Agregar tarjeta",
+      "remove": "Eliminar",
+      "makeDefault": "Establecer como predeterminado",
+      "edit": "Editar",
+      "confirm": "Confirmar",
+      "verify": "Verificar",
+      "changePassword": "Cambiar contraseña",
+      "resend": "Reenviar",
+      "verifyCard": "Verificar Tarjeta",
+      "updateNickname": "Actualizar Apodo"
+    },
+    "pageText": {
+      "confirmPage": "Se ha enviado un nuevo código a la dirección de correo electrónico que proporcionaste. Por favor, ingresa ese código para verificar tu correo electrónico.",
+      "noAppointments": "No hay citas",
+      "NextAppointmentOn": "Próxima cita el",
+      "NoVerified": "No verificado",
+      "Verified": "Verificado",
+      "VerifiedDefaultCard": "Verificado y tarjeta predeterminada"
+    },
+    "headings": {
+      "confirm": "Confirmar"
+    },
+    "InfoMessages": {
+      "SignatureIsCompleted": "La firma está completada",
+      "SignatureIsNotCompleted": "La firma no está completada"
+    }
+  }
+}
