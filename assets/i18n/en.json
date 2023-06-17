@@ -2,8 +2,8 @@
   "translation": {
     "version": "Version",
     "language": "Language",
-    "welcome":"Welcome",
-    "hello":"Hello",
+    "welcome": "Welcome",
+    "hello": "Hello",
     "labels": {
       "emailAddress": "Email Address",
       "password": "Password",
@@ -16,24 +16,24 @@
       "description": "Description",
       "currentPassword": "Current Password",
       "newPassword": "New Password",
-      "confirmationCode":"Confirmation Code"
+      "confirmationCode": "Confirmation Code"
     },
-    "errorMessages":{
-      "fieldRequired":"This field is required.",
-      "emailRequired":"Email address is required.",
-      "ValidEmail":"Enter a valid email address.",
-      "PasswordRequired":"Password is required.",
-      "Password6Long":"Password must be at least 6 characters long",
-      "confirmPasswordRequired":"Confirm Password is required.",
-      "confirmPassword6Long":"confirm Password must be at least 6 characters long",
-      "passwordMismatch":"password and confirm Password didn't match.",
-      "WicEbtNumberRequired":"WIC Valid EBT card number required.",
-      "WicEbtNumberInvalid":"WIC EBT card number must 16 digits.",
-      "BirthDateRequired":"Enter valid AR Birth Date.",
-      "BirthDateInvalid":"Birth date must be MM/DD/YYYY format.",
-      "ZipCodeRequired":"ZipCode is required.",
-      "ZipCodeInvalid":"ZipCode must 5 digits.",
-      "allRequiredFields":"Please fill in all required fields correctly."
+    "errorMessages": {
+      "fieldRequired": "This field is required.",
+      "emailRequired": "Email address is required.",
+      "ValidEmail": "Enter a valid email address.",
+      "PasswordRequired": "Password is required.",
+      "Password6Long": "Password must be at least 6 characters long",
+      "confirmPasswordRequired": "Confirm Password is required.",
+      "confirmPassword6Long": "confirm Password must be at least 6 characters long",
+      "passwordMismatch": "password and confirm Password didn't match.",
+      "WicEbtNumberRequired": "WIC Valid EBT card number required.",
+      "WicEbtNumberInvalid": "WIC EBT card number must 16 digits.",
+      "BirthDateRequired": "Enter valid AR Birth Date.",
+      "BirthDateInvalid": "Birth date must be MM/DD/YYYY format.",
+      "ZipCodeRequired": "ZipCode is required.",
+      "ZipCodeInvalid": "ZipCode must 5 digits.",
+      "allRequiredFields": "Please fill in all required fields correctly."
     },
     "pageTitles": {
       "floridaWIC": "Florida WIC",
@@ -55,10 +55,11 @@
       "logOut": "LogOut",
       "addCard": "Add Card",
       "editNickname": "Edit Nickname",
-      "confirmation":"Verify Confirmation Code",
-      "current":"Current",
-      "future":"Future",
-      "benefitsDetails":"Benefits Details"
+      "confirmation": "Verify Confirmation Code",
+      "current": "Current",
+      "future": "Future",
+      "benefitsDetails": "Benefits Details",
+      "UPCScan": "UPC Scan"
     },
     "footerIcon": {
       "clinics": "Clinics",
@@ -82,28 +83,28 @@
       "confirm": "Confirm",
       "verify": "Verify",
       "changePassword": "Change Password",
-      "resend":"Resend",
+      "resend": "Resend",
       "verifyCard": "Verify Card",
-      "updateNickname":"Update Nickname",
+      "updateNickname": "Update Nickname",
       "UPCScan": "UPC Scan"
     },
-    "pageText":{
-      "confirmPage":"A new code was sent to the email address that you provided. Please enter that code to verify your email.",
-      "noAppointments":"No appointments",
-      "NextAppointmentOn":"Next Appointment On",
-      "NotVerified":"Not Verified",
-      "Verified":"Verified",
-      "VerifiedDefaultCard":"Verified and default card",
-      "issuedQuantity":"Issued Quantity:",
-      "remainingQuantity":"Remaining Quantity:"
+    "pageText": {
+      "confirmPage": "A new code was sent to the email address that you provided. Please enter that code to verify your email.",
+      "noAppointments": "No appointments",
+      "NextAppointmentOn": "Next Appointment On",
+      "NotVerified": "Not Verified",
+      "Verified": "Verified",
+      "VerifiedDefaultCard": "Verified and default card",
+      "issuedQuantity": "Issued Quantity:",
+      "remainingQuantity": "Remaining Quantity:"
     },
-    "headings":{
-      "confirm":"Confirm"
+    "headings": {
+      "confirm": "Confirm"
     },
-    "InfoMessages":{
-      "SignatureIsCompleted":"Signature is completed",
-      "SignatureIsNotCompleted":"Signature is not completed",
-      "maxAllowedCharacters":"max allowed characters"
+    "InfoMessages": {
+      "SignatureIsCompleted": "Signature is completed",
+      "SignatureIsNotCompleted": "Signature is not completed",
+      "maxAllowedCharacters": "max allowed characters"
     }
   }
 }
