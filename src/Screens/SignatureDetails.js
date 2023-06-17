@@ -73,10 +73,10 @@ const SignatureDetails = ({ navigation, route }) => {
   const GetSign = () => {
     if (signatureDoc.CompletedStatus === 1) {
       var base64Icon = `data:image/png;base64,${signatureDoc.SignatureDoc}`
-      return (<View className="h-2/6 w-11/12 mx-auto">
+      return (<View className="h-2/4 w-11/12 mx-auto">
         <View className="mt-5 flex-col">
           <Text className="text-base">{signatureDoc.Signee[0]?.Description}</Text>
-          <Image className="border w-auto h-32 mt-5" source={{ uri: base64Icon }} resizeMode="stretch" />
+          <Image className="w-auto h-32 mt-5" source={{ uri: base64Icon }} resizeMode="stretch" />
         </View>
       </View>)
     }

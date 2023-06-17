@@ -37,7 +37,7 @@ export default function Signatures({ navigation }) {
     dispatch(setLoading(false));
   }
   const handleSelect = (signature) => {
-    navigation.push('SignaturesDetails', { navigation:navigation, signature: signature, pageTitle: 'Signature Details' });
+    navigation.push('SignaturesDetails', { signature: signature, pageTitle: 'Signature Details' });
   }
 
   useEffect(() => {
