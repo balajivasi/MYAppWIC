@@ -49,11 +49,11 @@ const CurrentBenefits = ({ navigation }) => {
     return (
         <View className="h-ful mx-auto mt-2" >
             {benefits[0] && <Text className="text-center text-xl mb-3">{benefits[0]?.BenefitStartDate} - {benefits[0]?.BenefitEndDate}</Text>}
-            <ScrollView>
-                <View className="w-full flex-row flex-wrap gap-2 mb-10 items-stretch">
+            <ScrollView >
+                <View className="w-screen flex-row  flex-wrap gap-2 items-stretch">
                     {benefits?.map((benefit, index) => {
                         return (
-                            <View key={index} className="border border-gray-500 bg-slate-300 rounded-lg" style={{ width: '31.3%' }}>
+                            <View key={index} className="border border-gray-500 bg-slate-300 rounded-lg" style={{ width: '31%' }}>
                                 <BenefitsList benefit={benefit} onSelect={() => handleSelectCard(benefit)} />
                             </View>
                         );

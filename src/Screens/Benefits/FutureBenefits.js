@@ -71,7 +71,7 @@ const FutureBenefits = ({ navigation }) => {
   };
 
   return (
-    <View className="mx-auto mt-2">
+    <View className="mx-auto mx-auto mt-2">
       <FutureBenefitsTab futureBenList={futureBenList} selectedTab={selectedTab} onSelectTab={onSelectTab} />
       {benefits[0] && (
         <Text className="text-center text-sm mb-3">
@@ -80,10 +80,10 @@ const FutureBenefits = ({ navigation }) => {
       )}
 
       <ScrollView className="mb-20">
-        <View className="w-full flex-row flex-wrap gap-2 items-stretch">
+        <View className="w-screen flex-row flex-wrap gap-2 items-stretch">
           {benefits?.map((benefit, index) => {
             return (
-              <View key={index} className="border border-gray-500 bg-slate-300 rounded-lg" style={{ width: '31.3%' }}>
+              <View key={index} className="border border-gray-500 bg-slate-300 rounded-lg" style={{ width: '31%' }}>
                 <BenefitsList benefit={benefit} onSelect={() => handleSelectCard(benefit)} />
               </View>
             );
