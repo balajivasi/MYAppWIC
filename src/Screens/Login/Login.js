@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, SafeAreaView, Image, Alert, ScrollView } from "react-native";
+import { Text, View, SafeAreaView, Image, Alert, ScrollView, Dimensions } from "react-native";
 import { useTranslation } from 'react-i18next';
 import Footer from "../../Common/Footer";
 import CustomTextInput from '../../Common/CustomTextInput';
@@ -33,12 +33,17 @@ export default function LoginPage({ navigation }) {
     navigation.push('ForgotPassword');
   };
 
+  const { width } = Dimensions.get('window');
+
+  const imageWidth = width * 0.5;
+  const imageHeight = (imageWidth * 125) / 200;
+
   return (
     <SafeAreaView>
       <View className="min-h-full">
         <ScrollView>
-          <Image className="mx-auto my-5" source={require("../../../assets/Images/EbtCard.jpg")} style={{ width: 200, height: 125 }} />
-          <View className="mt-10">
+          <Image className="mx-auto my-5" source={require("../../../assets/Images/EbtCard.jpg")} style={{ width: imageWidth, height: imageHeight }} resizeMode="contain" />
+          <View>
             <CustomTextInput label={t('labels.emailAddress')} placeholder='Enter Email Address' value={email} FieldType='Email' onChangeText={setEmail} validate={true} />
             <CustomTextInput label={t('labels.password')} secureTextEntry={true} placeholder='Enter Password' FieldType='Password' value={password} onChangeText={setPassword} validate={true} />
             <CustomButton title={t('buttons.login')} CSSName="w-4/5 mx-auto" onPress={handleLogin} />

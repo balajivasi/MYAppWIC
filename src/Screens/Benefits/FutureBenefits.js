@@ -5,6 +5,7 @@ import { FutureBenefitsListService, FutureBenefitsService } from '../../Services
 import BenefitsList from '../../Common/BenefitsList';
 import FutureBenefitsTab from '../../Common/FutureBenefitsTab';
 import { handleInvalidWICAccount } from '../../Common/handleInvalidWICAccount'
+import { setLoading } from '../../slices/loaderSlice';
 const FutureBenefits = ({ navigation }) => {
   const Token = useSelector(state => state.user.Token);
   const [futureBenList, setFutureBenList] = useState([]);
@@ -12,8 +13,9 @@ const FutureBenefits = ({ navigation }) => {
   const [serverError, setServerError] = useState('');
   const [selectedTab, setSelectedTab] = useState();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
   const loadFutureListBenefits = async () => {
+    dispatch(setLoading(true));
     try {
       const response = await FutureBenefitsListService(Token);
       if (response.Status === 1) {
@@ -36,6 +38,7 @@ const FutureBenefits = ({ navigation }) => {
     } catch (error) {
       console.log('Fail to load current Benefits', error);
     }
+    dispatch(setLoading(false));
   };
 
   const loadBenefits = async (IssueMonth, IssueYear) => {

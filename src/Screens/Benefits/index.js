@@ -71,7 +71,12 @@ export default function Benefits({ navigation }) {
 
   return (
     <View className="h-full w-full mx-auto flex-col">
-
+      <TabView
+        renderTabBar={renderTabBar}
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+      />
       <CustomButton title={t('buttons.UPCScan')} CSSName="w-3/4 mx-auto" />
       <ActiveCard />
     </View>

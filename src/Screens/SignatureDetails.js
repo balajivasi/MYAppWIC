@@ -73,28 +73,28 @@ const SignatureDetails = ({ navigation, route }) => {
   const GetSign = () => {
     if (signatureDoc.CompletedStatus === 1) {
       var base64Icon = `data:image/png;base64,${signatureDoc.SignatureDoc}`
-      return (<>
+      return (<View className="h-2/6 w-11/12 mx-auto">
         <View className="mt-5 flex-col">
           <Text className="text-base">{signatureDoc.Signee[0]?.Description}</Text>
-          <Image className="border w-auto h-32 mt-5 border-gray-200" source={{ uri: base64Icon }} resizeMode="stretch" />
+          <Image className="border w-auto h-32 mt-5" source={{ uri: base64Icon }} resizeMode="stretch" />
         </View>
-      </>)
+      </View>)
     }
     if (signatureDoc.CompletedStatus === 0) {
-      return (<>{<View className="w-11/12">
+      return (<View className="h-2/3 w-11/12 mx-auto">{<View className="w-11/12">
         {signatureDoc.Signee ? <RadioButton options={signatureDoc.Signee} selectedOption={selectedOption} onRadioButtonChange={handleRadioButtonChange} /> : null}
       </View>}
         <View className="w-full h-40">
           <Sign onOK={getSign} onClear={handleClear} />
         </View>
-        <CustomButton title="Save" onPress={saveSignature} disabled={(selectedOption && signatureData != null) ? false : true} /></>)
+        <CustomButton title="Save" onPress={saveSignature} disabled={(selectedOption && signatureData != null) ? false : true} /></View>)
     }
   }
   useLayoutEffect(() => {
     navigation.setOptions({
       title: signatureDoc.DocName,
     });
-  }, [navigation,signatureDoc]);
+  }, [navigation, signatureDoc]);
 
   return (
     <View className="mt-2">
@@ -102,9 +102,7 @@ const SignatureDetails = ({ navigation, route }) => {
       {serverError ? <ErrorText message={serverError} /> : null}
       <View className="min-h-screen w-11/12 mx-auto flex">
         <WebViewReader Data={signatureDoc.Document} className="grow" />
-        <View className="h-4/6 w-11/12 mx-auto">
-          {GetSign()}
-        </View>
+        {GetSign()}
       </View>
     </View>
   )
