@@ -7,15 +7,17 @@ import { MapPinIcon, PhoneIcon } from "react-native-heroicons/outline";
 import ActiveCard from '../Common/ActiveCard';
 import { formatDate, formatTime } from '../Common/DateFormat'
 import { handleInvalidWICAccount } from '../Common/handleInvalidWICAccount';
+import { setLoading } from '../slices/loaderSlice';
 
-export default function Appointments({navigation}) {
+export default function Appointments({ navigation }) {
   const Token = useSelector(state => state.user.Token);
   const [appointments, setAppointments] = useState();
   const { t } = useTranslation();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
 
   const loadAppointments = async () => {
+    dispatch(setLoading(true));
     try {
       const response = await AppointmentsService(Token);
       // Handle the successful response
@@ -23,15 +25,15 @@ export default function Appointments({navigation}) {
         response.ServiceResponse.length != 0 && setAppointments(response.ServiceResponse);
       } else {
         try {
-          await handleInvalidWICAccount(response,dispatch);
+          await handleInvalidWICAccount(response, dispatch);
         } catch (error) {
-          console.log('handleInvalidWICAccount failed.',error)
+          console.log('handleInvalidWICAccount failed.', error)
         }
       }
     } catch (error) {
       console.error('Registration failed', error);
     }
-
+    dispatch(setLoading(false));
   }
   useEffect(() => {
     loadAppointments()
