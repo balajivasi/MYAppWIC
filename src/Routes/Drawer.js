@@ -14,13 +14,14 @@ import UploadDocumentsStackNav from "./UploadDocuments";
 import Profile from "../Common/Profile";
 import { logoutUser } from '../Services/authActions';
 import { useDispatch } from 'react-redux';
+import UPCScanStackNav from "./UPCScan";
 
 const Drawer = createDrawerNavigator();
 
 const FLDrawer = () => {
     const dispatch = useDispatch();
 
-    const LogOut = () =>  dispatch(logoutUser()) 
+    const LogOut = () => dispatch(logoutUser())
 
     const CustomDrawer = (props) => {
         return <DrawerContentScrollView {...props}>
@@ -30,8 +31,8 @@ const FLDrawer = () => {
     }
 
     return (
-        <Drawer.Navigator screenOptions={{headerShown: false }} drawerContent={(props) => <CustomDrawer {...props}  />} >
-            <Drawer.Screen name="Home" component={HomeStackNav}/>
+        <Drawer.Navigator screenOptions={{ headerShown: false }} drawerContent={(props) => <CustomDrawer {...props} />} >
+            <Drawer.Screen name="Home" component={HomeStackNav} />
             <Drawer.Screen name="Manage EBT Account" component={EBTCardStackNav} />
             <Drawer.Screen name="Appointments" component={AppointmentsStackNav} />
             <Drawer.Screen name="Benefits" component={BenefitsStackNav} />
@@ -42,7 +43,8 @@ const FLDrawer = () => {
             <Drawer.Screen name="Feedback" component={FeedbackStackNav} />
             <Drawer.Screen name="Resource Links" component={ResourceStackNav} />
             <Drawer.Screen name="Upload Documents" component={UploadDocumentsStackNav} />
-            <Drawer.Screen name="Logout" component={LogOut}  />
+            <Drawer.Screen name="UPCScan" component={UPCScanStackNav} options={{ drawerItemStyle: { display: 'none' } }} />
+            <Drawer.Screen name="Logout" component={LogOut} />
         </Drawer.Navigator>
     )
 }

@@ -77,7 +77,7 @@ export default function Benefits({ navigation }) {
         renderScene={renderScene}
         onIndexChange={setIndex}
       />
-      <CustomButton title={t('buttons.UPCScan')} CSSName="w-3/4 mx-auto" />
+      <CustomButton title={t('buttons.UPCScan')} CSSName="w-3/4 mx-auto" onPress={() => { navigation.navigate('UPCScan') }} />
       <ActiveCard />
     </View>
   );
