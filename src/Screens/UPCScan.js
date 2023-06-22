@@ -4,7 +4,7 @@ import BarcodeScanner from '../Common/BarcodeScanner'
 
 const UPCScan = () => {
     return (
-        <View className="h-screen bg-red-600">
+        <View className="h-full bg-red-600">
             <BarcodeScanner />
         </View>
     )
