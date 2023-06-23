@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, ScrollView } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { MobileSignatureService, SignaturesDocService } from '../Services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
@@ -101,8 +101,10 @@ const SignatureDetails = ({ navigation, route }) => {
       {/* <Text className="text-2xl mx-auto mb-2">{signatureDoc.DocName}</Text> */}
       {serverError ? <ErrorText message={serverError} /> : null}
       <View className="min-h-screen w-11/12 mx-auto flex">
-        <WebViewReader Data={signatureDoc.Document} className="grow" />
-        {GetSign()}
+        <ScrollView>
+          <WebViewReader Data={signatureDoc.Document} className="grow" />
+          {GetSign()}
+        </ScrollView>
       </View>
     </View>
   )
