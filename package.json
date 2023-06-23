@@ -25,7 +25,6 @@
     "moment": "^2.29.4",
     "nativewind": "^2.0.11",
     "react": "18.2.0",
-    "react-native-webview": "^13.2.2",
     "react-i18next": "^13.0.0",
     "react-native": "^0.71.8",
     "react-native-camera-kit": "^13.0.0",
@@ -45,6 +44,7 @@
     "react-native-svg": "^13.9.0",
     "react-native-tab-view": "^3.5.2",
     "react-native-view-shot": "^3.7.0",
+    "react-native-webview": "github:balajivasi/react-native-webview",
     "react-redux": "^8.1.0",
     "redux": "^4.2.1"
   },
