@@ -8,6 +8,7 @@ import CustomButton from '../../Common/CustomButton';
 import { useSelector } from 'react-redux';
 import CurrentBenefits from './CurrentBenefits';
 import FutureBenefits from './FutureBenefits';
+import { CommonActions } from '@react-navigation/native';
 /*
 // Lazy load the components
 const CurrentBenefits = lazy(() => import('./CurrentBenefits'));
@@ -69,6 +70,15 @@ export default function Benefits({ navigation }) {
     );
   };
 
+  const resetUPCScanStack = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'UPCScan' }]
+      })
+    );
+  };
+
   return (
     <View className="h-full w-full mx-auto flex-col">
       <TabView
@@ -77,7 +87,7 @@ export default function Benefits({ navigation }) {
         renderScene={renderScene}
         onIndexChange={setIndex}
       />
-      <CustomButton title={t('buttons.UPCScan')} CSSName="w-3/4 mx-auto" onPress={() => { navigation.navigate('UPCScan') }} />
+      <CustomButton title={t('buttons.UPCScan')} CSSName="w-3/4 mx-auto" onPress={resetUPCScanStack} />
       <ActiveCard />
     </View>
   );
