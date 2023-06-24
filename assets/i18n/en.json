@@ -59,7 +59,8 @@
       "current": "Current",
       "future": "Future",
       "benefitsDetails": "Benefits Details",
-      "UPCScan": "UPC Scan"
+      "UPCScan": "UPC Scan",
+      "submitUPC": "Submit UPC"
     },
     "footerIcon": {
       "clinics": "Clinics",
@@ -86,7 +87,10 @@
       "resend": "Resend",
       "verifyCard": "Verify Card",
       "updateNickname": "Update Nickname",
-      "UPCScan": "UPC Scan"
+      "UPCScan": "UPC Scan",
+      "scanAgain": "Scan Again",
+      "continue": "Continue",
+      "cancel": "Cancel"
     },
     "pageText": {
       "confirmPage": "A new code was sent to the email address that you provided. Please enter that code to verify your email.",
@@ -96,7 +100,17 @@
       "Verified": "Verified",
       "VerifiedDefaultCard": "Verified and default card",
       "issuedQuantity": "Issued Quantity:",
-      "remainingQuantity": "Remaining Quantity:"
+      "remainingQuantity": "Remaining Quantity:",
+      "WICApproved": "WIC Approved",
+      "NotWICApproved": "Not WIC Approved",
+      "NotWICApprovedDetails": "Please note that the UPC Scan function does not work for fresh fruit and vegetable items or when scanning bar codes on shelf tags. Please scan the bar code on the item that you wish to buy.",
+      "BenefitStart": "Benefit Start",
+      "BenefitEnd": "Benefit End",
+      "RemainingQuantity": "Remaining Quantity",
+      "UPCScanInfo": "To submit a UPC review by the Florida state WIC office, Please follow these simple steps",
+      "productPic": "Take a picture of the product",
+      "nutritionLabelPic": "Take a picture of the nutrition label",
+      "prodDesc": "Enter product description"
     },
     "headings": {
       "confirm": "Confirm"

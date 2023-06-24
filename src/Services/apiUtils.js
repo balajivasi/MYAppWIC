@@ -118,29 +118,29 @@ export const Signatures = (Token, language) => {
         "Language": language
     }
 }
-export const SignaturesDoc = (Token, SignDocID, CLDDocID ,language,Completed=0) => {
+export const SignaturesDoc = (Token, SignDocID, CLDDocID, language, Completed = 0) => {
     return {
         "APIToken": APIToken,
         "Token": Token,
         "SignDocID": SignDocID,
         "CLDDocID": CLDDocID,
         "Language": language,
-        "Completed":Completed
+        "Completed": Completed
     }
 }
 
-export const MobSignOption = (Token, SignDocID, SigneeID ,language,signatureData) => {
+export const MobSignOption = (Token, SignDocID, SigneeID, language, signatureData) => {
     return {
-    "FileType": "jpg",
-    "APIToken": APIToken,
-    "Token": Token,
-    "SignDocID": SignDocID,
-    "SigneeID": SigneeID,
-    "Language":language,
-    "SignDoc":signatureData
+        "FileType": "jpg",
+        "APIToken": APIToken,
+        "Token": Token,
+        "SignDocID": SignDocID,
+        "SigneeID": SigneeID,
+        "Language": language,
+        "SignDoc": signatureData
     }
 }
-export const ChangPassOption = (Token, OldPassword,NewPassword) => {
+export const ChangPassOption = (Token, OldPassword, NewPassword) => {
     return {
         "Token": Token,
         "OldPassword": OldPassword,
@@ -148,22 +148,22 @@ export const ChangPassOption = (Token, OldPassword,NewPassword) => {
         "APIToken": APIToken
     }
 }
-export const FeedbackOption = (Token, FeedBackType,FeedBackText) => {
+export const FeedbackOption = (Token, FeedBackType, FeedBackText) => {
     return {
-        "Token":Token,
-        "APIToken":APIToken,
-        "FeedBackType":FeedBackType,
-        "FeedBackText":FeedBackText
+        "Token": Token,
+        "APIToken": APIToken,
+        "FeedBackType": FeedBackType,
+        "FeedBackText": FeedBackText
     }
 }
-export const ClinicOption = (Token, Lat,Lng,Distance,signal) => {
+export const ClinicOption = (Token, Lat, Lng, Distance, signal) => {
     return {
-        "Token":Token,
-        "Lat":Lat,
-        "Lng":Lng,
-        "Distance":Distance,
-        "APIToken":APIToken,
-        "signal":signal
+        "Token": Token,
+        "Lat": Lat,
+        "Lng": Lng,
+        "Distance": Distance,
+        "APIToken": APIToken,
+        "signal": signal
     }
 }
 
@@ -181,7 +181,7 @@ export const FutureBenefitsListOption = (Token) => {
     }
 }
 
-export const FutureBenefitsOption = (Token,IssueMonth,IssueYear) => {
+export const FutureBenefitsOption = (Token, IssueMonth, IssueYear) => {
     return {
         "Token": Token,
         "IssueMonth": IssueMonth,
@@ -189,7 +189,13 @@ export const FutureBenefitsOption = (Token,IssueMonth,IssueYear) => {
         "APIToken": APIToken
     }
 }
-
+export const UPCLookupOption = (Token, UPCCode) => {
+    return {
+        "Token": Token,
+        "UPC": UPCCode,
+        "APIToken": APIToken
+    }
+}
 
 
 

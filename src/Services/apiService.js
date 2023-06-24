@@ -1,9 +1,17 @@
 import * as Util from './apiUtils';
 import { GoogleApiKey } from '../../env';
 const makeApiRequest = (url, options) => {
+  console.log('[makeApiRequest]----', options)
   return Util.ApiService.post(url, options)
     .then(response => response.data)
     .catch(error => {
+      if (error.response) {
+        console.log('API error response:', error.response.data);
+      } else if (error.request) {
+        console.log('No API response received:', error.request);
+      } else {
+        console.log('Error occurred:', error.message);
+      }
       throw error;
     });
 };
@@ -109,13 +117,13 @@ export const FeedbackService = (Token, FeedBackType, FeedBackText) => {
 };
 
 // Clinic Service
-export const ClinicService = (lat,lng,Distance=5,Token="", signal) => {
-  const options = Util.ClinicOption(Token, lat,lng,Distance,signal);
+export const ClinicService = (lat, lng, Distance = 5, Token = "", signal) => {
+  const options = Util.ClinicOption(Token, lat, lng, Distance, signal);
   return makeApiRequest('/GetNearbyClinics', options);
 };
 // Stores Service
-export const StoresService = (lat,lng,Distance=5,Token="", signal) => {
-  const options = Util.ClinicOption(Token, lat,lng,Distance,signal);
+export const StoresService = (lat, lng, Distance = 5, Token = "", signal) => {
+  const options = Util.ClinicOption(Token, lat, lng, Distance, signal);
   return makeApiRequest('/GetNearbyAuthorizedStores', options);
 };
 // Current Benefits Service
@@ -129,9 +137,15 @@ export const FutureBenefitsListService = (Token) => {
   return makeApiRequest('/GetFutureBenefitList', options);
 };
 // Future Benefits Service
-export const FutureBenefitsService = (Token,IssueMonth,IssueYear) => {
-  const options = Util.FutureBenefitsOption(Token,IssueMonth,IssueYear);
+export const FutureBenefitsService = (Token, IssueMonth, IssueYear) => {
+  const options = Util.FutureBenefitsOption(Token, IssueMonth, IssueYear);
   return makeApiRequest('/GetFutureBenefits', options);
+};
+
+// Future Benefits Service
+export const UPCLookupService = (Token, UPCCode, IssueYear) => {
+  const options = Util.UPCLookupOption(Token, UPCCode);
+  return makeApiRequest('/UPCLookup', options);
 };
 
 
