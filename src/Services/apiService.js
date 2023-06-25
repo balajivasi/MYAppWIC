@@ -147,6 +147,12 @@ export const UPCLookupService = (Token, UPCCode, IssueYear) => {
   const options = Util.UPCLookupOption(Token, UPCCode);
   return makeApiRequest('/UPCLookup', options);
 };
+// Future Benefits Service
+export const UPCSubmitService = (Token, UPCCode, UPCDescription, UPCPackageSize, UPCEmail, UPCPhoneNumber, UPCFrontImage, UPCNutritionLabel) => {
+  const options = Util.UPCSubmitOption(Token, UPCCode, UPCDescription, UPCPackageSize, UPCEmail, UPCPhoneNumber, UPCFrontImage, UPCNutritionLabel);
+  return makeApiRequest('/UPCLookup', options);
+};
+
 
 
 export const fetchCoordinates = async (address) => {

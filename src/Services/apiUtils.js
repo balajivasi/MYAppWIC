@@ -196,6 +196,19 @@ export const UPCLookupOption = (Token, UPCCode) => {
         "APIToken": APIToken
     }
 }
+export const UPCSubmitOption = (Token, UPCCode, UPCDescription, UPCPackageSize, UPCEmail, UPCPhoneNumber, UPCFrontImage, UPCNutritionLabel) => {
+    return {
+        "Token": Token,
+        "UPCCode": UPCCode,
+        "UPCDescription": UPCDescription,
+        "UPCFrontImage": UPCFrontImage,
+        "APIToken": APIToken,
+        "UPCPackageSize": UPCPackageSize,
+        "UPCEmail": UPCEmail,
+        "UPCPhoneNumber": UPCPhoneNumber,
+        "UPCNutritionLabel": UPCNutritionLabel
+    }
+}
 
 
 

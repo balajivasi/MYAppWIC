@@ -16,7 +16,9 @@
       "description": "Description",
       "currentPassword": "Current Password",
       "newPassword": "New Password",
-      "confirmationCode": "Confirmation Code"
+      "confirmationCode": "Confirmation Code",
+      "packageSize": "Package Size",
+      "phoneNumber": "Phone Number"
     },
     "errorMessages": {
       "fieldRequired": "This field is required.",
@@ -90,7 +92,9 @@
       "UPCScan": "UPC Scan",
       "scanAgain": "Scan Again",
       "continue": "Continue",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "retake": "Retake",
+      "startOver": "Start Over"
     },
     "pageText": {
       "confirmPage": "A new code was sent to the email address that you provided. Please enter that code to verify your email.",
@@ -110,7 +114,10 @@
       "UPCScanInfo": "To submit a UPC review by the Florida state WIC office, Please follow these simple steps",
       "productPic": "Take a picture of the product",
       "nutritionLabelPic": "Take a picture of the nutrition label",
-      "prodDesc": "Enter product description"
+      "prodDesc": "Enter product description",
+      "submitUPCInfo": "Submit UPC Information",
+      "UPCProdPicTitle": "Product",
+      "UPCProdPicLabel": "Nutrition Info"
     },
     "headings": {
       "confirm": "Confirm"
@@ -119,6 +126,7 @@
       "SignatureIsCompleted": "Signature is completed",
       "SignatureIsNotCompleted": "Signature is not completed",
       "maxAllowedCharacters": "max allowed characters"
-    }
+    },
+    "LabelPlaceHolders": {}
   }
 }
