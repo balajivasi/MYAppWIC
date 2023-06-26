@@ -1,9 +1,12 @@
 import * as Util from './apiUtils';
 import { GoogleApiKey } from '../../env';
+
+
 const makeApiRequest = (url, options) => {
-  console.log('[makeApiRequest]----', options)
   return Util.ApiService.post(url, options)
-    .then(response => response.data)
+    .then(response => {
+      return response.data
+    })
     .catch(error => {
       if (error.response) {
         console.log('API error response:', error.response.data);
@@ -143,14 +146,14 @@ export const FutureBenefitsService = (Token, IssueMonth, IssueYear) => {
 };
 
 // Future Benefits Service
-export const UPCLookupService = (Token, UPCCode, IssueYear) => {
+export const UPCLookupService = (Token, UPCCode) => {
   const options = Util.UPCLookupOption(Token, UPCCode);
   return makeApiRequest('/UPCLookup', options);
 };
 // Future Benefits Service
 export const UPCSubmitService = (Token, UPCCode, UPCDescription, UPCPackageSize, UPCEmail, UPCPhoneNumber, UPCFrontImage, UPCNutritionLabel) => {
   const options = Util.UPCSubmitOption(Token, UPCCode, UPCDescription, UPCPackageSize, UPCEmail, UPCPhoneNumber, UPCFrontImage, UPCNutritionLabel);
-  return makeApiRequest('/UPCLookup', options);
+  return makeApiRequest('/UPCSubmit', options);
 };
 
 

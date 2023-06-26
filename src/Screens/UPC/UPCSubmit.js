@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import CustomButton from '../../Common/CustomButton'
 import { useTranslation } from 'react-i18next'
@@ -6,40 +6,86 @@ import CustomTextInput from '../../Common/CustomTextInput'
 import { validateDescription, validateEmail, validatePackage, validatePhone } from '../../Common/FormValidation'
 import PhoneNumberInput from '../../Common/PhoneNumberInput'
 import { UPCSubmitService } from '../../Services/apiService'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { handleInvalidWICAccount } from '../../Common/handleInvalidWICAccount'
+import { setLoading } from '../../slices/loaderSlice'
 
-const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitted, UPCCode }) => {
+const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitted }) => {
     const { t } = useTranslation();
     const [packageSize, setPackageSize] = useState();
     const [email, setEmail] = useState();
     const [phoneNumber, setPhoneNumber] = useState();
     const [Description, setDescription] = useState();
     const Token = useSelector(state => state.user.Token);
+    const UPCCode = useSelector(state => state.user.ScannedUPC);
+    const [serverError, setServerError] = useState()
+    const dispatch = useDispatch();
 
+    const handlePackageSize = (text) => {
+        const formattedText = text.replace(/[^\d.]/g, ''); // Remove non-digit and non-period characters
+        const parts = formattedText.split('.'); // Split the text by the period
+        let formattedPackageSize = '';
+
+        if (parts.length === 1) {
+            if (parts[0].length <= 4) {
+                formattedPackageSize = parts[0].slice(0, 4);
+            } else {
+                formattedPackageSize = `${parts[0].slice(0, 4)}.`;
+            }
+        }
+        else if (parts.length === 2) {
+            const digitsBeforeDot = parts[0].slice(0, 4);
+            const digitsAfterDot = parts[1].slice(0, 2);
+            formattedPackageSize = `${digitsBeforeDot}.${digitsAfterDot}`;
+        }
+        setPackageSize(formattedPackageSize);
+    };
+
+    const handleEmail = (text) => {
+        if (text.length <= 35) {
+            setEmail(text)
+        }
+    }
+    const handleDescription = (text) => {
+        if (text.length <= 35) {
+            setDescription(text)
+        }
+    }
     const submitUPC = async () => {
         const Package = validatePackage(packageSize);
         const emailAddress = validateEmail(email);
         const Phone = validatePhone(phoneNumber);
         const Desc = validateDescription(Description);
+        console.log(Package, emailAddress, Phone, Desc)
         if (
             Package &&
             emailAddress &&
             Phone &&
             Desc
         ) {
-
+            dispatch(setLoading(true));
             try {
+                console.log('submit start')
                 // OldEBTCard,wicEbtNumber, birthDate, zipCode, Token
                 const response = await UPCSubmitService(Token, UPCCode, Description, packageSize, email, phoneNumber, ProductPic, ProductLabel);
                 // Handle the successful response
+                console.log('upc submitted', response)
                 if (response?.Status === 1) {
-                    Alert.alert('Success', 'Account Verified Successfully', [{ text: 'OK', onPress: closeAddCard }]);
+                    UPCSubmitted('200')
                 } else {
-                    setServerError(response.ServiceResponse[0]?.Message);
-                    try {
-                        await handleInvalidWICAccount(response, dispatch);
-                    } catch (error) {
-                        console.log('handleInvalidWICAccount failed.', error)
+                    const message = response.ServiceResponse[0]?.Message;
+                    if (message === '1003') {
+                        try {
+                            await handleInvalidWICAccount(response, dispatch);
+                        } catch (error) {
+                            console.log('handleInvalidWICAccount failed.', error)
+                        }
+                    }
+                    if (message === '1014') {
+                        Alert.alert("Invalid UPC code.")
+                    }
+                    else {
+                        UPCSubmitted(message)
                     }
                 }
                 // Perform any additional actions or update the UI accordingly
@@ -48,7 +94,9 @@ const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitt
                 console.error('Registration failed', error);
                 // Display an error message or perform any error handling logic
             }
-
+            dispatch(setLoading(false))
+        } else {
+            Alert.alert(t('errorMessages.allRequiredFields'))
         }
 
     }
@@ -57,13 +105,13 @@ const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitt
     }
     return (
         <View className="h-full w-full flex">
-            <View className="">
-                <Text>3.{t('pageText.submitUPCInfo')}</Text>
+            <View className="m-2 bg-black opacity-50 rounded-md">
+                <Text className="text-white text-base py-3 text-center">3.{t('pageText.submitUPCInfo')}</Text>
             </View>
-            <CustomTextInput label={t('labels.packageSize')} FieldType='number' value={packageSize} placeholder='Please enter package size' numericValue={true} onChangeText={setPackageSize} />
-            <CustomTextInput label={t('labels.emailAddress')} FieldType='Email' value={email} placeholder='Enter Email Address' onChangeText={setEmail} validate={true} />
-            <PhoneNumberInput label={t('labels.phoneNumber')} value={phoneNumber} onChangeText={setPhoneNumber} />
-            <CustomTextInput label={t('labels.description')} FieldType='Description' value={Description} placeholder={'Please enter Product Description'} onChangeText={setDescription} />
+            <CustomTextInput label={t('labels.packageSize')} FieldType='number' value={packageSize} placeholder='Please enter package size' numericValue={true} validate={true} onChangeText={handlePackageSize} />
+            <CustomTextInput label={t('labels.emailAddress')} FieldType='Email' value={email} placeholder='Enter Email Address' onChangeText={handleEmail} validate={true} />
+            <PhoneNumberInput label={t('labels.phoneNumber')} FieldType='phoneNumber' value={phoneNumber} onChangeText={setPhoneNumber} validate={true} />
+            <CustomTextInput label={t('labels.description')} FieldType='description' value={Description} placeholder={'Please enter Product Description'} validate={true} onChangeText={handleDescription} />
 
             <View className="flex-row justify-around mt-10">
                 <View>

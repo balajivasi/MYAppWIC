@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { View, TextInput, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, secureTextEntry = false, validate = false, passwordValue, numericValue = false,Disable=true }) => {
+const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, secureTextEntry = false, validate = false, passwordValue, numericValue = false, Disable = true }) => {
   const [error, setError] = useState('');
   const { t } = useTranslation();
 
   const handleValidation = (text) => {
-    if (validate && text.trim().length === 0) {
+    if (validate && (text === undefined || text.trim().length === 0)) {
       setError(t('errorMessages.fieldRequired'));
     } else {
       setError('');
@@ -15,7 +15,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
   };
 
   const handleEmailValidation = (text) => {
-    if (validate && text.trim().length === 0) {
+    if (validate && (text === undefined || text.trim().length === 0)) {
       setError(t('errorMessages.emailRequired'));
     } else if (validate && !isValidEmail(text)) {
       setError(t('errorMessages.ValidEmail'));
@@ -25,7 +25,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
   };
 
   const handlePasswordValidation = (text) => {
-    if (validate && text.trim().length === 0) {
+    if (validate && (text === undefined || text.trim().length === 0)) {
       setError(t('errorMessages.PasswordRequired'));
     } else if (validate && text.length < 6) {
       setError(t('errorMessages.Password6Long'));
@@ -35,7 +35,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
   };
 
   const handleConfirmPasswordValidation = (text) => {
-    if (validate && text.trim().length === 0) {
+    if (validate && (text === undefined || text.trim().length === 0)) {
       setError(t('errorMessages.confirmPasswordRequired'));
     } else if (validate && text.length < 6) {
       setError(t('errorMessages.confirmPassword6Long'));
@@ -47,7 +47,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
   };
 
   const handleWicEbtNumberValidation = (text) => {
-    if (validate && text.trim().length === 0) {
+    if (validate && (text === undefined || text.trim().length === 0)) {
       setError(t('errorMessages.WicEbtNumberRequired'));
     } else if (validate && text.length !== 16) {
       setError(t('errorMessages.WicEbtNumberInvalid'));
@@ -57,7 +57,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
   };
 
   const handleBirthDateValidation = (text) => {
-    if (validate && text.trim().length === 0) {
+    if (validate && (text === undefined || text.trim().length === 0)) {
       setError(t('errorMessages.BirthDateRequired'));
     } else if (validate && !isValidBirthDate(text)) {
       setError(t('errorMessages.BirthDateInvalid'));
@@ -67,7 +67,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
   };
 
   const handleZipCodeValidation = (text) => {
-    if (validate && text.trim().length === 0) {
+    if (validate && (text === undefined || text.trim().length === 0)) {
       setError(t('errorMessages.ZipCodeRequired'));
     } else if (validate && (text.length !== 5 || !isNumeric(text))) {
       setError(t('errorMessages.ZipCodeInvalid'));

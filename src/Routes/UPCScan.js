@@ -8,6 +8,7 @@ import UPCScanInfo from "../Screens/UPC/UPCScanInfo";
 import UPCSubmitProduct from "../Screens/UPC/UPCSubmitProduct";
 import UPCSubmitLabel from "../Screens/UPC/UPCSubmitLabel";
 import UPCSubmitDetails from "../Screens/UPC/UPCSubmitDetails";
+import UPCStatus from "../Screens/UPC/UPCStatus";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,7 @@ const Stack = createNativeStackNavigator();
 const UPCScanStackNav = () => {
     const { t } = useTranslation();
     return (<Stack.Navigator>
-        {/* <Stack.Screen name="UPCScanStack" component={UPCScan} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCScan') })} /> */}
+        <Stack.Screen name="UPCScanStack" component={UPCScan} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCScan') })} />
         <Stack.Screen name="UPCLanding" component={UPCLanding} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCScan') })} />
 
         <Stack.Screen name="UPCScanInfo" component={UPCScanInfo} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.submitUPC') })} />
@@ -23,6 +24,7 @@ const UPCScanStackNav = () => {
         <Stack.Screen name="UPCSubmitLabel" component={UPCSubmitLabel} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.submitUPC') })} />
         <Stack.Screen name="UPCSubmitDetails" component={UPCSubmitDetails} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.submitUPC') })} />
         <Stack.Screen name="UPCSubmit" component={UPCSubmit} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.submitUPC') })} />
+        <Stack.Screen name="UPCStatus" component={UPCStatus} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCStatus') })} />
     </Stack.Navigator>)
 };
 

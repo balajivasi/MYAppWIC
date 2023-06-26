@@ -27,15 +27,17 @@ export const validateZipCode = (zipCode) => {
 };
 
 export const validatePackage = (Package) => {
-  let reg = /^\d{4}\.\d{2}$/;
+  let reg = /^(?:\d{1,4}|\d{1,4}\.\d{1,2})$/;
   return reg.test(Package);
 };
 export const validatePhone = (PhoneNumber) => {
-  let reg = /^\d{1,10}$/;
+  let reg = /^(\(\d{3}\)|\d{3})-\d{3}-\d{4}$/;
   return reg.test(PhoneNumber);
 };
+
 export const validateDescription = (Description) => {
-  let reg = /^\d{1,50}$/;
+  let reg = /^.{1,50}$/;
   return reg.test(Description);
 };
+
 
