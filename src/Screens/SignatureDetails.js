@@ -8,6 +8,7 @@ import CustomButton from '../Common/CustomButton';
 import Sign from '../Common/Sign';
 import { handleInvalidWICAccount } from '../Common/handleInvalidWICAccount';
 import { setLoading } from '../slices/loaderSlice';
+import { useTranslation } from 'react-i18next';
 
 
 const SignatureDetails = ({ navigation, route }) => {
@@ -18,7 +19,8 @@ const SignatureDetails = ({ navigation, route }) => {
   const [selectedOption, setSelectedOption] = useState('');
   const [signatureData, setSignatureData] = useState(null);
   const [serverError, setServerError] = useState('');
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
   const handleRadioButtonChange = (value) => {
     setSelectedOption(value);
   };
@@ -81,13 +83,13 @@ const SignatureDetails = ({ navigation, route }) => {
       </View>)
     }
     if (signatureDoc.CompletedStatus === 0) {
-      return (<View className="h-2/3 w-11/12 mx-auto">{<View className="w-11/12">
+      return (<View className="w-11/12 mx-auto">{<View className="w-11/12">
         {signatureDoc.Signee ? <RadioButton options={signatureDoc.Signee} selectedOption={selectedOption} onRadioButtonChange={handleRadioButtonChange} /> : null}
       </View>}
         <View className="w-full h-40">
           <Sign onOK={getSign} onClear={handleClear} />
         </View>
-        <CustomButton title="Save" onPress={saveSignature} disabled={(selectedOption && signatureData != null) ? false : true} /></View>)
+        <CustomButton title={t('buttons.save')} onPress={saveSignature} disabled={(selectedOption && signatureData != null) ? false : true} /></View>)
     }
   }
   useLayoutEffect(() => {
@@ -97,12 +99,12 @@ const SignatureDetails = ({ navigation, route }) => {
   }, [navigation, signatureDoc]);
 
   return (
-    <View className="mt-2">
+    <View className="mt-2 h-screen">
       {/* <Text className="text-2xl mx-auto mb-2">{signatureDoc.DocName}</Text> */}
       {serverError ? <ErrorText message={serverError} /> : null}
-      <View className="min-h-screen w-11/12 mx-auto flex">
+      <View className="w-11/12 mx-auto pb-28 flex">
         <ScrollView>
-          <WebViewReader Data={signatureDoc.Document} className="grow" />
+          {signatureDoc.Document ? <WebViewReader Data={signatureDoc.Document} className="grow" /> : null}
           {GetSign()}
         </ScrollView>
       </View>

@@ -6,6 +6,8 @@ import BenefitsList from '../../Common/BenefitsList';
 import FutureBenefitsTab from '../../Common/FutureBenefitsTab';
 import { handleInvalidWICAccount } from '../../Common/handleInvalidWICAccount'
 import { setLoading } from '../../slices/loaderSlice';
+import { ExclamationTriangleIcon } from 'react-native-heroicons/outline';
+import { useTranslation } from 'react-i18next';
 const FutureBenefits = ({ navigation }) => {
   const Token = useSelector(state => state.user.Token);
   const [futureBenList, setFutureBenList] = useState([]);
@@ -13,7 +15,9 @@ const FutureBenefits = ({ navigation }) => {
   const [serverError, setServerError] = useState('');
   const [selectedTab, setSelectedTab] = useState();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { t } = useTranslation()
+
   const loadFutureListBenefits = async () => {
     dispatch(setLoading(true));
     try {
@@ -81,6 +85,10 @@ const FutureBenefits = ({ navigation }) => {
 
       <ScrollView className="mb-20">
         <View className="w-screen flex-row flex-wrap gap-2 items-stretch">
+          {benefits.length >= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+            <ExclamationTriangleIcon size={150} color={'gray'} />
+            <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
+          </View> : null}
           {benefits?.map((benefit, index) => {
             return (
               <View key={index} className="border border-gray-500 bg-slate-300 rounded-lg" style={{ width: '31%' }}>

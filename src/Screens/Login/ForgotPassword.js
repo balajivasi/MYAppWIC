@@ -24,24 +24,17 @@ export default function ForgotPassword() {
   }
 
   const randomViews = [
-      <CustomTextInput key="1" label={t('labels.wicEBTCardNumber')} placeholder='' value='6102969' />,
-      <CustomTextInput key="2" label={t('labels.ARBirthDate')} placeholder='Enter AR Birth Datein (mm/dd/yyyy) format' />,
-      <CustomTextInput key="3" label={t('labels.ARMailingAddressZipCode')} placeholder='Enter AR Mailing Address Zip Code' />
+    <CustomTextInput key="1" label={t('labels.wicEBTCardNumber')} placeholder='' value='6102969' />,
+    <CustomTextInput key="2" label={t('labels.ARBirthDate')} placeholder={t('TPH.PH_birthDay')} />,
+    <CustomTextInput key="3" label={t('labels.ARMailingAddressZipCode')} placeholder={t('TPH.PH_AddressZip')} />
   ];
   const randomView = randomViews[Math.floor(Math.random() * randomViews.length)];
-
-
   return (
     <View className="mt-8">
       {emailValidError ? <Text className="rounded-xl bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-4/5 mx-auto">{emailValidError}</Text> : null}
-      
-      <CustomTextInput label={t('labels.emailAddress')} placeholder='Enter Email Address' onChangeText={value => { setEmail(value); handleValidEmail(value); }} />
-
+      <CustomTextInput label={t('labels.emailAddress')} placeholder={t('TPH.PH_Email')} onChangeText={value => { setEmail(value); handleValidEmail(value); }} />
       {randomView}
-      <TouchableOpacity
-        className="bg-orange-400 w-4/5 mx-auto mb-5 mt-3 rounded-lg p-3 "
-        onPress={() => submitForgotPass()}
-      >
+      <TouchableOpacity className="bg-orange-400 w-4/5 mx-auto mb-5 mt-3 rounded-lg p-3 " onPress={() => submitForgotPass()} >
         <Text className="text-center text-white text-lg">{t('buttons.submit')}</Text>
       </TouchableOpacity>
     </View>

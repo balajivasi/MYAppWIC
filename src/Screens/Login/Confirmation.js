@@ -93,16 +93,16 @@ const Confirmation = () => {
       <Text className="text-3xl text-center my-4 text-gray-400">{t('headings.confirm')}</Text>
       <Text className="text-lg">{t('pageText.confirmPage')}</Text>
 
-      <CustomTextInput label={t('labels.confirmationCode')} placeholder="Enter Confirmation Code" value={confirmCode} FieldType="confirmCode" onChangeText={setConfirmCode} numericValue={true} />
+      <CustomTextInput label={t('labels.confirmationCode')} placeholder={t('TPH.PH_confirmCode')} value={confirmCode} FieldType="confirmCode" onChangeText={setConfirmCode} numericValue={true} />
 
       <View className="flex-row justify-center">
         <CustomButton title={t('buttons.verify')} CSSName="w-2/5 mt-7 mr-5" onPress={submitVerifyCode} />
         <View className="w-2/5">
           {resendTimer > 0 ? (
             <Text className="text-center">
-              {Math.floor(resendTimer / 60)} min:{String(resendTimer % 60).padStart(2, '0')} sec
+              {Math.floor(resendTimer / 60)} {t('InfoMessages.min')}:{String(resendTimer % 60).padStart(2, '0')} {t('InfoMessages.sec')}
             </Text>
-          ) : <Text className="text-center">00 min: 00 sec </Text>}
+          ) : <Text className="text-center">00 {t('InfoMessages.min')}: 00 {t('InfoMessages.sec')} </Text>}
           <CustomButton title={t('buttons.resend')} onPress={submitResend} disabled={resendDisabled} />
         </View>
       </View>

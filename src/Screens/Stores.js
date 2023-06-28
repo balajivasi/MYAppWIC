@@ -6,6 +6,7 @@ import { MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import { StoresService, fetchCoordinates } from '../Services/apiService';
 import { Slider } from '@miblanchard/react-native-slider';
 import { AbortController } from 'abort-controller';
+import { useTranslation } from 'react-i18next';
 
 export default function Stores({ navigation }) {
   const [miles, setMiles] = useState(5);
@@ -13,6 +14,7 @@ export default function Stores({ navigation }) {
   const [latLng, setLatLng] = useState({ lat: 30.412822, lng: -84.3348902 });
   const [markers, setMarkers] = useState();
   const [abortController, setAbortController] = useState(null);
+  const { t } = useTranslation();
 
   const handleSliderComplete = (newValue) => {
     setMiles(newValue[0]);
@@ -55,24 +57,24 @@ export default function Stores({ navigation }) {
   }, [latLng, miles, navigation]);
 
   return (
-    <View className="flex-col ">
+    <View className="flex-col  h-screen ">
       <View className="flex-row">
-        <CustomTextInput placeholder="Enter Address/Zip" value={address} onChangeText={setAddress} />
+        <CustomTextInput placeholder={t('TPH.PH_AddZip')} value={address} onChangeText={setAddress} />
         <View className="mt-5 mr-2" >
           <TouchableOpacity onPress={searchAddress}>
             <MagnifyingGlassIcon size={40} />
           </TouchableOpacity>
         </View>
       </View>
-      <View className="h-5/6">
+      <View className="h-4/6">
         <MapScreen latLng={latLng} markers={markers} miles={miles} />
       </View>
       <View className="flex-row">
-        <Text className="w-2/12 text-2xl leading-7 text-center">0 Miles</Text>
+        <Text className="w-2/12 text-lg mt-2 leading-7 text-center">0{'\n'}{t('pageText.miles')}</Text>
         <View className="w-8/12">
-          <Text className="text-center text-base">{miles} miles</Text>
+          <Text className="text-center text-base">{miles} {t('pageText.miles')}</Text>
           <Slider value={miles} onSlidingComplete={handleSliderComplete} step={2} minimumValue={0} maximumValue={30} /></View>
-        <Text className="w-2/12 text-2xl leading-7 text-center">30 Miles</Text>
+        <Text className="w-2/12 text-lg mt-2 leading-7 text-center">30{'\n'}{t('pageText.miles')}</Text>
       </View>
     </View>
   );

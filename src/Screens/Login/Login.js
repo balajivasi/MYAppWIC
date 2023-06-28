@@ -24,17 +24,13 @@ export default function LoginPage({ navigation }) {
       Alert.alert('Error', 'Please enter email and password');
     }
   };
-
   const submitRegister = () => {
     navigation.push('Register');
   };
-
   const submitForgotPass = () => {
     navigation.push('ForgotPassword');
   };
-
   const { width } = Dimensions.get('window');
-
   const imageWidth = width * 0.5;
   const imageHeight = (imageWidth * 125) / 200;
 
@@ -44,8 +40,8 @@ export default function LoginPage({ navigation }) {
         <ScrollView>
           <Image className="mx-auto my-5" source={require("../../../assets/Images/EbtCard.jpg")} style={{ width: imageWidth, height: imageHeight }} resizeMode="contain" />
           <View>
-            <CustomTextInput label={t('labels.emailAddress')} placeholder='Enter Email Address' value={email} FieldType='Email' onChangeText={setEmail} validate={true} />
-            <CustomTextInput label={t('labels.password')} secureTextEntry={true} placeholder='Enter Password' FieldType='Password' value={password} onChangeText={setPassword} validate={true} />
+            <CustomTextInput label={t('labels.emailAddress')} placeholder={t('TPH.PH_Email')} value={email} FieldType='Email' onChangeText={setEmail} validate={true} />
+            <CustomTextInput label={t('labels.password')} secureTextEntry={true} placeholder={t('TPH.PH_Password')} FieldType='Password' value={password} onChangeText={setPassword} validate={true} />
             <CustomButton title={t('buttons.login')} CSSName="w-4/5 mx-auto" onPress={handleLogin} />
           </View>
         </ScrollView>
