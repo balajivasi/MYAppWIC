@@ -1,17 +1,22 @@
-
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loginSuccess } from '../slices/authSlice';
-import { setProfileEmail, setProfileFullName, setToken,setProfileLanguage } from '../slices/profileSlice';
+import { setProfileEmail, setProfileFullName, setToken, setProfileLanguage } from '../slices/profileSlice';
 
 // Save authentication data to AsyncStorage
-export const saveAuthDataToStorage = async (authData, email, fullName,Token) => {
+export const saveAuthDataToStorage = async (authData, email, fullName, Token) => {
   try {
-    await AsyncStorage.setItem('authData', JSON.stringify(authData));
-    await AsyncStorage.setItem('email', email);
-    await AsyncStorage.setItem('fullName', fullName);
-    await AsyncStorage.setItem('token',Token)
+    const expirationTime = new Date().getTime() + 30 * 60 * 1000; // Set expiration time to 30 minutes from the current time
+    const dataToSave = {
+      authData,
+      email,
+      fullName,
+      token: Token,
+      expirationTime,
+    };
+
+    await AsyncStorage.setItem('authData', JSON.stringify(dataToSave));
     console.log('Auth data saved successfully.');
   } catch (error) {
     console.log('Error saving auth data:', error);
@@ -22,9 +27,6 @@ export const saveAuthDataToStorage = async (authData, email, fullName,Token) => 
 export const clearAuthDataFromStorage = async () => {
   try {
     await AsyncStorage.removeItem('authData');
-    await AsyncStorage.removeItem('email');
-    await AsyncStorage.removeItem('fullName');
-    await AsyncStorage.removeItem('token')
     console.log('Auth data removed successfully.');
   } catch (error) {
     console.log('Error removing auth data:', error);
@@ -34,46 +36,87 @@ export const clearAuthDataFromStorage = async () => {
 // Retrieve authentication data from AsyncStorage
 export const getAuthDataFromStorage = async () => {
   try {
-    const authDataString = await AsyncStorage.getItem('authData');
-    const email = await AsyncStorage.getItem('email');
-    const fullName = await AsyncStorage.getItem('fullName');
-    const token = await AsyncStorage.getItem('token');
-    const authData = JSON.parse(authDataString);
-    const language = await AsyncStorage.getItem('WICAppLanguage');
-    return {
-      authData,
-      email,
-      fullName,
-      token,
-      language
-    };
+    const storedData = await AsyncStorage.getItem('authData');
+    if (storedData) {
+      const data = JSON.parse(storedData);
+      const expirationTime = data.expirationTime;
+
+      if (expirationTime && expirationTime > new Date().getTime()) {
+        return {
+          authData: data.authData,
+          email: data.email,
+          fullName: data.fullName,
+          token: data.token,
+          language: data.language,
+        };
+      } else {
+        await clearAuthDataFromStorage();
+      }
+    }
   } catch (error) {
     console.log('Error retrieving auth data:', error);
-    return null;
   }
+
+  return null;
 };
 
 const AuthPersistence = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    const fetchAuthData = async () => {
+    const getEmailFromStorage = async () => {
       try {
-        const authData = await getAuthDataFromStorage();
-        if (authData.authData !== null) {
-          dispatch(loginSuccess(authData));
-        }
-        const email = await getEmailFromStorage();
+        const email = await AsyncStorage.getItem('email');
         if (email) {
           dispatch(setProfileEmail(email));
         }
-        const fullName = await getFullNameFromStorage();
+      } catch (error) {
+        console.log('Error retrieving Email data:', error);
+      }
+    };
+
+    const getFullNameFromStorage = async () => {
+      try {
+        const fullName = await AsyncStorage.getItem('fullName');
         if (fullName) {
           dispatch(setProfileFullName(fullName));
         }
-        const token = await getTokenFromStorage();
+      } catch (error) {
+        console.log('Error retrieving Full Name data:', error);
+      }
+    };
+
+    const getTokenFromStorage = async () => {
+      try {
+        const token = await AsyncStorage.getItem('token');
         if (token) {
           dispatch(setToken(token));
         }
+      } catch (error) {
+        console.log('Error retrieving Token data:', error);
+      }
+    };
+
+    const getLanguageFromStorage = async () => {
+      try {
+        const language = await AsyncStorage.getItem('WICAppLanguage') || 'en';
+        dispatch(setProfileLanguage(language));
+      } catch (error) {
+        console.log('Error retrieving Language data:', error);
+      }
+    };
+
+    const fetchAuthData = async () => {
+      try {
+        const authData = await getAuthDataFromStorage();
+        if (authData?.authData) {
+          dispatch(loginSuccess(authData));
+        }
+
+        getEmailFromStorage();
+        getFullNameFromStorage();
+        getTokenFromStorage();
+        getLanguageFromStorage();
       } catch (error) {
         console.log('[AuthPersistence] Error fetching auth data:', error);
       }
@@ -84,45 +127,5 @@ const AuthPersistence = () => {
 
   return null;
 };
-
-const getEmailFromStorage = async () => {
-  try {
-    const emailDataString = await AsyncStorage.getItem('email');
-    return emailDataString ? emailDataString : null;
-  } catch (error) {
-    console.log('Error retrieving Email data:', error);
-    return null;
-  }
-};
-
-const getFullNameFromStorage = async () => {
-  try {
-    const fullNameDataString = await AsyncStorage.getItem('fullName');
-    return fullNameDataString ? fullNameDataString : null;
-  } catch (error) {
-    console.log('Error retrieving Full Name data:', error);
-    return null;
-  }
-};
-
-const getTokenFromStorage = async () =>{
-  try {
-    const tokenDataString = await AsyncStorage.getItem('token');
-    return tokenDataString ? tokenDataString : null;
-  } catch (error) {
-    console.log('Error retrieving Full Name data:', error);
-    return null;
-  }
-}
-const getLanguageFromStorage = async () =>{
-  try {
-    const languageDataString = await AsyncStorage.getItem('WICAppLanguage');
-    return languageDataString ? languageDataString : 'en';
-  } catch (error) {
-    console.log('Error retrieving Full Name data:', error);
-    return null;
-  }
-}
-
 
 export default AuthPersistence;
