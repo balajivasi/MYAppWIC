@@ -14,10 +14,9 @@ export const NotificationOptions = (token, language) => {
     };
 }
 
-export const ResentOTPOptions = () => {
+export const ResentOTPOptions = (email) => {
     return {
         "LoginType": "1",
-        "Token": token,
         "LoginEmail": email,
         "APIToken": APIToken,
         "Version": "3.0"

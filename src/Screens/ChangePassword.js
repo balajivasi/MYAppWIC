@@ -39,7 +39,7 @@ export default function ChangePassword({ navigation }) {
         const response = await ChangePasswordService(user.Token, currentPasswordVal, newPasswordVal);
         // Handle the successful response
         if (response.Status === 1) {
-          Alert.alert('Password changed');
+          Alert.alert(t('errorMessages.PassChangedSuccess'));
         } else {
           setServerError(response.ServiceResponse[0]?.Message);
           try {
@@ -56,12 +56,11 @@ export default function ChangePassword({ navigation }) {
       }
     }
     else {
-      Alert.alert('All fields are mandatory');
+      Alert.alert(t('errorMessages.AllMandatory'));
     }
     dispatch(setLoading(false));
   }
   useEffect(() => {
-    console.log('change password..')
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("")
@@ -70,9 +69,9 @@ export default function ChangePassword({ navigation }) {
   return (
     <View className="mt-8">
       {serverError ? <ErrorText message={serverError} /> : null}
-      <CustomTextInput label={t('labels.currentPassword')} placeholder="Enter Current Password" FieldType="currentPassword" value={currentPassword} onChangeText={setCurrentPassword} secureTextEntry={true} validate={true} />
-      <CustomTextInput label={t('labels.newPassword')} placeholder="Enter New Password" FieldType="newPassword" value={newPassword} onChangeText={setNewPassword} secureTextEntry={true} validate={true} />
-      <CustomTextInput label={t('labels.confirmPassword')} placeholder="Enter Confirm Password" FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={newPassword} secureTextEntry={true} validate={true} />
+      <CustomTextInput label={t('labels.currentPassword')} placeholder={t('TPH.PH_CurrentPassword')} FieldType="currentPassword" value={currentPassword} onChangeText={setCurrentPassword} secureTextEntry={true} validate={true} />
+      <CustomTextInput label={t('labels.newPassword')} placeholder={t('TPH.PH_NewPassword')} FieldType="newPassword" value={newPassword} onChangeText={setNewPassword} secureTextEntry={true} validate={true} />
+      <CustomTextInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={newPassword} secureTextEntry={true} validate={true} />
       <CustomButton title={t('buttons.changePassword')} CSSName="w-4/5 mx-auto mb-4" onPress={submitChangePass} />
     </View>
   )

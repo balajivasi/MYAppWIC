@@ -35,7 +35,11 @@
       "BirthDateInvalid": "Birth date must be MM/DD/YYYY format.",
       "ZipCodeRequired": "ZipCode is required.",
       "ZipCodeInvalid": "ZipCode must 5 digits.",
-      "allRequiredFields": "Please fill in all required fields correctly."
+      "allRequiredFields": "Please fill in all required fields correctly.",
+      "AllMandatory": "All fields are mandatory",
+      "PassChangedSuccess": "Password changed successfully",
+      "selectReason": "Please select Reason",
+      "descriptionReq": "Description is required."
     },
     "pageTitles": {
       "floridaWIC": "Florida WIC",
@@ -125,7 +129,9 @@
       "UPCProdPicTitle": "Product",
       "UPCProdPicLabel": "Nutrition Info",
       "UPCExist": "UPC code already exist for review, Thank you for supporting.",
-      "UPCInvalid": "Invalid UPC code please try again and scan a valid UPC code to submit."
+      "UPCInvalid": "Invalid UPC code please try again and scan a valid UPC code to submit.",
+      "noBenefits": "No benefits are available",
+      "miles": "Miles"
     },
     "headings": {
       "confirm": "Confirm"
@@ -133,8 +139,21 @@
     "InfoMessages": {
       "SignatureIsCompleted": "Signature is completed",
       "SignatureIsNotCompleted": "Signature is not completed",
-      "maxAllowedCharacters": "max allowed characters"
+      "maxAllowedCharacters": "max allowed characters",
+      "min": "min",
+      "sec": "sec"
     },
-    "LabelPlaceHolders": {}
+    "TPH": {
+      "PH_CurrentPassword": "Enter Current Password",
+      "PH_NewPassword": "Enter New Password",
+      "PH_ConfirmPassword": "Enter Confirm Password",
+      "PH_AddZip": "Enter Address/Zip",
+      "PH_Email": "Enter Email Address",
+      "PH_Password": "Enter Password",
+      "PH_birthDay": "Enter AR Birth Date in (mm/dd/yyyy) format",
+      "PH_AddressZip": "Enter AR Mailing Address Zip Code",
+      "PH_nickname": "Enter Card Nickname (Optional)",
+      "PH_confirmCode": "Enter Confirmation Code"
+    }
   }
 }

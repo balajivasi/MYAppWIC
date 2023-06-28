@@ -26,8 +26,10 @@ export const RegisterService = (email, password, wicEbtNumber, birthDate, zipCod
 };
 
 // Resend OTP Service
-export const ResendOTP = (email, token) => {
-  const options = Util.ResentOTPOptions(email, token);
+export const ResendOTP = (email) => {
+  console.log('[ResendOTP]', email)
+  const options = Util.ResentOTPOptions(email);
+  console.log('[ResendOTP]', options)
   return makeApiRequest('/ResendOTP', options);
 };
 

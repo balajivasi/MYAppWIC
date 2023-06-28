@@ -23,7 +23,7 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [wicEbtNumber, setWicEbtNumber] = useState('6102969000571554');
+  const [wicEbtNumber, setWicEbtNumber] = useState('61029690');
   const [birthDate, setBirthDate] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [nickName, setNickName] = useState('');
@@ -54,10 +54,8 @@ export default function Register() {
       // All validations passed, submit registration
       try {
         setLoader(true);
-        console.log('Registration successful');
         const response = await RegisterService(email, password, wicEbtNumber, birthDate, zipCode, nickName);
         // Handle the successful response
-        console.log('Registration successful', response);
         if (response.Status === 1) {
           dispatch(setProfileEmail(email));
           dispatch(setProfileFullName(`${response.ServiceResponse[0].FirstName} ${response.ServiceResponse[0].LastName}`));
@@ -94,17 +92,15 @@ export default function Register() {
       <ScrollView className="mt-8">
         {error ? <Text className="rounded-md border w-4/5 bg-red-600 mx-auto p-3 text-white">{t('errorMessages.allRequiredFields')}</Text> : null}
         {serverError ? <Text className="rounded-md border w-4/5 bg-red-600 mx-auto p-3 text-white">{serverError}</Text> : null}
-
-        <CustomTextInput label={t('labels.emailAddress')} placeholder="Enter Email Address" FieldType="Email" value={email} onChangeText={setEmail} validate={true} />
-        <CustomTextInput label={t('labels.password')} placeholder="Enter Password" FieldType="Password" value={password} onChangeText={setPassword} secureTextEntry={true} validate={true} />
-        <CustomTextInput label={t('labels.confirmPassword')} placeholder="Enter Confirm Password" FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={password} secureTextEntry={true} validate={true} />
+        <CustomTextInput label={t('labels.emailAddress')} placeholder={t('TPH.PH_Email')} FieldType="Email" value={email} onChangeText={setEmail} validate={true} />
+        <CustomTextInput label={t('labels.password')} placeholder={t('TPH.PH_Password')} FieldType="Password" value={password} onChangeText={setPassword} secureTextEntry={true} validate={true} />
+        <CustomTextInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={password} secureTextEntry={true} validate={true} />
         <CustomTextInput label={t('labels.wicEBTCardNumber')} placeholder="" FieldType="WicEbtNumber" value={wicEbtNumber} numericValue={true} onChangeText={setWicEbtNumber} validate={true} />
-        <CustomTextInput label={t('labels.ARBirthDate')} placeholder="Enter AR Birth Date in (mm/dd/yyyy) format" FieldType="BirthDate" value={birthDate} onChangeText={setBirthDate} validate={true} />
-        <CustomTextInput label={t('labels.ARMailingAddressZipCode')} placeholder="Enter AR Mailing Address Zip Code" FieldType="ZipCode" numericValue={true} value={zipCode} onChangeText={setZipCode} validate={true} />
-        <CustomTextInput label={t('labels.nickname')} placeholder="Enter Card Nickname (Optional)" FieldType="nickName" value={nickName} onChangeText={setNickName} />
+        <CustomTextInput label={t('labels.ARBirthDate')} placeholder={t('TPH.PH_birthDay')} FieldType="BirthDate" value={birthDate} onChangeText={setBirthDate} validate={true} />
+        <CustomTextInput label={t('labels.ARMailingAddressZipCode')} placeholder={t('TPH.PH_AddressZip')} FieldType="ZipCode" numericValue={true} value={zipCode} onChangeText={setZipCode} validate={true} />
+        <CustomTextInput label={t('labels.nickname')} placeholder={t('TPH.PH_nickname')} FieldType="nickName" value={nickName} onChangeText={setNickName} />
         <CustomButton title={t('buttons.register')} CSSName="w-4/5 mx-auto mb-4" onPress={handleRegister} />
       </ScrollView>
-
     </View></>
   );
 }

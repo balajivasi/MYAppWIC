@@ -11,13 +11,13 @@ import Footer from "../Common/Footer";
 import { useTranslation } from 'react-i18next';
 
 export default function Home() {
-  const user =useSelector((state)=>state.user)
-  const { t } =useTranslation();
+  const user = useSelector((state) => state.user)
+  const { t } = useTranslation();
   return (
     <SafeAreaView>
       <View className="min-h-full">
         <ScrollView>
-        <Image
+          <Image
             className="mx-auto my-5 rounded-2xl"
             source={require("../../assets/Images/EbtCard.jpg")}
             style={{ width: 300, height: 175 }}

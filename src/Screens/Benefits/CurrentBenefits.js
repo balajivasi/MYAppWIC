@@ -5,6 +5,8 @@ import { handleInvalidWICAccount } from '../../Common/handleInvalidWICAccount';
 import { CurrentBenefitsService } from '../../Services/apiService';
 import BenefitsList from '../../Common/BenefitsList';
 import { setLoading } from '../../slices/loaderSlice';
+import { ExclamationTriangleIcon } from 'react-native-heroicons/outline';
+import { useTranslation } from 'react-i18next';
 
 const CurrentBenefits = ({ navigation }) => {
     const Token = useSelector(state => state.user.Token);
@@ -12,6 +14,7 @@ const CurrentBenefits = ({ navigation }) => {
     const [serverError, setServerError] = useState('');
     const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
     const dispatch = useDispatch()
+    const { t } = useTranslation()
     const loadCurrentBenefits = async () => {
         dispatch(setLoading(true));
         const currentDate = new Date();
@@ -48,9 +51,14 @@ const CurrentBenefits = ({ navigation }) => {
 
     return (
         <View className="h-ful mx-auto mt-2" >
+
             {benefits[0] && <Text className="text-center text-xl mb-3">{benefits[0]?.BenefitStartDate} - {benefits[0]?.BenefitEndDate}</Text>}
             <ScrollView >
                 <View className="w-screen flex-row  flex-wrap gap-2 items-stretch">
+                    {benefits.length >= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+                        <ExclamationTriangleIcon size={150} color={'gray'} />
+                        <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
+                    </View> : null}
                     {benefits?.map((benefit, index) => {
                         return (
                             <View key={index} className="border border-gray-500 bg-slate-300 rounded-lg" style={{ width: '31%' }}>

@@ -17,12 +17,12 @@ export default function Feedback() {
   const dispatch = useDispatch();
 
   const SaveFeedback = async () => {
-    if (catType === "") {
-      Alert.alert("Please select Reason");
+    if (catType === undefined || catType === "") {
+      Alert.alert(t('errorMessages.selectReason'));
       return false;
     }
-    if (comments === "") {
-      Alert.alert("Description is required.");
+    if (comments === undefined) {
+      Alert.alert(t('errorMessages.descriptionReq'));
       return false;
     }
 
@@ -45,20 +45,18 @@ export default function Feedback() {
     }
   }
   return (
-    <View className="flex-col w-5/5 mt-10">
-      {feedbackSuccess ? <Text className="text-base">{feedbackSuccess}</Text> : null}
+    <View className="flex-col h-screen w-5/5 mt-6">
+      {feedbackSuccess ? <Text className="text-base w-screen text-center">{feedbackSuccess}</Text> : null}
       <View className="flex-col">
         <Text className="text-center text-2xl">{t('labels.reason')}</Text>
-        <View >
-          <Picker selectedValue={catType} onValueChange={setCatType}>
-            <Picker.Item label="Select Type" value="" />
-            <Picker.Item label="New Feature" value="New Feature" />
-            <Picker.Item label="Existing Feature" value="Existing Feature" />
-            <Picker.Item label="Suggestion" value="Suggestion" />
-            <Picker.Item label="Complaint" value="Complaint" />
-            <Picker.Item label="Other" value="Other" />
-          </Picker>
-        </View>
+        <Picker selectedValue={catType} onValueChange={setCatType}>
+          <Picker.Item label="Select Type" value="" />
+          <Picker.Item label="New Feature" value="New Feature" />
+          <Picker.Item label="Existing Feature" value="Existing Feature" />
+          <Picker.Item label="Suggestion" value="Suggestion" />
+          <Picker.Item label="Complaint" value="Complaint" />
+          <Picker.Item label="Other" value="Other" />
+        </Picker>
       </View>
       <View className="flex-col">
         <Text className="text-lg text-center">{t('labels.description')}</Text>
