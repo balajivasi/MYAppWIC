@@ -16,7 +16,7 @@ const Confirmation = ({ navigation }) => {
   const [serverSuccess, setServerSuccess] = useState('');
   const [confirmCode, setConfirmCode] = useState('');
   const [resendDisabled, setResendDisabled] = useState(true);
-  const [resendTimer, setResendTimer] = useState(180); // 30 seconds
+  const [resendTimer, setResendTimer] = useState(180); // 180 seconds
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [loader, setLoader] = useState(false);
