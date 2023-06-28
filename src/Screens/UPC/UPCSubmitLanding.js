@@ -28,7 +28,7 @@ const UPCSubmitLanding = ({ navigation }) => {
         } else if (productPic && !productLabel) {
             return <UPCSubmitLabel getProductLabel={getProductLabel} navigation={navigation} />;
         } else {
-            return <View className="w-screen"><UPCSubmit ProductPic={productPic} ProductLabel={productLabel} StartOver={startOver} UPCSubmitted={UPCSubmitted} /></View>;
+            return <View className="w-screen"><UPCSubmit ProductPic={productPic} navigation={navigation} ProductLabel={productLabel} StartOver={startOver} UPCSubmitted={UPCSubmitted} /></View>;
         }
     }
 

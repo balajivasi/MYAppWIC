@@ -14,12 +14,11 @@ const UPCLanding = ({ navigation }) => {
     const [UPCDetails, setUPCDetails] = useState();
     const dispatch = useDispatch();
     const checkBarcode = useCallback(async () => {
-        dispatch(setLoading(true));
         if (Barcode) {
+            dispatch(setLoading(true));
             try {
                 const response = await UPCLookupService(Token, Barcode);
                 if (response.Status === 1) {
-                    console.log('[checkBarcode]', response.ServiceResponse)
                     setUPCDetails(response.ServiceResponse[0]);
                 } else {
                     try {
@@ -31,9 +30,8 @@ const UPCLanding = ({ navigation }) => {
             } catch {
                 console.error('Getting UPC Data Failed', error);
             }
+            dispatch(setLoading(false));
         }
-
-        dispatch(setLoading(false));
     }, [Barcode]);
     const submitUPC = () => {
         navigation.navigate('UPCScanInfo')

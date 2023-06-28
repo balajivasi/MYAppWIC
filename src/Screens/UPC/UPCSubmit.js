@@ -1,5 +1,5 @@
 import { View, Text, Image, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomButton from '../../Common/CustomButton'
 import { useTranslation } from 'react-i18next'
 import CustomTextInput from '../../Common/CustomTextInput'
@@ -97,11 +97,20 @@ const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitt
     const resetSubmit = () => {
         StartOver()
     }
+    useEffect(() => {
+        navigation.setOptions({
+            title: t('pageText.submitUPCInfo'),
+            headerTitleStyle: {
+                fontSize: 18,
+                color: 'white'
+            }
+        });
+    })
     return (
         <View className="h-full w-full flex">
-            <View className="m-2 bg-black opacity-50 rounded-md">
+            {/* <View className="m-2 bg-black opacity-50 rounded-md">
                 <Text className="text-white text-base py-3 text-center">3.{t('pageText.submitUPCInfo')}</Text>
-            </View>
+            </View> */}
             <CustomTextInput label={t('labels.packageSize')} FieldType='number' value={packageSize} placeholder='Please enter package size' numericValue={true} validate={true} onChangeText={handlePackageSize} />
             <CustomTextInput label={t('labels.emailAddress')} FieldType='Email' value={email} placeholder='Enter Email Address' onChangeText={handleEmail} validate={true} />
             <PhoneNumberInput label={t('labels.phoneNumber')} FieldType='phoneNumber' value={phoneNumber} onChangeText={setPhoneNumber} validate={true} />

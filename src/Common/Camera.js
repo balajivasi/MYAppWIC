@@ -4,7 +4,6 @@ const Camera = ({ cancelHandler, onImageCapture }) => {
 
     const onBottomButtonPressed = (event) => {
         const { type } = event;
-        console.log(event)
         switch (type) {
             case 'left':
                 cancelHandler();

@@ -1,5 +1,5 @@
 import { View, Text, Image, Dimensions } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CustomButton from '../../Common/CustomButton';
 import { useTranslation } from 'react-i18next';
 import Camera from '../../Common/Camera';
@@ -21,6 +21,7 @@ const UPCSubmitProduct = ({ navigation, getProductPic }) => {
         } catch (error) {
             console.log('Error converting image to base64:', error);
         }
+
     };
     const { width, height } = Dimensions.get('window');
 
@@ -28,12 +29,22 @@ const UPCSubmitProduct = ({ navigation, getProductPic }) => {
         getProductPic(capturedImage)
     }
 
+    useEffect(() => {
+        navigation.setOptions({
+            title: t('pageText.productPic'),
+            headerTitleStyle: {
+                fontSize: 18,
+                color: 'white'
+            }
+        });
+    })
+
     return (
         <View className="h-full flex">
             {capturedImage ? <View className="flex-1 h-screen">
-                <View className="flex-row justify-center footer absolute top-0 left-0 z-10 bg-black w-full opacity-70">
+                {/* <View className="flex-row justify-center footer absolute top-0 left-0 z-10 bg-black w-full opacity-70">
                     <Text className="text-white py-5">1.{t('pageText.productPic')}</Text>
-                </View>
+                </View> */}
                 <Image style={{ height, width }} source={{ uri: `data:image/jpeg;base64,${capturedImage}` }} />
                 <View className="flex-row justify-center gap-5 footer absolute bottom-10 left-10">
                     <CustomButton title={t('buttons.retake')} CSSName="w-2/5" onPress={() => setCapturedImage(null)} /><Text>&nbsp;&nbsp;&nbsp;</Text>

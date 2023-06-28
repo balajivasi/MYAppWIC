@@ -18,11 +18,8 @@ const UPCScanStackNav = () => {
     const { t } = useTranslation();
     return (<Stack.Navigator>
         <Stack.Screen name="UPCScanStack" component={UPCScan} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCScan') })} />
-
         <Stack.Screen name="UPCLanding" component={UPCLanding} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCLanding') })} />
-
         <Stack.Screen name="UPCScanInfo" component={UPCScanInfo} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCScanInfo') })} />
-
         <Stack.Screen name="UPCSubmitProduct" component={UPCSubmitProduct} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCSubmitProduct') })} />
         <Stack.Screen name="UPCSubmitLabel" component={UPCSubmitLabel} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCSubmitLabel') })} />
         <Stack.Screen name="UPCSubmitLanding" component={UPCSubmitLanding} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCSubmitLanding') })} />
