@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, SafeAreaView, Image, Alert, ScrollView, Dimensions } from "react-native";
 import { useTranslation } from 'react-i18next';
 import Footer from "../../Common/Footer";
@@ -8,6 +8,7 @@ import { loginUser } from "../../Services/authActions";
 
 import { useDispatch, useSelector } from 'react-redux';
 import ErrorText from "../../Common/ErrorText";
+import { setProfileEmail } from "../../slices/profileSlice";
 
 
 export default function LoginPage({ navigation }) {
@@ -33,6 +34,12 @@ export default function LoginPage({ navigation }) {
   const imageWidth = width * 0.5;
   const imageHeight = (imageWidth * 125) / 200;
 
+  useEffect(() => {
+    if (error === "Email address is Not Verified.") {
+      dispatch(setProfileEmail(email));
+      navigation.push('Confirmation');
+    }
+  }, [error])
   return (
     <SafeAreaView>
       <View className="min-h-full">

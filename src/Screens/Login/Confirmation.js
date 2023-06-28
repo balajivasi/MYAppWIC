@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 import { saveAuthDataToStorage } from '../../Services/AuthPersistence';
 import { setEBTCardNumber, setProfileEmail, setProfileFullName, setToken } from '../../slices/profileSlice';
 import { loginSuccess } from '../../slices/authSlice';
-import { ResentOTP, ValidateOTP } from '../../Services/apiService';
+import { ResendOTP, ValidateOTP } from '../../Services/apiService';
 import { useSelector, useDispatch } from 'react-redux';
 import { ActivityIndicator } from 'react-native';
 
-const Confirmation = () => {
+const Confirmation = ({ navigation }) => {
   const { t } = useTranslation();
   const [serverError, setServerError] = useState('');
   const [serverSuccess, setServerSuccess] = useState('');
@@ -19,13 +19,19 @@ const Confirmation = () => {
   const [resendTimer, setResendTimer] = useState(180); // 30 seconds
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const [loader, setLoader] = useState(false)
+  const [loader, setLoader] = useState(false);
+
+  const ConfirmCode = (code) => {
+    if (code.length <= 4) {
+      setConfirmCode(code)
+    }
+  }
 
   const submitVerifyCode = async () => {
     setServerError('');
     try {
       setLoader(true);
-      const response = await ValidateOTP(user.email, user.Token, confirmCode);
+      const response = await ValidateOTP(user.email, confirmCode);
       if (response.Status === 1) {
         await saveAuthDataToStorage(
           response.ServiceResponse,
@@ -37,7 +43,8 @@ const Confirmation = () => {
         dispatch(setProfileFullName(`${response.ServiceResponse[0].FirstName} ${response.ServiceResponse[0].LastName}`));
         dispatch(setToken(response.ServiceResponse[0].Token));
         dispatch(loginSuccess(response.ServiceResponse));
-        dispatch(setEBTCardNumber(response.data.ServiceResponse[0].EBTCardNumber))
+        dispatch(setEBTCardNumber(response.data.ServiceResponse[0].EBTCardNumber));
+        navigation.goBack();
       } else {
         setServerError(response.ServiceResponse[0].Message);
       }
@@ -49,10 +56,9 @@ const Confirmation = () => {
 
   const submitResend = async () => {
     setServerError('');
-
     try {
       setLoader(true);
-      const response = await ResentOTP(user.email, user.Token);
+      const response = await ResendOTP(user.email)
       if (response.Status === 1) {
         setServerSuccess(response.ServiceResponse[0].Message);
         setResendTimer(180); // Reset the timer to 180 seconds
@@ -93,7 +99,7 @@ const Confirmation = () => {
       <Text className="text-3xl text-center my-4 text-gray-400">{t('headings.confirm')}</Text>
       <Text className="text-lg">{t('pageText.confirmPage')}</Text>
 
-      <CustomTextInput label={t('labels.confirmationCode')} placeholder={t('TPH.PH_confirmCode')} value={confirmCode} FieldType="confirmCode" onChangeText={setConfirmCode} numericValue={true} />
+      <CustomTextInput label={t('labels.confirmationCode')} placeholder={t('TPH.PH_confirmCode')} value={confirmCode} FieldType="confirmCode" onChangeText={ConfirmCode} numericValue={true} />
 
       <View className="flex-row justify-center">
         <CustomButton title={t('buttons.verify')} CSSName="w-2/5 mt-7 mr-5" onPress={submitVerifyCode} />
