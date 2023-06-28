@@ -5,8 +5,9 @@ const initialState = {
   fullName: null,
   globalError: "",
   Token: null,
-  language:'en',
-  EBTCardNumber:null
+  language: 'en',
+  EBTCardNumber: null,
+  ScannedUPC: null
 };
 
 export const profileSlice = createSlice({
@@ -37,8 +38,11 @@ export const profileSlice = createSlice({
     setEBTCardNumber: (state, action) => {
       state.EBTCardNumber = action.payload;
     },
+    setScannedUPC: (state, action) => {
+      state.ScannedUPC = action.payload;
+    },
   },
 });
 
-export const { setProfileEmail, setProfileFullName, setGlobalError, setClearProfileData, setToken,setProfileLanguage,setEBTCardNumber } = profileSlice.actions;
+export const { setProfileEmail, setProfileFullName, setGlobalError, setClearProfileData, setToken, setProfileLanguage, setEBTCardNumber, setScannedUPC } = profileSlice.actions;
 export default profileSlice.reducer;

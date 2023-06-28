@@ -4,7 +4,7 @@ module.exports = {
   'plugins': ['prettier'],
   'rules': {
     'prettier/prettier': 'error',
-    'arrow-body-style": 'off',
-    'prefer-arrow-callback': 'off'
-  }
+    'arrow-body-style': 'off',
+    'prefer-arrow-callback': 'off',
+  },
 }

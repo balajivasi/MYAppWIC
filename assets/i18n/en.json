@@ -16,7 +16,9 @@
       "description": "Description",
       "currentPassword": "Current Password",
       "newPassword": "New Password",
-      "confirmationCode": "Confirmation Code"
+      "confirmationCode": "Confirmation Code",
+      "packageSize": "Package Size",
+      "phoneNumber": "Phone Number"
     },
     "errorMessages": {
       "fieldRequired": "This field is required.",
@@ -59,7 +61,14 @@
       "current": "Current",
       "future": "Future",
       "benefitsDetails": "Benefits Details",
-      "UPCScan": "UPC Scan"
+      "UPCScan": "UPC Scan",
+      "submitUPC": "Submit UPC",
+      "UPCSubmitStatus": "UPC Submit Status",
+      "UPCLanding": "UPC Landing",
+      "UPCScanInfo": "UPC Scan Info",
+      "UPCSubmitProduct": "UPC Product Image",
+      "UPCSubmitLabel": "UPC Label Image",
+      "UPCSubmitLanding": "UPC Submit Details"
     },
     "footerIcon": {
       "clinics": "Clinics",
@@ -86,7 +95,12 @@
       "resend": "Resend",
       "verifyCard": "Verify Card",
       "updateNickname": "Update Nickname",
-      "UPCScan": "UPC Scan"
+      "UPCScan": "UPC Scan",
+      "scanAgain": "Scan Again",
+      "continue": "Continue",
+      "cancel": "Cancel",
+      "retake": "Retake",
+      "startOver": "Start Over"
     },
     "pageText": {
       "confirmPage": "A new code was sent to the email address that you provided. Please enter that code to verify your email.",
@@ -96,7 +110,22 @@
       "Verified": "Verified",
       "VerifiedDefaultCard": "Verified and default card",
       "issuedQuantity": "Issued Quantity:",
-      "remainingQuantity": "Remaining Quantity:"
+      "remainingQuantity": "Remaining Quantity:",
+      "WICApproved": "WIC Approved",
+      "NotWICApproved": "Not WIC Approved",
+      "NotWICApprovedDetails": "Please note that the UPC Scan function does not work for fresh fruit and vegetable items or when scanning bar codes on shelf tags. Please scan the bar code on the item that you wish to buy.",
+      "BenefitStart": "Benefit Start",
+      "BenefitEnd": "Benefit End",
+      "RemainingQuantity": "Remaining Quantity",
+      "UPCScanInfo": "To submit a UPC review by the Florida state WIC office, Please follow these simple steps",
+      "productPic": "Picture of the Product",
+      "nutritionLabelPic": "Picture of the Nutrition label",
+      "prodDesc": "Enter Product Description",
+      "submitUPCInfo": "Submit UPC Information",
+      "UPCProdPicTitle": "Product",
+      "UPCProdPicLabel": "Nutrition Info",
+      "UPCExist": "UPC code already exist for review, Thank you for supporting.",
+      "UPCInvalid": "Invalid UPC code please try again and scan a valid UPC code to submit."
     },
     "headings": {
       "confirm": "Confirm"
@@ -105,6 +134,7 @@
       "SignatureIsCompleted": "Signature is completed",
       "SignatureIsNotCompleted": "Signature is not completed",
       "maxAllowedCharacters": "max allowed characters"
-    }
+    },
+    "LabelPlaceHolders": {}
   }
 }
