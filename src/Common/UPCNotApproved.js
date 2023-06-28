@@ -3,23 +3,16 @@ import React from 'react';
 import { NoSymbolIcon } from 'react-native-heroicons/outline';
 import { useTranslation } from 'react-i18next';
 import CustomButton from './CustomButton';
-import { CommonActions, useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
 
-const UPCNotApproved = ({ UPCCode }) => {
+const UPCNotApproved = ({ UPCCode, submitUPC, cancelClicked }) => {
     const { t } = useTranslation();
-    const navigation = useNavigation();
-    const dispatch = useDispatch();
 
     const resetUPCScanStack = () => {
-        /* navigation.dispatch(
-             CommonActions.reset({
-                 index: 0,
-                 routes: [{ name: 'UPCScan' }]
-             })
-         );*/
-        navigation.goBack();
+        cancelClicked()
     };
+    const submitHandler = () => {
+        submitUPC()
+    }
 
     return (
         <View className="mx-auto h-full flex w-11/12">
@@ -36,7 +29,7 @@ const UPCNotApproved = ({ UPCCode }) => {
             </View>
             <View className="flex-row justify-center gap-5 footer">
                 <CustomButton title={t('buttons.scanAgain')} CSSName="w-2/5" onPress={resetUPCScanStack} /><Text>&nbsp;&nbsp;&nbsp;</Text>
-                <CustomButton title={t('buttons.submit')} CSSName="w-2/5" onPress={() => { navigation.navigate('UPCScanInfo') }} />
+                <CustomButton title={t('buttons.submit')} CSSName="w-2/5" onPress={submitHandler} />
             </View>
         </View>
     )

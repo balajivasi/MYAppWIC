@@ -28,8 +28,8 @@ const UPCScanInfo = ({ navigation }) => {
                 </View>
             </View>
             <View className="flex-row justify-center gap-5 footer">
-                <CustomButton title={t('buttons.cancel')} CSSName="w-2/5" /><Text>&nbsp;&nbsp;&nbsp;</Text>
-                <CustomButton title={t('buttons.continue')} CSSName="w-2/5" onPress={() => { navigation.navigate('UPCSubmitDetails') }} />
+                <CustomButton title={t('buttons.cancel')} CSSName="w-2/5" onPress={() => { navigation.navigate('Home') }} /><Text>&nbsp;&nbsp;&nbsp;</Text>
+                <CustomButton title={t('buttons.continue')} CSSName="w-2/5" onPress={() => { navigation.navigate('UPCSubmitLanding') }} />
             </View>
         </View>
     )

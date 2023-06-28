@@ -10,7 +10,7 @@ const UPCSubmitLabel = ({ navigation, getProductLabel }) => {
     const [capturedLabel, setCapturedLabel] = useState(null);
 
     const cancelHandler = () => {
-        console.log('Cancel clicked')
+        navigation.goBack();
     }
     const handleImageCapture = async (ImageUrl) => {
         try {

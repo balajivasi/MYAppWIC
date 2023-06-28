@@ -12,10 +12,9 @@ const UPCSubmitProduct = ({ navigation, getProductPic }) => {
     const [capturedImage, setCapturedImage] = useState(null);
 
     const cancelHandler = () => {
-        console.log('Cancel clicked')
+        navigation.goBack();
     }
     const handleImageCapture = async (ImageUrl) => {
-        console.log('[UPCSubmitProduct][handleImageCapture]', ImageUrl)
         try {
             ImgToBase64.getBase64String(ImageUrl)
                 .then(base64String => setCapturedImage(base64String)).catch(error => console.log('Error converting image to base64:', error));

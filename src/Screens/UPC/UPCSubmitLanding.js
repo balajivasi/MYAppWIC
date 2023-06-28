@@ -1,19 +1,17 @@
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import React, { useState } from 'react'
 import UPCSubmitProduct from './UPCSubmitProduct'
 import UPCSubmitLabel from './UPCSubmitLabel'
 import UPCSubmit from './UPCSubmit'
 
-const UPCSubmitDetails = ({ navigation }) => {
+const UPCSubmitLanding = ({ navigation }) => {
     const [productPic, setProductPic] = useState();
     const [productLabel, setProductLabel] = useState();
     const [UPCSubmitStatus, setUPCSubmitStatus] = useState();
     const getProductPic = (productPic) => {
-        console.log('[UPCSubmitDetails][getProductPic]')
         setProductPic(productPic)
     }
     const getProductLabel = (productLabel) => {
-        console.log('[UPCSubmitDetails][productLabel]')
         setProductLabel(productLabel)
     }
     const startOver = () => {
@@ -21,15 +19,14 @@ const UPCSubmitDetails = ({ navigation }) => {
         setProductLabel(null);
     }
     const UPCSubmitted = (data) => {
-        console.log('UPC Submitted', data);
         setUPCSubmitStatus(data)
-        navigation.push('UPCStatus', { status: data });
+        navigation.push('UPCSubmitStatus', { UPCSubmittedStatus: data });
     }
     const showPage = () => {
         if (!productPic) {
-            return <UPCSubmitProduct getProductPic={getProductPic} />;
+            return <UPCSubmitProduct getProductPic={getProductPic} navigation={navigation} />;
         } else if (productPic && !productLabel) {
-            return <UPCSubmitLabel getProductLabel={getProductLabel} />;
+            return <UPCSubmitLabel getProductLabel={getProductLabel} navigation={navigation} />;
         } else {
             return <View className="w-screen"><UPCSubmit ProductPic={productPic} ProductLabel={productLabel} StartOver={startOver} UPCSubmitted={UPCSubmitted} /></View>;
         }
@@ -42,4 +39,4 @@ const UPCSubmitDetails = ({ navigation }) => {
     )
 }
 
-export default UPCSubmitDetails
+export default UPCSubmitLanding

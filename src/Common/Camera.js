@@ -3,13 +3,23 @@ import { CameraScreen } from 'react-native-camera-kit';
 const Camera = ({ cancelHandler, onImageCapture }) => {
 
     const onBottomButtonPressed = (event) => {
-        cancelHandler();
-        onImageCapture(event.captureImages[0].uri);
-    }
+        const { type } = event;
+        console.log(event)
+        switch (type) {
+            case 'left':
+                cancelHandler();
+                break;
+            case 'capture':
+                onImageCapture(event.captureImages[0].uri);
+                break;
+            default:
+                break;
+        }
+    };
 
     return (
         <CameraScreen
-            actions={{ rightButtonText: 'Done', leftButtonText: 'Cancel' }}
+            actions={{ leftButtonText: 'Cancel' }}
             cameraType="back"
             flashMode="auto"
             frameColor="white"

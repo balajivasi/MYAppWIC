@@ -62,7 +62,13 @@
       "future": "Future",
       "benefitsDetails": "Benefits Details",
       "UPCScan": "UPC Scan",
-      "submitUPC": "Submit UPC"
+      "submitUPC": "Submit UPC",
+      "UPCSubmitStatus": "UPC Submit Status",
+      "UPCLanding": "UPC Landing",
+      "UPCScanInfo": "UPC Scan Info",
+      "UPCSubmitProduct": "UPC Product Image",
+      "UPCSubmitLabel": "UPC Label Image",
+      "UPCSubmitLanding": "UPC Submit Details"
     },
     "footerIcon": {
       "clinics": "Clinics",
@@ -117,7 +123,9 @@
       "prodDesc": "Enter product description",
       "submitUPCInfo": "Submit UPC Information",
       "UPCProdPicTitle": "Product",
-      "UPCProdPicLabel": "Nutrition Info"
+      "UPCProdPicLabel": "Nutrition Info",
+      "UPCExist": "UPC code already exist for review, Thank you for supporting.",
+      "UPCInvalid": "Invalid UPC code please try again and scan a valid UPC code to submit."
     },
     "headings": {
       "confirm": "Confirm"

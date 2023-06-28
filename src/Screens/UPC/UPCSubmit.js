@@ -56,7 +56,6 @@ const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitt
         const emailAddress = validateEmail(email);
         const Phone = validatePhone(phoneNumber);
         const Desc = validateDescription(Description);
-        console.log(Package, emailAddress, Phone, Desc)
         if (
             Package &&
             emailAddress &&
@@ -65,8 +64,6 @@ const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitt
         ) {
             dispatch(setLoading(true));
             try {
-                console.log('submit start')
-                // OldEBTCard,wicEbtNumber, birthDate, zipCode, Token
                 const response = await UPCSubmitService(Token, UPCCode, Description, packageSize, email, phoneNumber, ProductPic, ProductLabel);
                 // Handle the successful response
                 console.log('upc submitted', response)
@@ -81,9 +78,6 @@ const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitt
                             console.log('handleInvalidWICAccount failed.', error)
                         }
                     }
-                    if (message === '1014') {
-                        Alert.alert("Invalid UPC code.")
-                    }
                     else {
                         UPCSubmitted(message)
                     }
@@ -91,7 +85,7 @@ const UPCSubmit = ({ navigation, ProductPic, ProductLabel, StartOver, UPCSubmitt
                 // Perform any additional actions or update the UI accordingly
             } catch (error) {
                 // Handle the error
-                console.error('Registration failed', error);
+                console.error('UPC Submit Service Failed.', error);
                 // Display an error message or perform any error handling logic
             }
             dispatch(setLoading(false))

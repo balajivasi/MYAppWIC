@@ -1,24 +1,23 @@
-import { View, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../slices/loaderSlice';
 import { UPCLookupService } from '../../Services/apiService';
 import { handleInvalidWICAccount } from '../../Common/handleInvalidWICAccount';
 import UPCApproved from '../../Common/UPCApproved';
 import UPCNotApproved from '../../Common/UPCNotApproved';
+import { CommonActions } from '@react-navigation/native';
 
-const UPCLanding = () => {
+const UPCLanding = ({ navigation }) => {
     const Token = useSelector(state => state.user.Token);
     const Barcode = useSelector(state => state.user.ScannedUPC);
     const [UPCDetails, setUPCDetails] = useState();
     const dispatch = useDispatch();
-    console.log('[UPCLanding]', Barcode)
-    const checkBarcode = async () => {
-        //dispatch(setLoading(true));
+    const checkBarcode = useCallback(async () => {
+        dispatch(setLoading(true));
         if (Barcode) {
             try {
                 const response = await UPCLookupService(Token, Barcode);
-                console.log('[checkBarcode--response--]', response)
                 if (response.Status === 1) {
                     console.log('[checkBarcode]', response.ServiceResponse)
                     setUPCDetails(response.ServiceResponse[0]);
@@ -35,15 +34,25 @@ const UPCLanding = () => {
         }
 
         dispatch(setLoading(false));
+    }, [Barcode]);
+    const submitUPC = () => {
+        navigation.navigate('UPCScanInfo')
     }
+    const resetUPCScanStack = () => {
+        navigation.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [{ name: 'UPCScan' }]
+            })
+        );
+    };
 
     useEffect(() => {
-        console.log('[useEffect]', Barcode)
         checkBarcode()
     }, [Barcode])
     return (
         <View>
-            {Barcode ? UPCDetails ? <UPCApproved UPCData={UPCDetails} UPCCode={Barcode} /> : <UPCNotApproved UPCCode={Barcode} /> : null}
+            {Barcode ? UPCDetails ? <UPCApproved UPCData={UPCDetails} UPCCode={Barcode} cancelClicked={resetUPCScanStack} /> : <UPCNotApproved UPCCode={Barcode} submitUPC={submitUPC} cancelClicked={resetUPCScanStack} /> : null}
         </View>
     )
 }

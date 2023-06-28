@@ -3,23 +3,13 @@ import React from 'react';
 import { CheckCircleIcon } from 'react-native-heroicons/outline';
 import { useTranslation } from 'react-i18next';
 import CustomButton from './CustomButton';
-import { CommonActions, useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
 import { formatDate } from './DateFormat';
 
-const UPCApproved = ({ UPCData, UPCCode }) => {
+const UPCApproved = ({ UPCData, UPCCode, cancelClicked }) => {
     const { t } = useTranslation();
-    const navigation = useNavigation();
-    const dispatch = useDispatch();
 
     const resetUPCScanStack = () => {
-        /* navigation.dispatch(
-             CommonActions.reset({
-                 index: 0,
-                 routes: [{ name: 'UPCScan' }]
-             })
-         );*/
-        navigation.goBack();
+        cancelClicked()
     };
 
     return (
