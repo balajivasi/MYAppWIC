@@ -75,7 +75,7 @@ const FutureBenefits = ({ navigation }) => {
   };
 
   return (
-    <View className="mx-auto mx-auto mt-2">
+    <View className="mx-auto mt-2">
       <FutureBenefitsTab futureBenList={futureBenList} selectedTab={selectedTab} onSelectTab={onSelectTab} />
       {benefits[0] && (
         <Text className="text-center text-sm mb-3">

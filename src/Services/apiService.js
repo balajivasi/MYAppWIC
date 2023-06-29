@@ -158,6 +158,10 @@ export const UPCSubmitService = (Token, UPCCode, UPCDescription, UPCPackageSize,
   return makeApiRequest('/UPCSubmit', options);
 };
 
+export const UploadDocService = (Token, FileType = 'png', Notes, FileDoc) => {
+  const options = Util.UploadDocOption(Token, FileType, Notes, FileDoc);
+  return makeApiRequest('/UploadClientDoc', options);
+};
 
 
 export const fetchCoordinates = async (address) => {

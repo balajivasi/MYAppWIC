@@ -208,6 +208,16 @@ export const UPCSubmitOption = (Token, UPCCode, UPCDescription, UPCPackageSize, 
         "UPCNutritionLabel": UPCNutritionLabel
     }
 }
+export const UploadDocOption = (Token, FileType, Notes, FileDoc) => {
+    return {
+        "Token": Token,
+        "FileType": FileType,
+        "Notes": Notes,
+        "APIToken": APIToken,
+        "FileDoc": FileDoc
+    }
+}
+
 
 
 
