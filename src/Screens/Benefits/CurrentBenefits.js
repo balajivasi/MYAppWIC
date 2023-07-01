@@ -51,11 +51,10 @@ const CurrentBenefits = ({ navigation }) => {
 
     return (
         <View className="h-ful mx-auto mt-2" >
-
             {benefits[0] && <Text className="text-center text-xl mb-3">{benefits[0]?.BenefitStartDate} - {benefits[0]?.BenefitEndDate}</Text>}
             <ScrollView >
-                <View className="w-screen flex-row  flex-wrap gap-2 items-stretch">
-                    {benefits.length >= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+                <View className="w-screen flex-row  flex-wrap gap-2 mb-14 items-stretch">
+                    {benefits.length <= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
                         <ExclamationTriangleIcon size={150} color={'gray'} />
                         <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
                     </View> : null}

@@ -85,7 +85,7 @@ const FutureBenefits = ({ navigation }) => {
 
       <ScrollView className="mb-20">
         <View className="w-screen flex-row flex-wrap gap-2 items-stretch">
-          {benefits.length >= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+          {benefits.length <= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
             <ExclamationTriangleIcon size={150} color={'gray'} />
             <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
           </View> : null}

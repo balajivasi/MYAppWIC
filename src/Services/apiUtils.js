@@ -170,7 +170,8 @@ export const CurrentBenefitsOption = (Token, EffDateCode) => {
     return {
         "Token": Token,
         "APIToken": APIToken,
-        "EffDateCode": EffDateCode
+        "EffDateCode": EffDateCode,
+        "Language": 'en'
     }
 }
 export const FutureBenefitsListOption = (Token) => {
