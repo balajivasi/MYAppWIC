@@ -13,14 +13,15 @@ const CurrentBenefits = ({ navigation }) => {
     const [benefits, setBenefits] = useState([]);
     const [serverError, setServerError] = useState('');
     const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
-    const dispatch = useDispatch()
-    const { t } = useTranslation()
+    const dispatch = useDispatch();
+    const { t } = useTranslation();
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 2).toString().padStart(2, '0');
+    const EffDateCode = `${year}${month}`;
     const loadCurrentBenefits = async () => {
         dispatch(setLoading(true));
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-        const EffDateCode = `${year}${month}`;
+
 
         try {
             const response = await CurrentBenefitsService(Token, EffDateCode);
@@ -45,7 +46,7 @@ const CurrentBenefits = ({ navigation }) => {
     }, [ActiveCardNumber]);
 
     const handleSelectCard = (benefit) => {
-        navigation.push('BenefitsDetails', { Benefit: benefit });
+        navigation.push('BenefitsDetails', { Benefit: benefit, EffDateCode: EffDateCode });
     }
 
 

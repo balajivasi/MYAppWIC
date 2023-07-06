@@ -104,7 +104,8 @@
       "continue": "Continue",
       "cancel": "Cancel",
       "retake": "Retake",
-      "startOver": "Start Over"
+      "startOver": "Start Over",
+      "reSelect": "Re-Select"
     },
     "pageText": {
       "confirmPage": "A new code was sent to the email address that you provided. Please enter that code to verify your email.",

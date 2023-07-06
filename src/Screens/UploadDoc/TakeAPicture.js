@@ -42,9 +42,6 @@ const TakeAPicture = ({ navigation, getDocumentPic, cancelClicked }) => {
     return (
         <View className="h-full flex">
             {capturedImage ? <View className="flex-1 h-screen">
-                {/* <View className="flex-row justify-center footer absolute top-0 left-0 z-10 bg-black w-full opacity-70">
-                    <Text className="text-white py-5">1.{t('pageText.productPic')}</Text>
-                </View> */}
                 <Image style={{ height, width }} source={{ uri: `data:image/jpeg;base64,${capturedImage}` }} />
                 <View className="flex-row justify-center gap-5 footer absolute bottom-10 left-10">
                     <CustomButton title={t('buttons.retake')} CSSName="w-2/5" onPress={() => setCapturedImage(null)} /><Text>&nbsp;&nbsp;&nbsp;</Text>

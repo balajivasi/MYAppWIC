@@ -61,7 +61,12 @@ const FutureBenefits = ({ navigation }) => {
   }, [ActiveCardNumber]);
 
   const handleSelectCard = (benefit) => {
-    navigation.push('BenefitsDetails', { Benefit: benefit });
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 2).toString().padStart(2, '0');
+    const EffDateCode = `${year}${month}`;
+
+    navigation.push('BenefitsDetails', { Benefit: benefit, EffDateCode: EffDateCode });
   };
 
   const onSelectTab = (tab) => {

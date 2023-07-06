@@ -57,5 +57,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This Application need access to photo library to select Images</string>
 </dict>
 </plist>

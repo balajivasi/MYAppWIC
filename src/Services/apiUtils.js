@@ -218,6 +218,15 @@ export const UploadDocOption = (Token, FileType, Notes, FileDoc) => {
         "FileDoc": FileDoc
     }
 }
+export const ContentImageOption = (EffDateCode, Category, SubCategory, Language) => {
+    return {
+        "APIToken": APIToken,
+        "EffDateCode": EffDateCode,
+        "Category": Category,
+        "SubCategory": SubCategory,
+        "Language": Language
+    }
+}
 
 
 
