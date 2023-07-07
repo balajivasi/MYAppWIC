@@ -17,7 +17,6 @@ export default function UploadDocuments({ navigation }) {
   const [success, setSuccess] = useState();
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
-  const [selectedImage, setSelectedImage] = useState(null);
 
   const continueClick = () => {
     setShowUploadPageInfo(true);
@@ -84,7 +83,7 @@ export default function UploadDocuments({ navigation }) {
     {showUploadPageInfo && <UploadSelectMethod selectedMethod={selectedMethod} />}
     {method === 'camera' && <TakeAPicture getDocumentPic={getDocumentPic} navigation={navigation} cancelClicked={cancelClicked} />}
     {method === 'photo' && <SelectPhoto cancelClicked={cancelClicked} getDocumentPic={getDocumentPic} />}
-    {method === 'file' && <UploadFIle />}
+    {method === 'file' && <UploadFIle cancelClicked={cancelClicked} getDocumentPic={getDocumentPic} />}
   </View>
   )
 }
