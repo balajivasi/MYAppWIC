@@ -158,7 +158,16 @@ export const UPCSubmitService = (Token, UPCCode, UPCDescription, UPCPackageSize,
   return makeApiRequest('/UPCSubmit', options);
 };
 
+export const UploadDocService = (Token, FileType = 'png', Notes, FileDoc) => {
+  const options = Util.UploadDocOption(Token, FileType, Notes, FileDoc);
+  return makeApiRequest('/UploadClientDoc', options);
+};
 
+// Current Benefits Service
+export const ContentImageService = (EffDateCode, Category, SubCategory, Language) => {
+  const options = Util.ContentImageOption(EffDateCode, Category, SubCategory, Language);
+  return makeApiRequest('/GetBenefitsBaseContentFile', options);
+};
 
 export const fetchCoordinates = async (address) => {
   const API_KEY = GoogleApiKey; // Replace with your Google Geocoding API key

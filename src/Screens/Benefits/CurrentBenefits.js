@@ -13,14 +13,15 @@ const CurrentBenefits = ({ navigation }) => {
     const [benefits, setBenefits] = useState([]);
     const [serverError, setServerError] = useState('');
     const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
-    const dispatch = useDispatch()
-    const { t } = useTranslation()
+    const dispatch = useDispatch();
+    const { t } = useTranslation();
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 2).toString().padStart(2, '0');
+    const EffDateCode = `${year}${month}`;
     const loadCurrentBenefits = async () => {
         dispatch(setLoading(true));
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-        const EffDateCode = `${year}${month}`;
+
 
         try {
             const response = await CurrentBenefitsService(Token, EffDateCode);
@@ -45,17 +46,16 @@ const CurrentBenefits = ({ navigation }) => {
     }, [ActiveCardNumber]);
 
     const handleSelectCard = (benefit) => {
-        navigation.push('BenefitsDetails', { Benefit: benefit });
+        navigation.push('BenefitsDetails', { Benefit: benefit, EffDateCode: EffDateCode });
     }
 
 
     return (
         <View className="h-ful mx-auto mt-2" >
-
             {benefits[0] && <Text className="text-center text-xl mb-3">{benefits[0]?.BenefitStartDate} - {benefits[0]?.BenefitEndDate}</Text>}
             <ScrollView >
-                <View className="w-screen flex-row  flex-wrap gap-2 items-stretch">
-                    {benefits.length >= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+                <View className="w-screen flex-row  flex-wrap gap-2 mb-14 items-stretch">
+                    {benefits.length <= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
                         <ExclamationTriangleIcon size={150} color={'gray'} />
                         <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
                     </View> : null}

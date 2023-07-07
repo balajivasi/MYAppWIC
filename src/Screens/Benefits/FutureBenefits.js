@@ -61,7 +61,12 @@ const FutureBenefits = ({ navigation }) => {
   }, [ActiveCardNumber]);
 
   const handleSelectCard = (benefit) => {
-    navigation.push('BenefitsDetails', { Benefit: benefit });
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 2).toString().padStart(2, '0');
+    const EffDateCode = `${year}${month}`;
+
+    navigation.push('BenefitsDetails', { Benefit: benefit, EffDateCode: EffDateCode });
   };
 
   const onSelectTab = (tab) => {
@@ -75,7 +80,7 @@ const FutureBenefits = ({ navigation }) => {
   };
 
   return (
-    <View className="mx-auto mx-auto mt-2">
+    <View className="mx-auto mt-2">
       <FutureBenefitsTab futureBenList={futureBenList} selectedTab={selectedTab} onSelectTab={onSelectTab} />
       {benefits[0] && (
         <Text className="text-center text-sm mb-3">
@@ -85,7 +90,7 @@ const FutureBenefits = ({ navigation }) => {
 
       <ScrollView className="mb-20">
         <View className="w-screen flex-row flex-wrap gap-2 items-stretch">
-          {benefits.length >= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+          {benefits.length <= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
             <ExclamationTriangleIcon size={150} color={'gray'} />
             <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
           </View> : null}

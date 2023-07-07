@@ -170,7 +170,8 @@ export const CurrentBenefitsOption = (Token, EffDateCode) => {
     return {
         "Token": Token,
         "APIToken": APIToken,
-        "EffDateCode": EffDateCode
+        "EffDateCode": EffDateCode,
+        "Language": 'en'
     }
 }
 export const FutureBenefitsListOption = (Token) => {
@@ -208,6 +209,25 @@ export const UPCSubmitOption = (Token, UPCCode, UPCDescription, UPCPackageSize, 
         "UPCNutritionLabel": UPCNutritionLabel
     }
 }
+export const UploadDocOption = (Token, FileType, Notes, FileDoc) => {
+    return {
+        "Token": Token,
+        "FileType": FileType,
+        "Notes": Notes,
+        "APIToken": APIToken,
+        "FileDoc": FileDoc
+    }
+}
+export const ContentImageOption = (EffDateCode, Category, SubCategory, Language) => {
+    return {
+        "APIToken": APIToken,
+        "EffDateCode": EffDateCode,
+        "Category": Category,
+        "SubCategory": SubCategory,
+        "Language": Language
+    }
+}
+
 
 
 
