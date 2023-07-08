@@ -18,7 +18,8 @@
       "newPassword": "New Password",
       "confirmationCode": "Confirmation Code",
       "packageSize": "Package Size",
-      "phoneNumber": "Phone Number"
+      "phoneNumber": "Phone Number",
+      "socialID": "Social ID"
     },
     "errorMessages": {
       "fieldRequired": "This field is required.",
