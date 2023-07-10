@@ -12,6 +12,7 @@ const envVars = getEnvVars();
 const apiUrl = envVars.API_URL;
 const APIToken = envVars.APIToken;
 
+//LoginType: 1= email , 2 = fB, 3=Google, 4=Twi, 5= Apple,  9= PasswordMD5 ON server
 
 export const loginUser = (credentials) => {
   return async (dispatch) => {
@@ -19,10 +20,10 @@ export const loginUser = (credentials) => {
       dispatch(loginRequest());
       dispatch(setLoading(true))
       const LoginOptions = {
-        LoginType: "1",
+        LoginType: credentials.LoginType,
         LoginEmail: credentials.email,
-        Password: credentials.password,
-        LoginPassword: "UeoJrlixzQP03p3SFMgXFQ==",
+        //Password: credentials.password,
+        LoginPassword: credentials.password, //"UeoJrlixzQP03p3SFMgXFQ==",
         LoginID: credentials.email,
         APIToken: APIToken,
         PushToken: "1234",
@@ -34,6 +35,7 @@ export const loginUser = (credentials) => {
       }
       //an API request to authenticate the user
       const response = await axios.post(`${apiUrl}/login`, LoginOptions);
+      console.log('[loginUser]', response.data)
       if (response.data.Status === 1) {
         // Save the authentication data to AsyncStorage
         await saveAuthDataToStorage(
@@ -50,7 +52,11 @@ export const loginUser = (credentials) => {
         // Dispatch the success action with the user data
         dispatch(loginSuccess(response.data.ServiceResponse));
       } else {
-        dispatch(loginFailure(response.data.ServiceResponse[0].Message));
+        if (credentials.LoginType != 1 && response.data.ServiceResponse[0].Message === "Email address/Password didn't match with our system.") {
+          dispatch(loginFailure('register'))
+        } else {
+          dispatch(loginFailure(response.data.ServiceResponse[0].Message));
+        }
       }
       dispatch(setLoading(false))
     } catch (error) {

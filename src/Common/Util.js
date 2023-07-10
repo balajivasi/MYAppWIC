@@ -1,5 +1,5 @@
-const Util={
-    LoginOption : {
+const Util = {
+    LoginOption: {
         title: "Florida WIC",
         headerStyle: {
             backgroundColor: "#006666",
@@ -12,7 +12,7 @@ const Util={
             color: "#fff"
         }
     },
-  ModelOptions :{
+    ModelOptions: {
         headerStyle: {
             backgroundColor: "#006666",
         },
@@ -23,7 +23,15 @@ const Util={
         },
         headerTintColor: '#fff',
         activeTintColor: '#fff'
+    },
+    LoginType: {
+        wccMobile: 1,
+        facebook: 2,
+        google: 3,
+        twitter: 4,
+        apple: 5
     }
+
 }
 
 

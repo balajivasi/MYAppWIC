@@ -121,9 +121,6 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
   };
 
 
-
-
-
   return (
     <View className="w-4/5 my-1 mx-auto">
       <Text className="text-xl">{label}</Text>

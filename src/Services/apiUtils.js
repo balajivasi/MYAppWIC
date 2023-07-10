@@ -22,9 +22,9 @@ export const ResentOTPOptions = (email) => {
         "Version": "3.0"
     }
 }
-export const RegisterOptions = (email, password, wicEbtNumber, birthDate, zipCode, nickName) => {
+export const RegisterOptions = (email, password, wicEbtNumber, birthDate, zipCode, nickName, LoginType) => {
     return {
-        "LoginType": "1",
+        "LoginType": LoginType,
         "LoginTypeId": email,
         "LoginEmail": email,
         "LoginPassword": password,
