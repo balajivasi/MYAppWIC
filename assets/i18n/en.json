@@ -19,13 +19,16 @@
       "confirmationCode": "Confirmation Code",
       "packageSize": "Package Size",
       "phoneNumber": "Phone Number",
-      "socialID": "Social ID"
+      "socialID": "Social ID",
+      "appleSignIn": "Sign in With Apple",
+      "googleSignIn": "Sign in With Google"
     },
     "errorMessages": {
       "fieldRequired": "This field is required.",
       "emailRequired": "Email address is required.",
       "ValidEmail": "Enter a valid email address.",
       "PasswordRequired": "Password is required.",
+      "LoginEmailPass": "Please enter email and password",
       "Password6Long": "Password must be at least 6 characters long",
       "confirmPasswordRequired": "Confirm Password is required.",
       "confirmPassword6Long": "confirm Password must be at least 6 characters long",

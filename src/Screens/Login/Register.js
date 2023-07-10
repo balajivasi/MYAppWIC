@@ -35,10 +35,9 @@ export default function Register({ route }) {
   const dispatch = useDispatch()
   const navigation = useNavigation();
   const [loader, setLoader] = useState(true)
-  const { socialData } = route.params;
+  const { socialData, LoginType } = route.params;
 
   const handleWicEbtNumber = (text) => {
-    console.log(text)
     if (text.length <= 16) {
       setWicEbtNumber(text)
     }
@@ -76,7 +75,23 @@ export default function Register({ route }) {
       // All validations passed, submit registration
       try {
         setLoader(true);
-        const response = await RegisterService(email, password, wicEbtNumber, birthDate, zipCode, nickName);
+        let socialEmail = '';
+        let socialPassword = '';
+        console.log('handleRegister', socialData)
+        if (socialData !== null) {
+          socialEmail = socialData?.user || socialData?.id;
+          socialPassword = socialData?.authorizationCode || socialData?.id;
+        }
+
+        const response = await RegisterService(
+          socialData !== null ? socialEmail : email,
+          socialData !== null ? socialPassword : password,
+          wicEbtNumber,
+          birthDate,
+          zipCode,
+          nickName,
+          LoginType
+        );
         // Handle the successful response
         if (response.Status === 1) {
           dispatch(setProfileEmail(email));
@@ -87,14 +102,15 @@ export default function Register({ route }) {
             navigation.navigate('Confirmation');
           }
           else {
+            console.log('[Register--response]', response.ServiceResponse)
             await saveAuthDataToStorage(
               response.ServiceResponse,
-              user.email,
+              (socialData?.user || socialData?.id),
               `${response.ServiceResponse[0].FirstName} ${response.ServiceResponse[0].LastName}`,
               response.ServiceResponse[0].Token
             );
             dispatch(loginSuccess(response.ServiceResponse));
-            dispatch(setEBTCardNumber(response.data.ServiceResponse[0].EBTCardNumber));
+            dispatch(setEBTCardNumber(wicEbtNumber));
           }
           navigation.goBack();
         }
@@ -128,7 +144,7 @@ export default function Register({ route }) {
         {serverError ? <Text className="rounded-md border w-4/5 bg-red-600 mx-auto p-3 text-white">{serverError}</Text> : null}
         {socialData === null ? <><CustomTextInput label={t('labels.emailAddress')} placeholder={t('TPH.PH_Email')} FieldType="Email" value={email} onChangeText={setEmail} validate={true} />
           <CustomTextInput label={t('labels.password')} placeholder={t('TPH.PH_Password')} FieldType="Password" value={password} onChangeText={setPassword} secureTextEntry={true} validate={true} />
-          <CustomTextInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={password} secureTextEntry={true} validate={true} /></> : <CustomTextInput label={t('labels.socialID')} FieldType="ID" value={socialData?.user} Disable={false} />}
+          <CustomTextInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={password} secureTextEntry={true} validate={true} /></> : <CustomTextInput label={t('labels.socialID')} FieldType="ID" value={socialData?.user || socialData?.id} Disable={false} />}
         <CustomTextInput label={t('labels.wicEBTCardNumber')} placeholder="" FieldType="WicEbtNumber" value={wicEbtNumber} numericValue={true} onChangeText={handleWicEbtNumber} validate={true} />
         <DateConverter label={t('labels.ARBirthDate')} placeholder={t('TPH.PH_birthDay')} value={birthDate} onChangeText={setBirthDate} validate={true} formatDate="mm/dd/yyyy" />
         <CustomTextInput label={t('labels.ARMailingAddressZipCode')} placeholder={t('TPH.PH_AddressZip')} FieldType="ZipCode" numericValue={true} value={zipCode} onChangeText={handleZip} validate={true} />

@@ -20,8 +20,9 @@ const makeApiRequest = (url, options) => {
 };
 
 // Registration Page Service
-export const RegisterService = (email, password, wicEbtNumber, birthDate, zipCode, nickName) => {
-  const options = Util.RegisterOptions(email, password, wicEbtNumber, birthDate, zipCode, nickName);
+export const RegisterService = (email, password, wicEbtNumber, birthDate, zipCode, nickName, LoginType) => {
+  const options = Util.RegisterOptions(email, password, wicEbtNumber, birthDate, zipCode, nickName, LoginType);
+  console.log('RegisterService', options)
   return makeApiRequest('/Signup', options);
 };
 
