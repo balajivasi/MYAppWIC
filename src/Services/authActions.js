@@ -23,7 +23,7 @@ export const loginUser = (credentials) => {
         LoginType: credentials.LoginType,
         LoginEmail: credentials.email,
         //Password: credentials.password,
-        LoginPassword: credentials.password, //"UeoJrlixzQP03p3SFMgXFQ==",
+        LoginPassword: credentials.LoginType === 1 ? "UeoJrlixzQP03p3SFMgXFQ==" : credentials.password, //"UeoJrlixzQP03p3SFMgXFQ==",
         LoginID: credentials.email,
         APIToken: APIToken,
         PushToken: "1234",
