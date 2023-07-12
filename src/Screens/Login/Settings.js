@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLanguage } from "../../Context/LanguageProvider";
 import { useDispatch } from 'react-redux';
-import { setProfileLanguage } from '../../slices/profileSlice'
+import { setProfileLanguage } from '../../slices/profileSlice';
+import { REACT_APP_VERSION } from '../../../env';
 export default function Settings() {
     const { t, i18n } = useTranslation();
     const { language, updateLanguage } = useLanguage(i18n.language);
@@ -27,7 +28,7 @@ export default function Settings() {
     return (
         <View className="flex-col mt-10">
             <Text className="text-center text-xl">{t('version')}</Text>
-            <Text className="text-center mb-10 text-2xl">v3.2(100)</Text>
+            <Text className="text-center mb-10 text-2xl">V {REACT_APP_VERSION}</Text>
             <Text className="text-center text-xl">{t('language')}</Text>
             <View>
                 <Picker selectedValue={selectedLanguage} onValueChange={(value) => handleLanguageChange(value)}>

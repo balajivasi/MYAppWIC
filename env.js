@@ -1,3 +1,4 @@
+import packageJson from './package.json';
 const ENV = {
   dev: {
     API_URL: 'https://wicapp.3sigmasoftware.com/FLMobilePublicService/WCCMobilePublicService.svc/json',
@@ -23,4 +24,6 @@ export const googleAndroidRedirectUri = "com.googleusercontent.apps.824890368891
 
 
 export const googleIOSClientID = "810464624569-94slqkcg17g0lc7ke0ge8nh0vsddb8la.apps.googleusercontent.com";
-export const webClientId = "810464624569-q47u9vr3ph49qn6hl8djhkd784ps01u9.apps.googleusercontent.com"
+export const webClientId = "810464624569-q47u9vr3ph49qn6hl8djhkd784ps01u9.apps.googleusercontent.com";
+export const REACT_APP_VERSION = packageJson.version;
+export const REACT_APP_NAME = packageJson.name;
