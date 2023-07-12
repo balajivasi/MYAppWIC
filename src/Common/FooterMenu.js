@@ -18,8 +18,8 @@ const FooterMenu = ({ title, onPress, CSSName, ImgSrc }) => {
   const imageSource = ImgSrc ? ImagePaths[ImgSrc] : null;
   return (
     <TouchableOpacity className={buttonStyle} onPress={onPress}>
-      {(imageSource && ImgSrc == "EbtCard") ? <Image source={imageSource} className="mx-auto mt-3" style={{ width: 50, height: 35 }} /> : <Image source={imageSource} className="mx-auto" style={{ width: 52, height: 47 }} />}
-      <Text className="text-base pt-5 text-center">{title}</Text>
+      {(imageSource && ImgSrc == "EbtCard") ? <Image source={imageSource} className="mx-auto mt-3" style={{ width: 50, height: 35 }} /> : <Image source={imageSource} className="mx-auto" style={{ width: 45, height: 40 }} />}
+      <Text className="text-base pt-2 text-center">{title}</Text>
     </TouchableOpacity>
   );
 };
