@@ -109,7 +109,8 @@
       "cancel": "Cancel",
       "retake": "Retake",
       "startOver": "Start Over",
-      "reSelect": "Re-Select"
+      "reSelect": "Re-Select",
+      "or": "OR"
     },
     "pageText": {
       "confirmPage": "A new code was sent to the email address that you provided. Please enter that code to verify your email.",
@@ -135,8 +136,17 @@
       "UPCProdPicLabel": "Nutrition Info",
       "UPCExist": "UPC code already exist for review, Thank you for supporting.",
       "UPCInvalid": "Invalid UPC code please try again and scan a valid UPC code to submit.",
-      "noBenefits": "No benefits are available",
-      "miles": "Miles"
+      "noBenefits": "No benefits are available.",
+      "miles": "Miles",
+      "noSignatureDoc": "No Signature Documents to sign.",
+      "uploadDocSteps": "Follow these 3 Simple Steps to Upload Your Document",
+      "selectMethod": "Select Method",
+      "takePicture": "Take a Picture",
+      "selectPhoto": "Select a Photo",
+      "uploadFile": "Upload a File",
+      "DescSubmit": "Enter Description and Submit",
+      "noShow": "Don't show this page again",
+      "uploadStep1": "Step 1: Select Upload Method"
     },
     "headings": {
       "confirm": "Confirm"
@@ -159,6 +169,14 @@
       "PH_AddressZip": "Enter AR Mailing Address Zip Code",
       "PH_nickname": "Enter Card Nickname (Optional)",
       "PH_confirmCode": "Enter Confirmation Code"
+    },
+    "DDV": {
+      "selectType": "Select Type",
+      "newFeature": "New Feature",
+      "extFeature": "Existing Feature",
+      "suggestion": "Suggestion",
+      "complaint": "Complaint",
+      "other": "Other"
     }
   }
 }

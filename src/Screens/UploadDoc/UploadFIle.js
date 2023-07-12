@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, Dimensions } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import CustomButton from '../../Common/CustomButton';
+import { useTranslation } from 'react-i18next';
 
-const UploadFIle = ({ cancelClicked, getDocumentPic }) => {
+const UploadFIle = ({ cancelClicked, getDocumentPic, }) => {
     const [selectedFile, setSelectedFile] = useState(null);
-
+    const { t } = useTranslation();
     const selectFileFromCloud = async () => {
         try {
             const res = await DocumentPicker.pick({

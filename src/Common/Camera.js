@@ -1,7 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { CameraScreen } from 'react-native-camera-kit';
 const Camera = ({ cancelHandler, onImageCapture }) => {
-
+    const { t } = useTranslation();
     const onBottomButtonPressed = (event) => {
         const { type } = event;
         switch (type) {
@@ -18,7 +19,7 @@ const Camera = ({ cancelHandler, onImageCapture }) => {
 
     return (
         <CameraScreen
-            actions={{ leftButtonText: 'Cancel' }}
+            actions={{ leftButtonText: t('buttons.cancel') }}
             cameraType="back"
             flashMode="auto"
             frameColor="white"

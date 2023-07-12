@@ -50,12 +50,12 @@ export default function Feedback() {
       <View className="flex-col">
         <Text className="text-center text-2xl">{t('labels.reason')}</Text>
         <Picker selectedValue={catType} onValueChange={setCatType}>
-          <Picker.Item label="Select Type" value="" />
-          <Picker.Item label="New Feature" value="New Feature" />
-          <Picker.Item label="Existing Feature" value="Existing Feature" />
-          <Picker.Item label="Suggestion" value="Suggestion" />
-          <Picker.Item label="Complaint" value="Complaint" />
-          <Picker.Item label="Other" value="Other" />
+          <Picker.Item label={t('DDV.selectType')} value="" />
+          <Picker.Item label={t('DDV.newFeature')} value="New Feature" />
+          <Picker.Item label={t('DDV.extFeature')} value="Existing Feature" />
+          <Picker.Item label={t('DDV.suggestion')} value="Suggestion" />
+          <Picker.Item label={t('DDV.complaint')} value="Complaint" />
+          <Picker.Item label={t('DDV.other')} value="Other" />
         </Picker>
       </View>
       <View className="flex-col">

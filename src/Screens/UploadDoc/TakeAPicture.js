@@ -5,9 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Camera from '../../Common/Camera';
 import ImgToBase64 from 'react-native-image-base64';
 
-
-
-const TakeAPicture = ({ navigation, getDocumentPic, cancelClicked }) => {
+const TakeAPicture = ({ getDocumentPic, cancelClicked }) => {
     const { t } = useTranslation();
     const [capturedImage, setCapturedImage] = useState(null);
 
@@ -28,16 +26,6 @@ const TakeAPicture = ({ navigation, getDocumentPic, cancelClicked }) => {
     const sendProductPic = () => {
         getDocumentPic(capturedImage)
     }
-
-    useEffect(() => {
-        navigation.setOptions({
-            title: t('pageText.productPic'),
-            headerTitleStyle: {
-                fontSize: 18,
-                color: 'white'
-            }
-        });
-    })
 
     return (
         <View className="h-full flex">
