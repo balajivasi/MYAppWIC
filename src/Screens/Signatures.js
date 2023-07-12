@@ -8,6 +8,7 @@ import SignatureList from '../Common/SignatureList';
 import ErrorText from '../Common/ErrorText';
 import { handleInvalidWICAccount } from '../Common/handleInvalidWICAccount';
 import { setLoading } from '../slices/loaderSlice';
+import { ExclamationTriangleIcon } from 'react-native-heroicons/outline';
 
 export default function Signatures({ navigation }) {
   const { t } = useTranslation();
@@ -50,7 +51,10 @@ export default function Signatures({ navigation }) {
         {signature ? <View className=" w-11/12 mx-auto mt-4">
           {signature.map((signature, index) => <SignatureList key={index} data={signature} selectSign={() => handleSelect(signature)} />)}
         </View>
-          : <Text className="text-red-500 text-lg w-11/12 mx-auto mt-10">{t('pageText.noAppointments')}</Text>
+          : <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+            <ExclamationTriangleIcon size={150} color={'gray'} />
+            <Text className="text-center text-red-500">{t('pageText.noSignatureDoc')}</Text>
+          </View>
         }
       </ScrollView>
     </View>

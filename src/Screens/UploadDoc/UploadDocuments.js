@@ -82,8 +82,8 @@ export default function UploadDocuments({ navigation }) {
     {showUploadInfo && <UploadInfo continueClick={continueClick} />}
     {showUploadPageInfo && <UploadSelectMethod selectedMethod={selectedMethod} />}
     {method === 'camera' && <TakeAPicture getDocumentPic={getDocumentPic} navigation={navigation} cancelClicked={cancelClicked} />}
-    {method === 'photo' && <SelectPhoto cancelClicked={cancelClicked} getDocumentPic={getDocumentPic} />}
-    {method === 'file' && <UploadFIle cancelClicked={cancelClicked} getDocumentPic={getDocumentPic} />}
+    {method === 'photo' && <SelectPhoto cancelClicked={cancelClicked} navigation={navigation} getDocumentPic={getDocumentPic} />}
+    {method === 'file' && <UploadFIle cancelClicked={cancelClicked} navigation={navigation} getDocumentPic={getDocumentPic} />}
   </View>
   )
 }

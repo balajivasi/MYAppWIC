@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { AppointmentsService } from '../Services/apiService';
-import { MapPinIcon, PhoneIcon } from "react-native-heroicons/outline";
+import { ExclamationTriangleIcon, MapPinIcon, PhoneIcon } from "react-native-heroicons/outline";
 import ActiveCard from '../Common/ActiveCard';
 import { formatDate, formatTime } from '../Common/DateFormat'
 import { handleInvalidWICAccount } from '../Common/handleInvalidWICAccount';
@@ -70,7 +70,10 @@ export default function Appointments({ navigation }) {
           </View>
           {appointments.map((client, index) => <List key={index} name={client.ClientName} time={client.StartTime} />)}
         </View>
-          : <Text className="text-red-500 text-lg w-11/12 mx-auto mt-10">{t('pageText.noAppointments')}</Text>
+          : <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+            <ExclamationTriangleIcon size={150} color={'gray'} />
+            <Text className="text-center text-red-500">{t('pageText.noAppointments')}</Text>
+          </View>
         }
       </ScrollView>
       <ActiveCard />

@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setProfileLanguage } from '../../slices/profileSlice'
 export default function Settings() {
     const { t, i18n } = useTranslation();
-    const { language,updateLanguage  } = useLanguage(i18n.language);
+    const { language, updateLanguage } = useLanguage(i18n.language);
     const dispatch = useDispatch()
     const [selectedLanguage, setSelectedLanguage] = useState(i18n.language)
 
@@ -33,7 +33,7 @@ export default function Settings() {
                 <Picker selectedValue={selectedLanguage} onValueChange={(value) => handleLanguageChange(value)}>
                     <Picker.Item label="Device: English(en)" value="default" />
                     <Picker.Item label="English" value="en" />
-                    <Picker.Item label="Spanish" value="es" />
+                    <Picker.Item label="Español" value="es" />
                 </Picker>
             </View>
         </View>

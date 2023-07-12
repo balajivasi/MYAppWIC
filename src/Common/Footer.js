@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from "../Services/authActions";
 import FooterMenu from './FooterMenu';
 import { useSelector } from 'react-redux';
-import { CommonActions, useNavigation } from '@react-navigation/native'
+import { CommonActions, useNavigation } from '@react-navigation/native';
+import FooterMenuIcons from "./FooterMenuIcons";
 const Footer = () => {
   const navigation = useNavigation()
   const dispatch = useDispatch();
@@ -24,13 +25,13 @@ const Footer = () => {
 
   return (
     <View className="flex-row flex-wrap-reverse mx-auto">
-      <FooterMenu title={t('footerIcon.clinics')} ImgSrc="Clinic" onPress={() => { navigation.navigate('Clinics') }} />
-      <FooterMenu title={t('footerIcon.stores')} ImgSrc="stores" onPress={() => { navigation.navigate('Stores') }} />
-      {!isLoggedIn && <FooterMenu title={t('footerIcon.resourceLinks')} ImgSrc="Resources" onPress={() => { navigation.navigate('Resource') }} />}
+      <FooterMenuIcons title={t('footerIcon.clinics')} ImgSrc="Clinic" onPress={() => { navigation.navigate('Clinics') }} />
+      <FooterMenuIcons title={t('footerIcon.stores')} ImgSrc="stores" onPress={() => { navigation.navigate('Stores') }} />
+      {!isLoggedIn && <FooterMenuIcons title={t('footerIcon.resourceLinks')} ImgSrc="Resources" onPress={() => { navigation.navigate('Resource') }} />}
       {isLoggedIn && <>
-        <FooterMenu title={t('footerIcon.logOut')} ImgSrc="Logout" onPress={() => { dispatch(logoutUser()) }} />
-        <FooterMenu title={t('footerIcon.appointments')} ImgSrc="EbtCard" onPress={() => { navigation.navigate('Appointments') }} />
-        <FooterMenu title={t('footerIcon.benefits')} ImgSrc="EbtCard" onPress={() => { navigation.navigate('Benefits') }} />
+        <FooterMenuIcons title={t('footerIcon.logOut')} ImgSrc="Logout" onPress={() => { dispatch(logoutUser()) }} />
+        <FooterMenuIcons title={t('footerIcon.appointments')} ImgSrc="Appointments" onPress={() => { navigation.navigate('Appointments') }} />
+        <FooterMenuIcons title={t('footerIcon.benefits')} ImgSrc="EbtCard" onPress={() => { navigation.navigate('Benefits') }} />
         <FooterMenu title={t('footerIcon.UPCScan')} ImgSrc="UPCScan" onPress={resetUPCScanStack} />
       </>}
     </View>

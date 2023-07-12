@@ -1,5 +1,5 @@
 import { View, Text, Image } from 'react-native';
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { CheckCircleIcon } from 'react-native-heroicons/outline';
 import { useTranslation } from 'react-i18next';
 import CustomButton from './CustomButton';
@@ -7,11 +7,10 @@ import { formatDate } from './DateFormat';
 
 const UPCApproved = ({ UPCData, UPCCode, cancelClicked }) => {
     const { t } = useTranslation();
-
     const resetUPCScanStack = () => {
         cancelClicked()
     };
-
+    var base64Icon = `data:image/png;base64,${UPCData.IconImageBase}`
     return (
         <View className="mx-auto h-full flex w-11/12">
             <View className="flex-1">
@@ -25,7 +24,7 @@ const UPCApproved = ({ UPCData, UPCCode, cancelClicked }) => {
                 </View>
                 <View className="border border-gray-500 pt-3 rounded-md mt-10 relative">
                     <View className="border border-gray-400 rounded-full w-16 p-1 left-[42%] absolute -top-7 bg-white z-10">
-                        <Image source={require('../../assets/Benefits/benefit_02.png')} style={{ width: 50, height: 50 }} className="" />
+                        <Image source={{ uri: base64Icon }} style={{ width: 50, height: 50 }} resizeMode='center' />
                     </View>
                     <Text className="mt-6 text-lg text-center">{UPCData.FoodDescription}</Text>
                     <View className="flex-row mt-2 justify-around">

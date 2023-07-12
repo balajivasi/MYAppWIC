@@ -5,7 +5,7 @@ import ImgToBase64 from 'react-native-image-base64';
 import CustomButton from '../../Common/CustomButton';
 import { useTranslation } from 'react-i18next';
 
-const SelectPhoto = ({ cancelClicked, getDocumentPic }) => {
+const SelectPhoto = ({ cancelClicked, getDocumentPic, navigation }) => {
     const [selectedImage, setSelectedImage] = useState(null);
     const { t } = useTranslation();
     const selectPhotoFromGallery = () => {
@@ -49,6 +49,16 @@ const SelectPhoto = ({ cancelClicked, getDocumentPic }) => {
         setSelectedImage(null);
         selectPhotoFromGallery()
     }
+
+    useEffect(() => {
+        navigation.setOptions({
+            title: t('pageText.productPic'),
+            headerTitleStyle: {
+                fontSize: 18,
+                color: 'white'
+            }
+        });
+    }, [navigation])
 
     return (
         <View className="h-full flex">

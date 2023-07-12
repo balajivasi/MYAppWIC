@@ -1,5 +1,5 @@
 import { View, Text, Image } from 'react-native';
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { NoSymbolIcon } from 'react-native-heroicons/outline';
 import { useTranslation } from 'react-i18next';
 import CustomButton from './CustomButton';
@@ -13,6 +13,8 @@ const UPCNotApproved = ({ UPCCode, submitUPC, cancelClicked }) => {
     const submitHandler = () => {
         submitUPC()
     }
+
+
 
     return (
         <View className="mx-auto h-full flex w-11/12">
