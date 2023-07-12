@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../slices/loaderSlice';
 import { UPCLookupService } from '../../Services/apiService';
@@ -7,8 +7,10 @@ import { handleInvalidWICAccount } from '../../Common/handleInvalidWICAccount';
 import UPCApproved from '../../Common/UPCApproved';
 import UPCNotApproved from '../../Common/UPCNotApproved';
 import { CommonActions } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const UPCLanding = ({ navigation }) => {
+    const { t } = useTranslation();
     const Token = useSelector(state => state.user.Token);
     const Barcode = useSelector(state => state.user.ScannedUPC);
     const [UPCDetails, setUPCDetails] = useState();
@@ -48,6 +50,20 @@ const UPCLanding = ({ navigation }) => {
     useEffect(() => {
         checkBarcode()
     }, [Barcode])
+
+    useLayoutEffect(() => {
+        if (UPCDetails) {
+            navigation.setOptions({
+                title: t('pageText.WICApproved'),
+            });
+        } else {
+            navigation.setOptions({
+                title: t('pageText.NotWICApproved'),
+            });
+        }
+
+    }, [UPCDetails]);
+
     return (
         <View>
             {Barcode ? UPCDetails ? <UPCApproved UPCData={UPCDetails} UPCCode={Barcode} cancelClicked={resetUPCScanStack} /> : <UPCNotApproved UPCCode={Barcode} submitUPC={submitUPC} cancelClicked={resetUPCScanStack} /> : null}
