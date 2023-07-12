@@ -21,12 +21,11 @@ const CurrentBenefits = ({ navigation }) => {
     const EffDateCode = `${year}${month}`;
     const loadCurrentBenefits = async () => {
         dispatch(setLoading(true));
-
-
         try {
             const response = await CurrentBenefitsService(Token, EffDateCode);
             if (response.Status === 1) {
                 response.ServiceResponse.length != 0 ? setBenefits(response.ServiceResponse) : setBenefits([]);
+                dispatch(setLoading(false));
             } else {
                 setServerError(response.ServiceResponse[0].Message);
                 try {
@@ -34,11 +33,12 @@ const CurrentBenefits = ({ navigation }) => {
                 } catch (error) {
                     console.log('handleInvalidWICAccount failed.', error)
                 }
+                dispatch(setLoading(false));
             }
         } catch (error) {
             console.log('Fail to load current Benefits', error);
+            dispatch(setLoading(false));
         }
-        dispatch(setLoading(false));
     }
 
     useEffect(() => {

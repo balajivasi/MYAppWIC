@@ -1,7 +1,8 @@
 import { Alert } from 'react-native';
-import { SelectAccountService,ManageAccountService } from '../Services/apiService';
+import { SelectAccountService, ManageAccountService } from '../Services/apiService';
 import { setEBTCardNumber, setProfileFullName } from '../slices/profileSlice';
-export const onSelectCard = async (user, EBTCard, setServerError, dispatch) => {
+import { setLoading } from '../slices/loaderSlice';
+export const onSelectCard = async (user, EBTCard, setServerError, dispatch, callback) => {
     try {
         Alert.alert(
             'Confirmation',
@@ -10,6 +11,10 @@ export const onSelectCard = async (user, EBTCard, setServerError, dispatch) => {
                 {
                     text: 'Cancel',
                     style: 'cancel',
+                    onPress: () => {
+                        // Handle cancel button click here
+                        dispatch(setLoading(false));
+                    },
                 },
                 {
                     text: 'OK',
@@ -22,6 +27,7 @@ export const onSelectCard = async (user, EBTCard, setServerError, dispatch) => {
                             } else {
                                 setServerError(response.ServiceResponse[0].Message);
                             }
+                            callback(response);
                         } catch (error) {
                             console.error('Select EBT Card Failed', error);
                         }
@@ -35,11 +41,11 @@ export const onSelectCard = async (user, EBTCard, setServerError, dispatch) => {
     }
 };
 
-export const makeDefault = async (EBTCard,token,remove,addDefault) => {
+export const makeDefault = async (EBTCard, token, remove, addDefault) => {
     try {
-        const response = await ManageAccountService(EBTCard,token,remove,addDefault);
+        const response = await ManageAccountService(EBTCard, token, remove, addDefault);
         if (response.Status === 1) {
-            console.log('[make Default]',response)
+            console.log('[make Default]', response)
         } else {
             setServerError(response.ServiceResponse[0].Message);
         }
@@ -48,7 +54,7 @@ export const makeDefault = async (EBTCard,token,remove,addDefault) => {
     }
 };
 
-export const removeCard = async (EBTCard,token,remove,addDefault) => {
+export const removeCard = async (EBTCard, token, remove, addDefault) => {
     try {
         Alert.alert(
             'Confirmation',
@@ -62,7 +68,7 @@ export const removeCard = async (EBTCard,token,remove,addDefault) => {
                     text: 'OK',
                     onPress: async () => {
                         try {
-                            const response = await ManageAccountService(EBTCard,token,remove,addDefault);
+                            const response = await ManageAccountService(EBTCard, token, remove, addDefault);
                             if (response.Status === 1) {
                                 console.log('removed the card');
                             } else {

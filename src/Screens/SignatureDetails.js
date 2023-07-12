@@ -2,7 +2,7 @@ import { View, Text, Image, ScrollView } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { MobileSignatureService, SignaturesDocService } from '../Services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
-import { WebViewReader } from '../Common/WebView';
+import { WebViewReader } from '../Common/WebViewReader';
 import RadioButton from '../Common/RadioButton';
 import CustomButton from '../Common/CustomButton';
 import Sign from '../Common/Sign';
