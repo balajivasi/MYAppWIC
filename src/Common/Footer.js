@@ -29,7 +29,7 @@ const Footer = () => {
       {!isLoggedIn && <FooterMenu title={t('footerIcon.resourceLinks')} ImgSrc="Resources" onPress={() => { navigation.navigate('Resource') }} />}
       {isLoggedIn && <>
         <FooterMenu title={t('footerIcon.logOut')} ImgSrc="Logout" onPress={() => { dispatch(logoutUser()) }} />
-        <FooterMenu title={t('footerIcon.appointments')} ImgSrc="EbtCard" onPress={() => { navigation.navigate('Appointments') }} />
+        <FooterMenu title={t('footerIcon.appointments')} ImgSrc="Appointments" onPress={() => { navigation.navigate('Appointments') }} />
         <FooterMenu title={t('footerIcon.benefits')} ImgSrc="EbtCard" onPress={() => { navigation.navigate('Benefits') }} />
         <FooterMenu title={t('footerIcon.UPCScan')} ImgSrc="UPCScan" onPress={resetUPCScanStack} />
       </>}
