@@ -20,6 +20,7 @@ import Spinner from '../../Common/Spinner';
 import DateConverter from '../../Common/DateConverter';
 import { saveAuthDataToStorage } from '../../Services/AuthPersistence';
 import { loginSuccess } from '../../slices/authSlice';
+import PasswordInput from '../../Common/PasswordInput';
 
 export default function Register({ route }) {
   const { t } = useTranslation();
@@ -143,8 +144,8 @@ export default function Register({ route }) {
         {error ? <Text className="rounded-md border w-4/5 bg-red-600 mx-auto p-3 text-white">{t('errorMessages.allRequiredFields')}</Text> : null}
         {serverError ? <Text className="rounded-md border w-4/5 bg-red-600 mx-auto p-3 text-white">{serverError}</Text> : null}
         {socialData === null ? <><CustomTextInput label={t('labels.emailAddress')} placeholder={t('TPH.PH_Email')} FieldType="Email" value={email} onChangeText={setEmail} validate={true} />
-          <CustomTextInput label={t('labels.password')} placeholder={t('TPH.PH_Password')} FieldType="Password" value={password} onChangeText={setPassword} secureTextEntry={true} validate={true} />
-          <CustomTextInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={password} secureTextEntry={true} validate={true} /></> : <CustomTextInput label={t('labels.socialID')} FieldType="ID" value={socialData?.user || socialData?.id} Disable={false} />}
+          <PasswordInput label={t('labels.password')} placeholder={t('TPH.PH_Password')} FieldType="Password" value={password} onChangeText={setPassword} secureTextEntry={true} validate={true} />
+          <PasswordInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={password} secureTextEntry={true} validate={true} showInfo={false} /></> : <CustomTextInput label={t('labels.socialID')} FieldType="ID" value={socialData?.user || socialData?.id} Disable={false} />}
         <CustomTextInput label={t('labels.wicEBTCardNumber')} placeholder="" FieldType="WicEbtNumber" value={wicEbtNumber} numericValue={true} onChangeText={handleWicEbtNumber} validate={true} />
         <DateConverter label={t('labels.ARBirthDate')} placeholder={t('TPH.PH_birthDay')} value={birthDate} onChangeText={setBirthDate} validate={true} formatDate="mm/dd/yyyy" />
         <CustomTextInput label={t('labels.ARMailingAddressZipCode')} placeholder={t('TPH.PH_AddressZip')} FieldType="ZipCode" numericValue={true} value={zipCode} onChangeText={handleZip} validate={true} />

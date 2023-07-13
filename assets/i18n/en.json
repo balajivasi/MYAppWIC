@@ -29,7 +29,7 @@
       "ValidEmail": "Enter a valid email address.",
       "PasswordRequired": "Password is required.",
       "LoginEmailPass": "Please enter email and password",
-      "Password6Long": "Password must be at least 6 characters long",
+      "PasswordValid": "Please Enter Valid Password",
       "confirmPasswordRequired": "Confirm Password is required.",
       "confirmPassword6Long": "confirm Password must be at least 6 characters long",
       "passwordMismatch": "password and confirm Password didn't match.",
@@ -156,7 +156,8 @@
       "SignatureIsNotCompleted": "Signature is not completed",
       "maxAllowedCharacters": "max allowed characters",
       "min": "min",
-      "sec": "sec"
+      "sec": "sec",
+      "PasswordInfo": "your password must : between 8 to 20 characters -contain at least 1 lowercase and 1 upper case letter - Contain at least one number (0-9)."
     },
     "TPH": {
       "PH_CurrentPassword": "Enter Current Password",
