@@ -21,7 +21,7 @@ export default function LoginPage({ navigation }) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loginTypeID, setLoginTypeID] = useState(1)
+  const [loginTypeID, setLoginTypeID] = useState(9)
   const error = useSelector((state) => state.auth.error);
   const { wccMobile, apple, google } = Util.LoginType;
 

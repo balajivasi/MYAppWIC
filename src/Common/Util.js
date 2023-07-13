@@ -25,7 +25,7 @@ const Util = {
         activeTintColor: '#fff'
     },
     LoginType: {
-        wccMobile: 1,
+        wccMobile: 9,
         facebook: 2,
         google: 3,
         twitter: 4,

@@ -22,8 +22,7 @@ export const loginUser = (credentials) => {
       const LoginOptions = {
         LoginType: credentials.LoginType,
         LoginEmail: credentials.email,
-        //Password: credentials.password,
-        LoginPassword: credentials.LoginType === 1 ? "UeoJrlixzQP03p3SFMgXFQ==" : credentials.password, //"UeoJrlixzQP03p3SFMgXFQ==",
+        LoginPassword: credentials.password, //credentials.LoginType === 1 ? "UeoJrlixzQP03p3SFMgXFQ==" : credentials.password, //"UeoJrlixzQP03p3SFMgXFQ==",
         LoginID: credentials.email,
         APIToken: APIToken,
         PushToken: "1234",
@@ -52,7 +51,7 @@ export const loginUser = (credentials) => {
         // Dispatch the success action with the user data
         dispatch(loginSuccess(response.data.ServiceResponse));
       } else {
-        if (credentials.LoginType != 1 && response.data.ServiceResponse[0].Message === "Email address/Password didn't match with our system.") {
+        if (credentials.LoginType != 9 && response.data.ServiceResponse[0].Message === "Email address/Password didn't match with our system.") {
           dispatch(loginFailure('register'))
         } else {
           dispatch(loginFailure(response.data.ServiceResponse[0].Message));
