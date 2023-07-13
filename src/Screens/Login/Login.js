@@ -13,6 +13,7 @@ import { appleAuth } from '@invertase/react-native-apple-authentication';
 import Util from '../../Common/Util';
 import { googleIOSClientID, webClientId } from '../../../env'
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import PasswordInput from "../../Common/PasswordInput";
 
 
 export default function LoginPage({ navigation }) {
@@ -137,7 +138,7 @@ export default function LoginPage({ navigation }) {
           <View>
             {error != null && error !== 'register' ? <ErrorText message={error} /> : null}
             <CustomTextInput label={t('labels.emailAddress')} placeholder={t('TPH.PH_Email')} value={email} FieldType='Email' onChangeText={setEmail} validate={true} />
-            <CustomTextInput label={t('labels.password')} secureTextEntry={true} placeholder={t('TPH.PH_Password')} FieldType='Password' value={password} onChangeText={setPassword} validate={true} />
+            <PasswordInput label={t('labels.password')} secureTextEntry={true} placeholder={t('TPH.PH_Password')} FieldType='Password' value={password} onChangeText={setPassword} validate={true} showInfo={false} />
             <CustomButton title={t('buttons.login')} CSSName="w-4/5 mx-auto" onPress={handleLogin} />
             <View className="flex-row justify-around">
               <TouchableOpacity className="flex-row" onPress={handleGoogleSignIn} style={{ alignItems: 'center' }}>

@@ -12,6 +12,7 @@ import { ChangePasswordService } from '../Services/apiService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../slices/loaderSlice';
 import { handleInvalidWICAccount } from '../Common/handleInvalidWICAccount';
+import PasswordInput from '../Common/PasswordInput';
 
 export default function ChangePassword({ navigation }) {
 
@@ -69,9 +70,9 @@ export default function ChangePassword({ navigation }) {
   return (
     <View className="mt-8">
       {serverError ? <ErrorText message={serverError} /> : null}
-      <CustomTextInput label={t('labels.currentPassword')} placeholder={t('TPH.PH_CurrentPassword')} FieldType="currentPassword" value={currentPassword} onChangeText={setCurrentPassword} secureTextEntry={true} validate={true} />
-      <CustomTextInput label={t('labels.newPassword')} placeholder={t('TPH.PH_NewPassword')} FieldType="newPassword" value={newPassword} onChangeText={setNewPassword} secureTextEntry={true} validate={true} />
-      <CustomTextInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={newPassword} secureTextEntry={true} validate={true} />
+      <PasswordInput label={t('labels.currentPassword')} placeholder={t('TPH.PH_CurrentPassword')} FieldType="currentPassword" value={currentPassword} onChangeText={setCurrentPassword} secureTextEntry={true} validate={true} showInfo={false} />
+      <PasswordInput label={t('labels.newPassword')} placeholder={t('TPH.PH_NewPassword')} FieldType="newPassword" value={newPassword} onChangeText={setNewPassword} secureTextEntry={true} validate={true} />
+      <PasswordInput label={t('labels.confirmPassword')} placeholder={t('TPH.PH_ConfirmPassword')} FieldType="ConfirmPassword" value={confirmPassword} onChangeText={setConfirmPassword} passwordValue={newPassword} secureTextEntry={true} validate={true} showInfo={false} />
       <CustomButton title={t('buttons.changePassword')} CSSName="w-4/5 mx-auto mb-4" onPress={submitChangePass} />
     </View>
   )
