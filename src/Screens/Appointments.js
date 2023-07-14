@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, TouchableOpacity, Linking } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Linking, RefreshControl } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { AppointmentsService } from '../Services/apiService';
@@ -15,6 +15,7 @@ export default function Appointments({ navigation }) {
   const { t } = useTranslation();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
   const dispatch = useDispatch();
+  const [refreshing, setRefreshing] = useState(false);
 
   const loadAppointments = async () => {
     dispatch(setLoading(true));
@@ -22,7 +23,7 @@ export default function Appointments({ navigation }) {
       const response = await AppointmentsService(Token);
       // Handle the successful response
       if (response?.Status === 1) {
-        response.ServiceResponse.length != 0 && setAppointments(response.ServiceResponse);
+        setAppointments(response.ServiceResponse);
       } else {
         try {
           await handleInvalidWICAccount(response, dispatch);
@@ -30,15 +31,26 @@ export default function Appointments({ navigation }) {
           console.log('handleInvalidWICAccount failed.', error)
         }
       }
+      setRefreshing(false)
+      dispatch(setLoading(false));
     } catch (error) {
       console.error('Registration failed', error);
+      setRefreshing(false)
+      dispatch(setLoading(false));
     }
-    dispatch(setLoading(false));
+
   }
   useEffect(() => {
     loadAppointments()
   }, [ActiveCardNumber])
 
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    loadAppointments();
+  }, []);
 
   const List = ({ name, time }) => {
     return (<View className="border flex-row justify-between mt-4 border-gray-300 p-5 rounded-md">
@@ -48,8 +60,11 @@ export default function Appointments({ navigation }) {
   };
   return (
     <View className="min-h-full">
-      <ScrollView className="flex-1">
-        {appointments ? <View className=" w-11/12 mx-auto mt-4">
+      <ScrollView className="flex-1" refreshControl={<RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />}>
+        {appointments != "" ? <View className=" w-11/12 mx-auto mt-4">
           <View className="border p-2 rounded-md border-gray-300">
             <Text className="text-xl font-bold mb-5">{appointments[0]?.Clinic}</Text>
             <View className="flex-row justify-between mb-5">

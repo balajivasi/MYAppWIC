@@ -1,5 +1,5 @@
-import { View, Text, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, ScrollView, RefreshControl } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SignaturesService } from '../Services/apiService';
@@ -16,6 +16,7 @@ export default function Signatures({ navigation }) {
   const user = useSelector(state => state.user);
   const [serverError, setServerError] = useState('');
   const [signature, setSignature] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   const dispatch = useDispatch()
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
   const loadSignatures = async () => {
@@ -32,21 +33,36 @@ export default function Signatures({ navigation }) {
           console.log('handleInvalidWICAccount failed.', error)
         }
       }
+      setRefreshing(false)
+      dispatch(setLoading(false))
     } catch (error) {
       console.error('Signature list failed', error);
+      setRefreshing(false)
+      dispatch(setLoading(false))
     }
-    dispatch(setLoading(false));
+    ;
   }
   const handleSelect = (signature) => {
     navigation.push('SignaturesDetails', { signature: signature, pageTitle: 'Signature Details' });
   }
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    loadSignatures();
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   useEffect(() => {
     loadSignatures()
   }, [ActiveCardNumber])
   return (
     <View className="min-h-full">
-      <ScrollView className="flex-1">
+      <ScrollView refreshControl={<RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />}>
         {serverError ? <ErrorText message={serverError} /> : null}
         {signature ? <View className=" w-11/12 mx-auto mt-4">
           {signature.map((signature, index) => <SignatureList key={index} data={signature} selectSign={() => handleSelect(signature)} />)}

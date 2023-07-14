@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { FutureBenefitsListService, FutureBenefitsService } from '../../Services/apiService';
 import BenefitsList from '../../Common/BenefitsList';
@@ -13,6 +13,7 @@ const FutureBenefits = ({ navigation }) => {
   const [futureBenList, setFutureBenList] = useState([]);
   const [benefits, setBenefits] = useState([]);
   const [serverError, setServerError] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
   const [selectedTab, setSelectedTab] = useState();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ const FutureBenefits = ({ navigation }) => {
           const IssueYear = response.ServiceResponse[0].IssueYear;
           loadBenefits(IssueMonth, IssueYear);
         }
+        setRefreshing(false)
+        dispatch(setLoading(false));
       } else {
         setServerError(response.ServiceResponse[0].Message);
         try {
@@ -38,11 +41,15 @@ const FutureBenefits = ({ navigation }) => {
         } catch (error) {
           console.log('handleInvalidWICAccount failed.', error);
         }
+        setRefreshing(false)
+        dispatch(setLoading(false));
       }
     } catch (error) {
       console.log('Fail to load current Benefits', error);
+      setRefreshing(false)
+      dispatch(setLoading(false));
     }
-    dispatch(setLoading(false));
+
   };
 
   const loadBenefits = async (IssueMonth, IssueYear) => {
@@ -55,6 +62,14 @@ const FutureBenefits = ({ navigation }) => {
       }
     }
   };
+
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    loadFutureListBenefits();
+  }, []);
 
   useEffect(() => {
     loadFutureListBenefits();
@@ -87,10 +102,12 @@ const FutureBenefits = ({ navigation }) => {
           {benefits[0]?.BenefitStartDate} - {benefits[0]?.BenefitEndDate}
         </Text>
       )}
-
-      <ScrollView className="mb-20">
+      <ScrollView className="mb-20" refreshControl={<RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />}>
         <View className="w-screen flex-row flex-wrap gap-2 items-stretch">
-          {benefits.length <= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+          {benefits.length <= 0 ? <View className="w-screen pb-96 pt-16" style={{ alignItems: "center" }}>
             <ExclamationTriangleIcon size={150} color={'gray'} />
             <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
           </View> : null}
