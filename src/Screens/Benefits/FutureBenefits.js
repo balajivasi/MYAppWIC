@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next';
 const FutureBenefits = ({ navigation }) => {
   const Token = useSelector(state => state.user.Token);
   const [futureBenList, setFutureBenList] = useState([]);
+  const [futureBenStart, setFutureBenStart] = useState();
+  const [futureBenEnd, setFutureBenEnd] = useState();
   const [benefits, setBenefits] = useState([]);
   const [serverError, setServerError] = useState('');
   const [refreshing, setRefreshing] = useState(false);
@@ -59,13 +61,12 @@ const FutureBenefits = ({ navigation }) => {
       const benefitsResponse = await FutureBenefitsService(Token, IssueMonth, IssueYear);
       if (benefitsResponse.Status === 1) {
         benefitsResponse.ServiceResponse.length > 0 ? setBenefits(benefitsResponse.ServiceResponse) : setBenefits([]);
+        setFutureBenStart(benefitsResponse?.ServiceResponse[0].BenefitStartDate);
+        setFutureBenEnd(benefitsResponse?.ServiceResponse[0].BenefitEndDate)
       }
     }
   };
 
-  const wait = (timeout) => {
-    return new Promise(resolve => setTimeout(resolve, timeout));
-  }
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     loadFutureListBenefits();
@@ -96,13 +97,13 @@ const FutureBenefits = ({ navigation }) => {
 
   return (
     <View className="mx-auto mt-2">
-      <FutureBenefitsTab futureBenList={futureBenList} selectedTab={selectedTab} onSelectTab={onSelectTab} />
-      {benefits[0] && (
+      <FutureBenefitsTab futureBenList={futureBenList} StartDate={futureBenStart} EndDate={futureBenEnd} selectedTab={selectedTab} onSelectTab={onSelectTab} />
+      {/* {benefits[0] && (
         <Text className="text-center text-sm mb-3">
           {benefits[0]?.BenefitStartDate} - {benefits[0]?.BenefitEndDate}
         </Text>
-      )}
-      <ScrollView className="mb-20" refreshControl={<RefreshControl
+      )} */}
+      <ScrollView className="mb-14" refreshControl={<RefreshControl
         refreshing={refreshing}
         onRefresh={onRefresh}
       />}>
