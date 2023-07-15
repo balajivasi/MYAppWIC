@@ -70,7 +70,7 @@ const DateConverter = ({ label, value, onChangeText, validate = false, FieldType
         }
     };
 
-    const inputStyle = `rounded-lg border-y border-x px-4 h-12 pb-1 text-2xl ${error ? 'border-red-400' : 'border-gray-300'}`;
+    const inputStyle = `rounded-lg border-y bg-white border-x px-4 h-12 pb-1 text-2xl ${error ? 'border-red-400' : 'border-gray-300'}`;
     return (
         <View className="w-4/5 my-1 mx-auto">
             <Text className="text-xl">{label}</Text>
@@ -81,6 +81,7 @@ const DateConverter = ({ label, value, onChangeText, validate = false, FieldType
                     keyboardType="numeric"
                     onChangeText={handleDateChange}
                     placeholder={placeholder}
+                    placeholderTextColor="#e2e8f0"
                 />
                 {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
             </View>

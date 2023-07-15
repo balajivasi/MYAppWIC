@@ -28,7 +28,6 @@ export default function Feedback() {
 
     try {
       const response = await FeedbackService(Token, catType, comments);
-      console.log(response)
       if (response.Status === 1) {
         setFeedbackSuccess(response.ServiceResponse[0].Message);
         setComments();

@@ -44,7 +44,7 @@ const PasswordInput = ({ label, value, onChangeText, validate = false, placehold
         }
     };
 
-    const inputStyle = `rounded-lg border-y border-x flex-row ${error ? 'border-red-400' : 'border-gray-300'}`;
+    const inputStyle = `rounded-lg border-y bg-white border-x flex-row ${error ? 'border-red-400' : 'border-gray-300'}`;
     return (
         <View className="w-4/5 my-1 mx-auto">
             <Text className="text-xl">{label}</Text>
@@ -53,6 +53,7 @@ const PasswordInput = ({ label, value, onChangeText, validate = false, placehold
                     value={value}
                     secureTextEntry={passwordShow}
                     onChangeText={handlePasswordChange}
+                    placeholderTextColor="#e2e8f0"
                     placeholder={placeholder}
                 />
                 <View className="flex-row gap-2 mr-1">

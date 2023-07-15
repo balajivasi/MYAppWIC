@@ -105,8 +105,8 @@ const SignatureDetails = ({ navigation, route }) => {
       <View className="w-11/12 mx-auto pb-28 flex">
         <ScrollView>
           {signatureDoc.Document ? <WebViewReader Data={signatureDoc.Document} className="grow" /> : null}
-          {GetSign()}
         </ScrollView>
+        {GetSign()}
       </View>
     </View>
   )

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { FutureBenefitsListService, FutureBenefitsService } from '../../Services/apiService';
 import BenefitsList from '../../Common/BenefitsList';
@@ -11,8 +11,11 @@ import { useTranslation } from 'react-i18next';
 const FutureBenefits = ({ navigation }) => {
   const Token = useSelector(state => state.user.Token);
   const [futureBenList, setFutureBenList] = useState([]);
+  const [futureBenStart, setFutureBenStart] = useState();
+  const [futureBenEnd, setFutureBenEnd] = useState();
   const [benefits, setBenefits] = useState([]);
   const [serverError, setServerError] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
   const [selectedTab, setSelectedTab] = useState();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
   const dispatch = useDispatch();
@@ -31,6 +34,8 @@ const FutureBenefits = ({ navigation }) => {
           const IssueYear = response.ServiceResponse[0].IssueYear;
           loadBenefits(IssueMonth, IssueYear);
         }
+        setRefreshing(false)
+        dispatch(setLoading(false));
       } else {
         setServerError(response.ServiceResponse[0].Message);
         try {
@@ -38,11 +43,15 @@ const FutureBenefits = ({ navigation }) => {
         } catch (error) {
           console.log('handleInvalidWICAccount failed.', error);
         }
+        setRefreshing(false)
+        dispatch(setLoading(false));
       }
     } catch (error) {
       console.log('Fail to load current Benefits', error);
+      setRefreshing(false)
+      dispatch(setLoading(false));
     }
-    dispatch(setLoading(false));
+
   };
 
   const loadBenefits = async (IssueMonth, IssueYear) => {
@@ -52,9 +61,16 @@ const FutureBenefits = ({ navigation }) => {
       const benefitsResponse = await FutureBenefitsService(Token, IssueMonth, IssueYear);
       if (benefitsResponse.Status === 1) {
         benefitsResponse.ServiceResponse.length > 0 ? setBenefits(benefitsResponse.ServiceResponse) : setBenefits([]);
+        setFutureBenStart(benefitsResponse?.ServiceResponse[0].BenefitStartDate);
+        setFutureBenEnd(benefitsResponse?.ServiceResponse[0].BenefitEndDate)
       }
     }
   };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    loadFutureListBenefits();
+  }, []);
 
   useEffect(() => {
     loadFutureListBenefits();
@@ -81,16 +97,18 @@ const FutureBenefits = ({ navigation }) => {
 
   return (
     <View className="mx-auto mt-2">
-      <FutureBenefitsTab futureBenList={futureBenList} selectedTab={selectedTab} onSelectTab={onSelectTab} />
-      {benefits[0] && (
+      <FutureBenefitsTab futureBenList={futureBenList} StartDate={futureBenStart} EndDate={futureBenEnd} selectedTab={selectedTab} onSelectTab={onSelectTab} />
+      {/* {benefits[0] && (
         <Text className="text-center text-sm mb-3">
           {benefits[0]?.BenefitStartDate} - {benefits[0]?.BenefitEndDate}
         </Text>
-      )}
-
-      <ScrollView className="mb-20">
+      )} */}
+      <ScrollView className="mb-14" refreshControl={<RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />}>
         <View className="w-screen flex-row flex-wrap gap-2 items-stretch">
-          {benefits.length <= 0 ? <View className="w-screen pt-16" style={{ alignItems: "center" }}>
+          {benefits.length <= 0 ? <View className="w-screen pb-96 pt-16" style={{ alignItems: "center" }}>
             <ExclamationTriangleIcon size={150} color={'gray'} />
             <Text className="text-center text-gray-500">{t('pageText.noBenefits')}</Text>
           </View> : null}

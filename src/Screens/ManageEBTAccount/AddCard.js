@@ -12,6 +12,7 @@ import { AddAccountService, VerifyAccountService } from '../../Services/apiServi
 import { useDispatch, useSelector } from 'react-redux';
 import ErrorText from '../../Common/ErrorText';
 import { handleInvalidWICAccount } from '../../Common/handleInvalidWICAccount';
+import DateConverter from '../../Common/DateConverter';
 
 const AddCard = ({ navigation, route }) => {
   const { Card, PageTitle, isVerify } = route.params;
@@ -22,7 +23,7 @@ const AddCard = ({ navigation, route }) => {
   const [birthDate, setBirthDate] = useState('');
   const [zipCode, setZipCode] = useState('');
   const [nickName, setNickName] = useState('');
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const submitCard = async () => {
     const wicEbtNumberValid = validateWicEbtNumber(wicEbtNumber);
     const birthDateValid = validateBirthDate(birthDate);
@@ -93,7 +94,7 @@ const AddCard = ({ navigation, route }) => {
       <ScrollView className="mt-10">
         {serverError ? <ErrorText message={serverError} /> : null}
         <CustomTextInput label={t('labels.wicEBTCardNumber')} placeholder="" FieldType="WicEbtNumber" value={wicEbtNumber} numericValue={true} onChangeText={setWicEbtNumber} validate={true} />
-        <CustomTextInput label={t('labels.ARBirthDate')} placeholder="Enter AR Birth Date in (mm/dd/yyyy) format" FieldType="BirthDate" value={birthDate} onChangeText={setBirthDate} validate={true} />
+        <DateConverter label={t('labels.ARBirthDate')} placeholder="Enter AR Birth Date in (mm/dd/yyyy) format" FieldType="BirthDate" value={birthDate} onChangeText={setBirthDate} validate={true} />
         <CustomTextInput label={t('labels.ARMailingAddressZipCode')} placeholder="Enter AR Mailing Address Zip Code" FieldType="ZipCode" numericValue={true} value={zipCode} onChangeText={setZipCode} validate={true} />
         {!isVerify ? <CustomTextInput label={t('labels.nickname')} placeholder="Enter Card Nickname (Optional)" FieldType="nickName" value={nickName} onChangeText={setNickName} /> : null}
       </ScrollView>

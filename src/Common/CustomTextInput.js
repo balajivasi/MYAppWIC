@@ -90,7 +90,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
     return /^\d+$/.test(value);
   };
 
-  const inputStyle = `rounded-lg border-y border-x px-4 h-12 pb-1 text-2xl ${error ? 'border-red-400' : 'border-gray-300'}`;
+  const inputStyle = `rounded-lg bg-white border-y border-x px-4 h-12 pb-1 text-2xl ${error ? 'border-red-400' : 'border-gray-300'}`;
 
   const handleBlur = () => {
     if (validate) {
@@ -134,6 +134,7 @@ const CustomTextInput = ({ placeholder, label, FieldType, value, onChangeText, s
           keyboardType={numericValue ? 'numeric' : (FieldType == "Email" ? 'email-address' : undefined)}
           onBlur={handleBlur}
           editable={Disable}
+          placeholderTextColor="#e2e8f0"
         />
         {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
       </View>
