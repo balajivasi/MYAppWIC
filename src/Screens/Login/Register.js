@@ -103,7 +103,6 @@ export default function Register({ route }) {
             navigation.navigate('Confirmation');
           }
           else {
-            console.log('[Register--response]', response.ServiceResponse)
             await saveAuthDataToStorage(
               response.ServiceResponse,
               (socialData?.user || socialData?.id),

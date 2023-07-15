@@ -11,7 +11,7 @@ import { setLoading } from '../slices/loaderSlice';
 
 export default function Appointments({ navigation }) {
   const Token = useSelector(state => state.user.Token);
-  const [appointments, setAppointments] = useState();
+  const [appointments, setAppointments] = useState('');
   const { t } = useTranslation();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ export default function Appointments({ navigation }) {
         refreshing={refreshing}
         onRefresh={onRefresh}
       />}>
-        {appointments != "" ? <View className=" w-11/12 mx-auto mt-4">
+        {(appointments && appointments.length > 0) ? <View className=" w-11/12 mx-auto mt-4">
           <View className="border p-2 rounded-md border-gray-300">
             <Text className="text-xl font-bold mb-5">{appointments[0]?.Clinic}</Text>
             <View className="flex-row justify-between mb-5">
@@ -83,7 +83,7 @@ export default function Appointments({ navigation }) {
           <View className="w-4/5 mx-auto mb-5 mt-3 rounded-lg p-3 bg-blue-800">
             <Text className="text-center text-2xl text-white">{t('pageText.NextAppointmentOn')} {'\n'} {formatDate(appointments[0]?.StartTime)}</Text>
           </View>
-          {appointments.map((client, index) => <List key={index} name={client.ClientName} time={client.StartTime} />)}
+          {appointments?.map((client, index) => <List key={index} name={client.ClientName} time={client.StartTime} />)}
         </View>
           : <View className="w-screen pt-16" style={{ alignItems: "center" }}>
             <ExclamationTriangleIcon size={150} color={'gray'} />
