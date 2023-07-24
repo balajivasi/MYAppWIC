@@ -84,12 +84,12 @@ const SignatureDetails = ({ navigation, route }) => {
     }
     if (signatureDoc.CompletedStatus === 0) {
       return (<View className="w-11/12 mx-auto">{<View className="w-11/12">
-        {signatureDoc.Signee ? <RadioButton options={signatureDoc.Signee} selectedOption={selectedOption} onRadioButtonChange={handleRadioButtonChange} /> : null}
+        {!selectedOption && signatureDoc.Signee ? <RadioButton options={signatureDoc.Signee} selectedOption={selectedOption} onRadioButtonChange={handleRadioButtonChange} /> : null}
       </View>}
-        <View className="w-full h-40">
+        {selectedOption ? <><View className="w-full h-40">
           <Sign onOK={getSign} onClear={handleClear} />
         </View>
-        <CustomButton title={t('buttons.save')} onPress={saveSignature} disabled={(selectedOption && signatureData != null) ? false : true} /></View>)
+          <CustomButton title={t('buttons.save')} onPress={saveSignature} disabled={(selectedOption && signatureData != null) ? false : true} /></> : null}</View>)
     }
   }
   useLayoutEffect(() => {
@@ -103,10 +103,10 @@ const SignatureDetails = ({ navigation, route }) => {
       {/* <Text className="text-2xl mx-auto mb-2">{signatureDoc.DocName}</Text> */}
       {serverError ? <ErrorText message={serverError} /> : null}
       <View className="w-11/12 mx-auto pb-28 flex">
-        <ScrollView>
+        <ScrollView className="h-2/4">
           {signatureDoc.Document ? <WebViewReader Data={signatureDoc.Document} className="grow" /> : null}
         </ScrollView>
-        {GetSign()}
+        <View className="h-2/4">{GetSign()}</View>
       </View>
     </View>
   )

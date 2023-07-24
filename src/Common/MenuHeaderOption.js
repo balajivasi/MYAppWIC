@@ -7,16 +7,31 @@ const MenuHeaderOption = ({ navigation, title }) => {
     headerRight: () => <NotificationIcon />,
     title: title,
     headerStyle: {
-        backgroundColor: "#006666",
+      backgroundColor: "#006666",
     },
     //headerTintColor: '#f00',
     //activeTintColor: '#f00',
     headerTitleStyle: {
-        fontWeight: "bold",
-        fontSize: 25,
-        color: "#fff",
+      fontWeight: "bold",
+      fontSize: 25,
+      color: "#fff",
     }
   };
 };
+
+export const HeaderOption = () => {
+  return {
+    headerStyle: {
+      backgroundColor: "#006666",
+      color: '#fff'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: "bold",
+      fontSize: 20,
+      color: '#fff',
+    }
+  };
+}
 
 export default MenuHeaderOption;
