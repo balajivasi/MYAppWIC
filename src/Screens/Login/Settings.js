@@ -35,6 +35,7 @@ export default function Settings() {
                     <Picker.Item label="Device: English(en)" value="default" />
                     <Picker.Item label="English" value="en" />
                     <Picker.Item label="Español" value="es" />
+                    <Picker.Item label="Kreyòl Ayisyen" value="hc" />
                 </Picker>
             </View>
         </View>
