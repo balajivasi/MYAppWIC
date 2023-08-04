@@ -7,6 +7,7 @@ import FooterMenu from './FooterMenu';
 import { useSelector } from 'react-redux';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import FooterMenuIcons from "./FooterMenuIcons";
+import AppointmentsFooterIcon from "./AppointmentsFooterIcon";
 const Footer = () => {
   const navigation = useNavigation()
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Footer = () => {
         <FooterMenuIcons title={t('pageTitles.signatures')} ImgSrc="Signatures" onPress={() => { navigation.navigate('Signatures') }} />
         <FooterMenuIcons title={t('pageTitles.uploadDocuments')} ImgSrc="Upload" onPress={() => { navigation.navigate('Upload Documents') }} />
         <FooterMenuIcons title={t('pageTitles.logOut')} ImgSrc="Logout" onPress={() => { dispatch(logoutUser()) }} />
-        <FooterMenuIcons title={t('pageTitles.appointments')} ImgSrc="Appointments" onPress={() => { navigation.navigate('Appointments') }} />
+        <AppointmentsFooterIcon title={t('pageTitles.appointments')} ImgSrc="Appointments" onPress={() => { navigation.navigate('Appointments') }} />
         <FooterMenuIcons title={t('pageTitles.benefits')} ImgSrc="EbtCard" onPress={() => { navigation.navigate('Benefits') }} />
         <FooterMenu title={t('pageTitles.UPCScan')} ImgSrc="UPCScan" onPress={resetUPCScanStack} />
       </>}
