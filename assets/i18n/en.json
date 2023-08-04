@@ -137,7 +137,8 @@
       "uploadFile": "Upload a File",
       "DescSubmit": "Enter Description and Submit",
       "noShow": "Don't show this page again",
-      "uploadStep1": "Step 1: Select Upload Method"
+      "uploadStep1": "Step 1: Select Upload Method",
+      "Phone": "Phone"
     },
     "headings": {
       "confirm": "Confirm"

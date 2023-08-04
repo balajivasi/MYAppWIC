@@ -137,7 +137,8 @@
       "uploadFile": "Cargar un archivo",
       "DescSubmit": "Ingresar descripción y enviar",
       "noShow": "No mostrar esta página nuevamente",
-      "uploadStep1": "Paso 1: Seleccionar método de carga"
+      "uploadStep1": "Paso 1: Seleccionar método de carga",
+      "Phone": "Teléfono"
     },
     "headings": {
       "confirm": "Confirmar"

@@ -18,9 +18,9 @@ export default function ResourceLinks() {
       </ScrollView>
       <View className="mx-auto mb-10">
         <Text className="mt-8 text-2xl text-center">{t('FLResource.AppCustSer')}</Text>
-        <Text className="my-2 mx-auto text-base text-blue-600" onPress={() => Linking.openURL('tel:+18003423556')}>Phone: 1-800-342-3556</Text>
+        <Text className="my-2 mx-auto text-base text-blue-600" onPress={() => Linking.openURL('tel:+18003423556')}>{t('pageText.Phone')}: 1-800-342-3556</Text>
         <Text className="my-2 text-2xl text-center">{t('FLResource.EBTCustSer')}</Text>
-        <Text className="my-2 mx-auto text-base text-blue-600" onPress={() => Linking.openURL('tel:+18666291095')}>Phone: 1-866-629-1095</Text>
+        <Text className="my-2 mx-auto text-base text-blue-600" onPress={() => Linking.openURL('tel:+18666291095')}>{t('pageText.Phone')}: 1-866-629-1095</Text>
       </View>
     </View>
   )

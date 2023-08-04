@@ -7,18 +7,19 @@ import { handleInvalidWICAccount } from '../Common/handleInvalidWICAccount';
 export default function Notifications() {
   const user = useSelector(state => state.user);
   const [NotificationData, setNotificationData] = useState([]);
-  const dispatch=useDispatch();
-  
+  const dispatch = useDispatch();
+
   const getNotificationData = async () => {
     try {
       const response = await NotificationService(user.Token, user.language);
+      console.log('[getNotificationData]', response)
       if (response.Status === 1) {
         setNotificationData(response.ServiceResponse);
       } else {
         try {
-          await handleInvalidWICAccount(response,dispatch);
+          await handleInvalidWICAccount(response, dispatch);
         } catch (error) {
-          console.log('handleInvalidWICAccount failed.',error)
+          console.log('handleInvalidWICAccount failed.', error)
         }
       }
     } catch (error) {
