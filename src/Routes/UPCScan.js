@@ -10,6 +10,7 @@ import UPCSubmitLabel from "../Screens/UPC/UPCSubmitLabel";
 import UPCSubmitLanding from "../Screens/UPC/UPCSubmitLanding";
 import UPCSubmitStatus from "../Screens/UPC/UPCSubmitStatus";
 import Util from "../Common/Util";
+import Notifications from "../Screens/Notifications";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,9 @@ const UPCScanStackNav = () => {
         <Stack.Screen name="UPCSubmitLanding" component={UPCSubmitLanding} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCSubmitLanding') })} />
         <Stack.Screen name="UPCSubmit" component={UPCSubmit} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCScan') })} />
         <Stack.Screen name="UPCSubmitStatus" component={UPCSubmitStatus} options={({ navigation }) => MenuHeaderOption({ navigation, title: t('pageTitles.UPCSubmitStatus') })} />
+        <Stack.Group screenOptions={() => ({ presentation: 'modal' })}>
+            <Stack.Screen name="Notifications" component={Notifications} options={{ ...Util.ModelOptions, title: t('pageTitles.notifications') }} />
+        </Stack.Group>
     </Stack.Navigator>)
 };
 

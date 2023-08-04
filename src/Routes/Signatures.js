@@ -4,6 +4,7 @@ import SignatureDetails from "../Screens/SignatureDetails";
 import MenuHeaderOption, { HeaderOption } from "../Common/MenuHeaderOption";
 import { useTranslation } from "react-i18next";
 import Util from '../Common/Util';
+import Notifications from "../Screens/Notifications";
 const Stack = createNativeStackNavigator();
 
 
@@ -15,7 +16,9 @@ const SignaturesStackNav = () => {
         {/* <Stack.Group screenOptions={() => ({ presentation: 'modal' })}>
             <Stack.Screen name="SignaturesDetails" component={SignatureDetails} options={{...Util.ModelOptions }}/>
         </Stack.Group> */}
-
+        <Stack.Group screenOptions={() => ({ presentation: 'modal' })}>
+            <Stack.Screen name="Notifications" component={Notifications} options={{ ...Util.ModelOptions, title: t('pageTitles.notifications') }} />
+        </Stack.Group>
     </Stack.Navigator>)
 };
 
