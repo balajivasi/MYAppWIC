@@ -30,7 +30,7 @@ const Footer = () => {
         <FooterMenuIcons title={t('pageTitles.resourceLinks')} ImgSrc="Resources" onPress={() => { navigation.navigate('Resource') }} /></>}
       {isLoggedIn && <>
         <FooterMenuIcons title={t('pageTitles.signatures')} ImgSrc="Signatures" onPress={() => { navigation.navigate('Signatures') }} />
-        <FooterMenuIcons title={t('pageTitles.uploadDocuments')} ImgSrc="Upload" onPress={() => { navigation.navigate('UploadDocuments') }} />
+        <FooterMenuIcons title={t('pageTitles.uploadDocuments')} ImgSrc="Upload" onPress={() => { navigation.navigate('Upload Documents') }} />
         <FooterMenuIcons title={t('pageTitles.logOut')} ImgSrc="Logout" onPress={() => { dispatch(logoutUser()) }} />
         <FooterMenuIcons title={t('pageTitles.appointments')} ImgSrc="Appointments" onPress={() => { navigation.navigate('Appointments') }} />
         <FooterMenuIcons title={t('pageTitles.benefits')} ImgSrc="EbtCard" onPress={() => { navigation.navigate('Benefits') }} />
