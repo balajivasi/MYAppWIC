@@ -44,7 +44,7 @@ export default function Appointments({ navigation }) {
   }
   useEffect(() => {
     setAppointments(Appointments)
-  }, [ActiveCardNumber])
+  }, [Appointments])
 
   const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));

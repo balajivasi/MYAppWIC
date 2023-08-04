@@ -17,14 +17,14 @@ const AppointmentsFooterIcon = ({ title, onPress, CSSName, ImgSrc }) => {
     }, [Appointments])
 
     if (Appointments.length != 0) {
-        const buttonStyle = `border w-1/3 py-0 border-gray-300 rounded-sm  ${CSSName}`;
+        const buttonStyle = `border w-1/3 py-5 border-gray-300 rounded-sm  ${CSSName}`;
         return (
             <TouchableOpacity className={buttonStyle} onPress={onPress}>
-                <View className="mx-auto"><CalendarIcon size={70} color={'#339900'} />
-                    <View className="absolute top-7 -left-6 w-28"><Text className="text-lg text-emerald-800 text-center">{date}</Text></View>
-                    <View className="absolute -left-5 top-3 w-28"><Text className="text-xs text-red-600 text-center">{month}</Text></View>
+                <View className="mx-auto"><CalendarIcon size={40} color={'#339900'} />
+                    <View className="absolute top-3 -left-9 w-28"><Text className="text-lg text-emerald-800 text-center">{date}</Text></View>
+                    <View className="absolute -left-9 top-1 w-28"><Text className="text-xs text-red-600 text-center">{month}</Text></View>
                 </View>
-                <Text className="text-base text-center">{title}</Text>
+                <Text className="text-base pt-2 text-center">{title}</Text>
             </TouchableOpacity>
         );
     } else {
