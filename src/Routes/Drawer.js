@@ -1,7 +1,7 @@
 
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from 'react-redux';
-import { ArrowLeftOnRectangleIcon, ArrowUpTrayIcon, BuildingOfficeIcon, CalendarDaysIcon, CreditCardIcon, DocumentTextIcon, GlobeAltIcon, HomeIcon, LockClosedIcon, PencilIcon, PencilSquareIcon, ShoppingCartIcon, UserGroupIcon } from "react-native-heroicons/outline";
+import { PowerIcon, ArrowUpTrayIcon, BuildingOfficeIcon, CalendarDaysIcon, CreditCardIcon, DocumentTextIcon, GlobeAltIcon, HomeIcon, LockClosedIcon, ShoppingCartIcon, UserGroupIcon } from "react-native-heroicons/outline";
 import { useTranslation } from "react-i18next";
 import HomeStackNav from "./HomeStack";
 import EBTCardStackNav from "./EBTCardStack";
@@ -11,7 +11,6 @@ import ClinicsStackNav from "./Clinics";
 import StoresStackNav from "./Stores";
 import ChangePassStackNav from "./ChangePassword";
 import SignaturesStackNav from "./Signatures";
-import FeedbackStackNav from "./Feedback";
 import ResourceStackNav from "./ResourceLinks";
 import UploadDocumentsStackNav from "./UploadDocuments";
 import CustomDrawer from "../Common/CustomDrawer";
@@ -39,9 +38,9 @@ const FLDrawer = () => {
             <Drawer.Screen name="Signatures" component={SignaturesStackNav} options={{ drawerIcon: () => <DocumentTextIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.signatures') }} />
             <Drawer.Screen name="Upload Documents" component={UploadDocumentsStackNav} options={{ drawerIcon: () => <ArrowUpTrayIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.uploadDocuments') }} />
             <Drawer.Screen name="Resource Links" component={ResourceStackNav} options={{ drawerIcon: () => <GlobeAltIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.resourceLinks') }} />
-            <Drawer.Screen name="Feedback" component={FeedbackStackNav} options={{ drawerIcon: () => <PencilSquareIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.feedback') }} />
+            {/* <Drawer.Screen name="Feedback" component={FeedbackStackNav} options={{ drawerIcon: () => <PencilSquareIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.feedback') }}  /> */}
             {([9, 1].includes(user.LoginType)) && <Drawer.Screen name="Change Password" component={ChangePassStackNav} options={{ drawerIcon: () => <LockClosedIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.changePassword') }} />}
-            <Drawer.Screen name="Logout" component={LogOut} options={{ drawerIcon: () => <ArrowLeftOnRectangleIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.logOut') }} />
+            <Drawer.Screen name="Logout" component={LogOut} options={{ drawerIcon: () => <PowerIcon name="fl-home" size={IconSize} color={IconColor} style={{ marginRight: -25 }} />, title: t('pageTitles.logOut') }} />
             <Drawer.Screen name="UPCScan" component={UPCScanStackNav} options={{ drawerItemStyle: { display: 'none' } }} />
         </Drawer.Navigator>
     )

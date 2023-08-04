@@ -1,14 +1,16 @@
 import React from "react";
 import { TouchableOpacity, Text, View } from "react-native";
-import { ArrowLeftOnRectangleIcon, BuildingOfficeIcon, CalendarDaysIcon, CreditCardIcon, GlobeAltIcon, ShoppingCartIcon } from "react-native-heroicons/outline";
+import { BuildingOfficeIcon, CalendarDaysIcon, CreditCardIcon, GlobeAltIcon, ShoppingCartIcon, ArrowUpTrayIcon, DocumentTextIcon, PowerIcon } from "react-native-heroicons/outline";
 
 const ImagePaths = {
   "Clinic": <BuildingOfficeIcon size={40} color={'#ff0000'} />,
   "stores": <ShoppingCartIcon size={40} color={'#ff9933'} />,
   "Resources": <GlobeAltIcon size={40} color={'#99cc66'} />,
-  "Logout": <ArrowLeftOnRectangleIcon size={40} color={'#f00'} />,
+  "Logout": <PowerIcon size={40} color={'#f00'} />,
   "Appointments": <CalendarDaysIcon size={40} color={'#339900'} />,
   "EbtCard": <CreditCardIcon size={40} color={'#99cc66'} />,
+  "Signatures": <DocumentTextIcon size={40} color={'#ed5d09'} />,
+  "Upload": <ArrowUpTrayIcon size={40} color={'#ff9933'} />,
   "UPCScan": ""
 };
 

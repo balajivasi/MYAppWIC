@@ -78,15 +78,6 @@
       "UPCSubmitLabel": "Imaj Etikèt UPC",
       "UPCSubmitLanding": "Detay Soumèt UPC"
     },
-    "footerIcon": {
-      "clinics": "Klinik",
-      "stores": "Magazen",
-      "resourceLinks": "Lyen Resous",
-      "appointments": "Ranzevou",
-      "benefits": "Benefis",
-      "UPCScan": "UPC Skannen",
-      "logOut": "Dekonekte"
-    },
     "buttons": {
       "login": "Ouvri Sesyon",
       "save": "Sove",
@@ -178,6 +169,18 @@
       "suggestion": "Sijesyon",
       "complaint": "Plent",
       "other": "Lòt"
+    },
+    "FLResource": {
+      "IncomeGuide": "Gid Line pou Reveni nan WIC",
+      "ContactInfo": "Enfòmasyon Kontakte WIC",
+      "PrescreenTool": "Zouti Preseleksyon WIC",
+      "Foods": "Manje WIC nan Florida",
+      "EligibilityInfo": "Enfòmasyon sou Elijiblite WIC",
+      "Training": "Fòmasyon sou Entènèt WIChealth",
+      "Works": "Kijan WIC Fonksyone",
+      "Statement": "Deklarasyon Kont Diskriminasyon",
+      "AppCustSer": "Sèvis Kliyan Aplikasyon WIC",
+      "EBTCustSer": "Sèvis Kliyan EBT WIC"
     }
   }
 }

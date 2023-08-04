@@ -69,7 +69,7 @@
       "current": "Current",
       "future": "Future",
       "benefitsDetails": "Benefits Details",
-      "UPCScan": "UPC Scan",
+      "UPCScan": "Food Search",
       "submitUPC": "Submit UPC",
       "UPCSubmitStatus": "UPC Submit Status",
       "UPCLanding": "UPC Landing",
@@ -77,15 +77,6 @@
       "UPCSubmitProduct": "UPC Product Image",
       "UPCSubmitLabel": "UPC Label Image",
       "UPCSubmitLanding": "UPC Submit Details"
-    },
-    "footerIcon": {
-      "clinics": "Clinics",
-      "stores": "Stores",
-      "resourceLinks": "Resource Links",
-      "appointments": "Appointments",
-      "benefits": "Benefits",
-      "UPCScan": "UPC Scan",
-      "logOut": "LogOut"
     },
     "buttons": {
       "login": "Login",
@@ -178,6 +169,18 @@
       "suggestion": "Suggestion",
       "complaint": "Complaint",
       "other": "Other"
+    },
+    "FLResource": {
+      "IncomeGuide": "WIC Income Guidelines",
+      "ContactInfo": "WIC Contact Information",
+      "PrescreenTool": "WIC Prescreen Tool",
+      "Foods": "Florida WIC Foods",
+      "EligibilityInfo": "WIC Eligibility Information",
+      "Training": "WIChealth Online Training",
+      "Works": "How WIC Works",
+      "Statement": "Non-discrimination Statement",
+      "AppCustSer": "WIC App Customer Service",
+      "EBTCustSer": "WIC EBT Customer Service"
     }
   }
 }

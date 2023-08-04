@@ -78,15 +78,6 @@
       "UPCSubmitLabel": "Imagen de etiqueta UPC",
       "UPCSubmitLanding": "Detalles de envío de UPC"
     },
-    "footerIcon": {
-      "clinics": "Clínicas",
-      "stores": "Tiendas",
-      "resourceLinks": "Enlaces de recursos",
-      "appointments": "Citas",
-      "benefits": "Beneficios",
-      "UPCScan": "Escaneo de UPC",
-      "logOut": "Cerrar sesión"
-    },
     "buttons": {
       "login": "Iniciar sesión",
       "save": "Guardar",
@@ -177,6 +168,18 @@
       "suggestion": "Sugerencia",
       "complaint": "Queja",
       "other": "Otro"
+    },
+    "FLResource": {
+      "IncomeGuide": "Guías de ingresos de WIC",
+      "ContactInfo": "Información de contacto de WIC",
+      "PrescreenTool": "Herramienta de preselección de WIC",
+      "Foods": "Alimentos de WIC en Florida",
+      "EligibilityInfo": "Información de elegibilidad de WIC",
+      "Training": "Capacitación en línea de WIChealth",
+      "Works": "Cómo funciona WIC",
+      "Statement": "Declaración de no discriminación",
+      "AppCustSer": "Servicio al cliente de la aplicación WIC",
+      "EBTCustSer": "Servicio al cliente de WIC EBT"
     }
   }
 }
