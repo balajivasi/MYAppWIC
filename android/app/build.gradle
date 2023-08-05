@@ -96,9 +96,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.myapp"
+    namespace "com.Florida.WIC"
     defaultConfig {
-        applicationId "com.myapp"
+        applicationId "com.Florida.WIC"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
