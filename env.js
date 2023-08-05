@@ -19,7 +19,9 @@ export const GoogleApiKey = "AIzaSyBzhHaFFBDMN9DTDKOpDMqX7c-XRs9j2Ws";
 
 //export const webClientId = "824890368891-mmdijfu9d5gujo5m7tr50sn00cfoj7d1.apps.googleusercontent.com";
 //export const googleIOSClientID = "824890368891-dupgcripqhr2avu2rddqttughmo1kbfa.apps.googleusercontent.com";
-export const googleAndroidClientID = "810464624569-rmu0dlarna00jce07jppc2l3c0l07erd.apps.googleusercontent.com";
+export const googleAndroidClientID = "810464624569-a0fajbaeul11e3bp2nsg4qpq5776da3t.apps.googleusercontent.com";
+
+
 export const googleAndroidRedirectUri = "com.googleusercontent.apps.824890368891-mmdijfu9d5gujo5m7tr50sn00cfoj7d1:/oauth2redirect";
 
 
