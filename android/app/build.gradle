@@ -96,9 +96,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.myapp"
+    namespace "com.Florida.WIC"
     defaultConfig {
-        applicationId "com.myapp"
+        applicationId "com.Florida.WIC"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -170,6 +170,11 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+   // implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+//apply plugin: 'com.google.gms.google-services'

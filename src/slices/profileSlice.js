@@ -7,7 +7,8 @@ const initialState = {
   Token: null,
   language: 'en',
   EBTCardNumber: null,
-  ScannedUPC: null
+  ScannedUPC: null,
+  LoginType: null
 };
 
 export const profileSlice = createSlice({
@@ -41,8 +42,11 @@ export const profileSlice = createSlice({
     setScannedUPC: (state, action) => {
       state.ScannedUPC = action.payload;
     },
+    setLoginType: (state, action) => {
+      state.LoginType = action.payload;
+    },
   },
 });
 
-export const { setProfileEmail, setProfileFullName, setGlobalError, setClearProfileData, setToken, setProfileLanguage, setEBTCardNumber, setScannedUPC } = profileSlice.actions;
+export const { setProfileEmail, setProfileFullName, setGlobalError, setClearProfileData, setToken, setProfileLanguage, setEBTCardNumber, setScannedUPC, setLoginType, } = profileSlice.actions;
 export default profileSlice.reducer;

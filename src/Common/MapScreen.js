@@ -5,14 +5,13 @@ import MapCallout from './MapCallout';
 
 const MapScreen = ({ latLng, markers, miles }) => {
   const [mapRegion, setMapRegion] = useState(null);
-
   useEffect(() => {
-    // Set the initial map region based on the latLng prop
+    // Set the initial map region based on the latLng prop -- default position
     if (latLng) {
       const metersPerMile = 1609.34;
       setMapRegion({
-        latitude: latLng.lat,
-        longitude: latLng.lng,
+        latitude: markers ? markers[0]?.Latitude : latLng.lat,
+        longitude: markers ? markers[0]?.Longitude : latLng.lng,
         latitudeDelta: (miles / metersPerMile) * 15, // Calculate latitude delta based on miles
         longitudeDelta: (miles / (metersPerMile * Math.cos((37.7749 * Math.PI) / 180))) * 15, // Calculate longitude delta based on miles and latitude
       });
@@ -31,6 +30,9 @@ const MapScreen = ({ latLng, markers, miles }) => {
         <MapView
           style={{ flex: 1 }}
           region={mapRegion}
+          scrollEnabled={true}
+          rotateEnabled={true}
+          pitchEnabled={true}
           onRegionChange={handleRegionChange}
           showsUserLocation={true}
         >

@@ -32,9 +32,10 @@ export default function Settings() {
             <Text className="text-center text-xl">{t('language')}</Text>
             <View>
                 <Picker selectedValue={selectedLanguage} onValueChange={(value) => handleLanguageChange(value)}>
-                    <Picker.Item label="Device: English(en)" value="default" />
+                    <Picker.Item label="Device: English(en)" value="en" />
                     <Picker.Item label="English" value="en" />
                     <Picker.Item label="Español" value="es" />
+                    <Picker.Item label="Kreyòl Ayisyen" value="hc" />
                 </Picker>
             </View>
         </View>

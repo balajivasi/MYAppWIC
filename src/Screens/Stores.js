@@ -70,10 +70,10 @@ export default function Stores({ navigation }) {
         <MapScreen latLng={latLng} markers={markers} miles={miles} />
       </View>
       <View className="flex-row">
-        <Text className="w-2/12 text-lg mt-2 leading-7 text-center">0{'\n'}{t('pageText.miles')}</Text>
+        <Text className="w-2/12 text-lg mt-2 leading-7 text-center">5{'\n'}{t('pageText.miles')}</Text>
         <View className="w-8/12">
           <Text className="text-center text-base">{miles} {t('pageText.miles')}</Text>
-          <Slider value={miles} onSlidingComplete={handleSliderComplete} step={2} minimumValue={0} maximumValue={30} /></View>
+          <Slider value={miles} onSlidingComplete={handleSliderComplete} step={2} minimumValue={5} maximumValue={30} /></View>
         <Text className="w-2/12 text-lg mt-2 leading-7 text-center">30{'\n'}{t('pageText.miles')}</Text>
       </View>
     </View>

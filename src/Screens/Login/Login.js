@@ -11,7 +11,7 @@ import ErrorText from "../../Common/ErrorText";
 import { setProfileEmail } from "../../slices/profileSlice";
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import Util from '../../Common/Util';
-import { googleIOSClientID, webClientId } from '../../../env'
+import { googleIOSClientID, webClientId, googleAndroidClientID } from '../../../env'
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import PasswordInput from "../../Common/PasswordInput";
 
@@ -83,7 +83,7 @@ export default function LoginPage({ navigation }) {
       const userInfo = await GoogleSignin.signIn();
 
       // Access user information from the `userInfo` object
-
+      console.log('handleGoogleSignIn--', userInfo)
       const { authorizationCode, user } = userInfo;
       setSocialSuccess(userInfo?.user)
       const LoginType = google;
@@ -126,7 +126,10 @@ export default function LoginPage({ navigation }) {
   useEffect(() => {
     GoogleSignin.configure({
       webClientId: webClientId,
+      androidClientId: googleAndroidClientID,
       iosClientId: googleIOSClientID,
+      scopes: ['email'], // Specify the scopes you need
+      offlineAccess: true,
     });
   }, [])
 

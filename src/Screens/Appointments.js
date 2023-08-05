@@ -11,9 +11,10 @@ import { setLoading } from '../slices/loaderSlice';
 
 export default function Appointments({ navigation }) {
   const Token = useSelector(state => state.user.Token);
-  const [appointments, setAppointments] = useState('');
-  const { t } = useTranslation();
   const ActiveCardNumber = useSelector(state => state.user.EBTCardNumber);
+  const Appointments = useSelector(state => state.preData.Appointments);
+  const [appointments, setAppointments] = useState(Appointments);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [refreshing, setRefreshing] = useState(false);
 
@@ -21,6 +22,7 @@ export default function Appointments({ navigation }) {
     dispatch(setLoading(true));
     try {
       const response = await AppointmentsService(Token);
+      console.log('loadAppointments', response)
       // Handle the successful response
       if (response?.Status === 1) {
         setAppointments(response.ServiceResponse);
@@ -41,8 +43,8 @@ export default function Appointments({ navigation }) {
 
   }
   useEffect(() => {
-    loadAppointments()
-  }, [ActiveCardNumber])
+    setAppointments(Appointments)
+  }, [Appointments])
 
   const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));

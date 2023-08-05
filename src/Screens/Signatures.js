@@ -64,7 +64,7 @@ export default function Signatures({ navigation }) {
         onRefresh={onRefresh}
       />}>
         {serverError ? <ErrorText message={serverError} /> : null}
-        {signature ? <View className=" w-11/12 mx-auto mt-4">
+        {signature.length != 0 ? <View className=" w-11/12 mx-auto mt-4">
           {signature.map((signature, index) => <SignatureList key={index} data={signature} selectSign={() => handleSelect(signature)} />)}
         </View>
           : <View className="w-screen pt-16" style={{ alignItems: "center" }}>

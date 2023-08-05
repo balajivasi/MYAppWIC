@@ -2,7 +2,7 @@
 
 import { loginRequest, loginSuccess, loginFailure, logout } from '../slices/authSlice';
 import { setLoading } from '../slices/loaderSlice';
-import { setProfileEmail, setProfileFullName, setToken, setClearProfileData, setEBTCardNumber } from '../slices/profileSlice';
+import { setProfileEmail, setProfileFullName, setToken, setClearProfileData, setEBTCardNumber, setLoginType } from '../slices/profileSlice';
 import axios from 'axios';
 import getEnvVars from '../../config';
 import { clearAuthDataFromStorage, saveAuthDataToStorage } from './AuthPersistence';
@@ -50,6 +50,7 @@ export const loginUser = (credentials) => {
         dispatch(setEBTCardNumber(response.data.ServiceResponse[0].EBTCardNumber));
         // Dispatch the success action with the user data
         dispatch(loginSuccess(response.data.ServiceResponse));
+        dispatch(setLoginType(credentials.LoginType))
       } else {
         if (credentials.LoginType != 9 && response.data.ServiceResponse[0].Message === "Email address/Password didn't match with our system.") {
           dispatch(loginFailure('register'))

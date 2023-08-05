@@ -38,6 +38,7 @@ export default function Benefits({ navigation }) {
 
   useEffect(() => {
     setIndex(0)
+    console.log('Benefits--', ActiveCardNumber)
   }, [ActiveCardNumber])
 
   const renderTabBar = (props) => {
