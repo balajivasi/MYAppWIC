@@ -6,11 +6,11 @@ import {store} from './src/store/store';
 import {Provider} from 'react-redux';
 import Main from './src/Main';
 import Spinner from './src/Common/Spinner';
-import SplashScreen from 'react-native-splash-screen';
+//import SplashScreen from 'react-native-splash-screen';
 
 export default function App() {
   useEffect(() => {
-    SplashScreen.hide();
+    //SplashScreen.hide();
   }, []);
 
   return (
