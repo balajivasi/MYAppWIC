@@ -1,5 +1,5 @@
 module.exports = {
     project: {
-        ios: {},
+        ios: { automaticPodsInstallation: true },
     },
 };
