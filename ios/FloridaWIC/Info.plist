@@ -6,17 +6,6 @@
 		<string>en</string>
 		<key>CFBundleDisplayName</key>
 		<string>FloridaWIC</string>
-		<key>CFBundleDocumentTypes</key>
-		<array>
-			<dict>
-				<key>CFBundleTypeName</key>
-				<string>MKDirectionsRequest</string>
-				<key>LSItemContentTypes</key>
-				<array>
-					<string>com.apple.maps.directionsrequest</string>
-				</array>
-			</dict>
-		</array>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -31,28 +20,10 @@
 		<string>$(MARKETING_VERSION)</string>
 		<key>CFBundleSignature</key>
 		<string>????</string>
-		<key>CFBundleURLTypes</key>
-		<array>
-			<dict>
-				<key>CFBundleTypeRole</key>
-				<string>Editor</string>
-				<key>CFBundleURLName</key>
-				<string>IOS URL</string>
-				<key>CFBundleURLSchemes</key>
-				<array>
-					<string>com.googleusercontent.apps.810464624569-94slqkcg17g0lc7ke0ge8nh0vsddb8la</string>
-				</array>
-			</dict>
-		</array>
 		<key>CFBundleVersion</key>
 		<string>$(CURRENT_PROJECT_VERSION)</string>
 		<key>LSRequiresIPhoneOS</key>
 		<true />
-		<key>MKDirectionsApplicationSupportedModes</key>
-		<array>
-			<string>MKDirectionsModeBus</string>
-			<string>MKDirectionsModeCar</string>
-		</array>
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
@@ -61,29 +32,19 @@
 			<key>NSAllowsLocalNetworking</key>
 			<true />
 		</dict>
-		<key>NSCameraUsageDescription</key>
-		<string>This Application need Camera Access to scan UPC Code</string>
-		<key>NSFaceIDUsageDescription</key>
-		<string></string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string></string>
-		<key>NSPhotoLibraryUsageDescription</key>
-		<string>This Application need access to photo library to select Images</string>
 		<key>UILaunchStoryboardName</key>
-		<string>LaunchScreen.storyboard</string>
+		<string>LaunchScreen</string>
 		<key>UIRequiredDeviceCapabilities</key>
 		<array>
-			<string>armv64</string>
+			<string>arm64</string>
 		</array>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
-		</array>
-		<key>UISupportedInterfaceOrientations~ipad</key>
-		<array>
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
-			<string>UIInterfaceOrientationPortrait</string>
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false />
